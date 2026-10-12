@@ -2,5502 +2,1561 @@
   "levelId": 1,
   "levelName": "Stereo Madness",
   "completionPercentage": 100.0,
-  "totalFrames": 5081,
+  "totalFrames": 5074,
   "attemptsToSolve": 1,
   "actions": [
     {
-      "frame": 79,
-      "x": 405.1,
+      "frame": 88,
+      "x": 458.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 87,
-      "x": 446.6,
+      "frame": 96,
+      "x": 499.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 172,
-      "x": 888.0,
+      "frame": 178,
+      "x": 925.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 180,
-      "x": 929.5,
+      "frame": 185,
+      "x": 962.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 263,
-      "x": 1360.6,
+      "frame": 266,
+      "x": 1382.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 271,
-      "x": 1402.1,
+      "frame": 340,
+      "x": 1766.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 289,
-      "x": 1495.6,
+      "frame": 449,
+      "x": 2333.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 297,
-      "x": 1537.1,
+      "frame": 459,
+      "x": 2384.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 313,
-      "x": 1620.2,
+      "frame": 482,
+      "x": 2504.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 321,
-      "x": 1661.8,
+      "frame": 490,
+      "x": 2545.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 737,
-      "x": 3822.0,
+      "frame": 533,
+      "x": 2769.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 745,
-      "x": 3863.6,
+      "frame": 542,
+      "x": 2815.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 763,
-      "x": 3957.1,
+      "frame": 578,
+      "x": 3002.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 771,
-      "x": 3998.6,
+      "frame": 586,
+      "x": 3044.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 787,
-      "x": 4081.7,
+      "frame": 620,
+      "x": 3221.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 795,
-      "x": 4123.2,
+      "frame": 626,
+      "x": 3252.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 811,
-      "x": 4206.3,
+      "frame": 672,
+      "x": 3491.0,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 679,
+      "x": 3527.3,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 718,
+      "x": 3729.9,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 727,
+      "x": 3776.6,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 739,
+      "x": 3838.9,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 748,
+      "x": 3885.7,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 761,
+      "x": 3953.2,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 770,
+      "x": 3999.9,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 786,
+      "x": 4083.0,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 794,
+      "x": 4124.5,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 810,
+      "x": 4207.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 819,
-      "x": 4247.9,
+      "x": 4254.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 870,
-      "x": 4512.7,
+      "frame": 832,
+      "x": 4321.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 878,
-      "x": 4554.3,
+      "frame": 841,
+      "x": 4368.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1356,
-      "x": 7036.5,
+      "frame": 877,
+      "x": 4555.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1364,
-      "x": 7078.1,
+      "frame": 886,
+      "x": 4602.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1542,
-      "x": 8002.4,
+      "frame": 924,
+      "x": 4799.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1543,
-      "x": 8007.6,
+      "frame": 933,
+      "x": 4846.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1544,
-      "x": 8012.8,
+      "frame": 1024,
+      "x": 5318.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1545,
-      "x": 8018.0,
+      "frame": 1032,
+      "x": 5360.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1546,
-      "x": 8023.2,
+      "frame": 1051,
+      "x": 5459.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1547,
-      "x": 8028.4,
+      "frame": 1060,
+      "x": 5505.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1548,
-      "x": 8033.6,
+      "frame": 1112,
+      "x": 5775.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1549,
-      "x": 8038.8,
+      "frame": 1122,
+      "x": 5827.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1550,
-      "x": 8044.0,
+      "frame": 1142,
+      "x": 5931.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1551,
-      "x": 8049.2,
+      "frame": 1152,
+      "x": 5983.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1552,
-      "x": 8054.3,
+      "frame": 1188,
+      "x": 6170.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1553,
-      "x": 8059.5,
+      "frame": 1197,
+      "x": 6217.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1554,
-      "x": 8064.7,
+      "frame": 1236,
+      "x": 6419.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1555,
-      "x": 8069.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1556,
-      "x": 8075.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1557,
-      "x": 8080.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1558,
-      "x": 8085.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1559,
-      "x": 8090.7,
+      "frame": 1336,
+      "x": 6939.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1560,
-      "x": 8095.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1561,
-      "x": 8101.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1562,
-      "x": 8106.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1563,
-      "x": 8111.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1564,
-      "x": 8116.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1565,
-      "x": 8121.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1566,
-      "x": 8127.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1567,
-      "x": 8132.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1568,
-      "x": 8137.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1569,
-      "x": 8142.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1570,
-      "x": 8147.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1575,
-      "x": 8173.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1579,
-      "x": 8194.6,
+      "x": 8102.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1583,
-      "x": 8215.3,
+      "x": 8221.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1587,
-      "x": 8236.1,
+      "frame": 1618,
+      "x": 8403.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1591,
-      "x": 8256.9,
+      "frame": 1650,
+      "x": 8569.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1595,
-      "x": 8277.6,
+      "frame": 1682,
+      "x": 8735.9,
       "button": 1,
       "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1599,
-      "x": 8298.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1603,
-      "x": 8319.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1607,
-      "x": 8340.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1611,
-      "x": 8360.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1615,
-      "x": 8381.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1619,
-      "x": 8402.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1623,
-      "x": 8423.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1627,
-      "x": 8443.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1631,
-      "x": 8464.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1635,
-      "x": 8485.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1639,
-      "x": 8506.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1643,
-      "x": 8526.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1647,
-      "x": 8547.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1651,
-      "x": 8568.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1655,
-      "x": 8589.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1659,
-      "x": 8610.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1663,
-      "x": 8630.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1667,
-      "x": 8651.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1671,
-      "x": 8672.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1675,
-      "x": 8693.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1679,
-      "x": 8713.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1683,
-      "x": 8734.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1687,
-      "x": 8755.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1691,
-      "x": 8776.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1695,
-      "x": 8796.9,
-      "button": 1,
-      "push": false,
       "p2": false
     },
     {
       "frame": 1699,
-      "x": 8817.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1703,
-      "x": 8838.5,
+      "x": 8824.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1707,
-      "x": 8859.3,
+      "frame": 1716,
+      "x": 8912.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1711,
-      "x": 8880.0,
+      "frame": 1724,
+      "x": 8954.0,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1715,
-      "x": 8900.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1719,
-      "x": 8921.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1723,
-      "x": 8942.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1727,
-      "x": 8963.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1731,
-      "x": 8983.9,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 1735,
-      "x": 9004.7,
+      "x": 9011.2,
       "button": 1,
-      "push": false,
+      "push": true,
       "p2": false
     },
     {
       "frame": 1739,
-      "x": 9025.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1743,
-      "x": 9046.2,
+      "x": 9031.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1747,
-      "x": 9067.0,
+      "frame": 1749,
+      "x": 9083.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1751,
-      "x": 9087.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1755,
-      "x": 9108.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1759,
-      "x": 9129.3,
+      "frame": 1756,
+      "x": 9120.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1763,
-      "x": 9150.1,
+      "x": 9156.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1767,
-      "x": 9170.8,
+      "frame": 1773,
+      "x": 9208.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1771,
-      "x": 9191.6,
+      "frame": 1781,
+      "x": 9250.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1775,
-      "x": 9212.4,
+      "frame": 1786,
+      "x": 9276.0,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1779,
-      "x": 9233.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1783,
-      "x": 9253.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1787,
-      "x": 9274.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1791,
-      "x": 9295.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1795,
-      "x": 9316.2,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 1799,
-      "x": 9337.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1803,
-      "x": 9357.8,
+      "x": 9343.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1807,
-      "x": 9378.6,
+      "x": 9385.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1811,
-      "x": 9399.3,
+      "frame": 1820,
+      "x": 9452.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1815,
-      "x": 9420.1,
+      "frame": 1829,
+      "x": 9499.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1819,
-      "x": 9440.9,
+      "frame": 1844,
+      "x": 9577.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1823,
-      "x": 9461.6,
+      "frame": 1854,
+      "x": 9629.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1827,
-      "x": 9482.4,
+      "frame": 1866,
+      "x": 9691.4,
       "button": 1,
       "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1831,
-      "x": 9503.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1835,
-      "x": 9524.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1839,
-      "x": 9544.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1843,
-      "x": 9565.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1847,
-      "x": 9586.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1851,
-      "x": 9607.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1855,
-      "x": 9627.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1859,
-      "x": 9648.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1863,
-      "x": 9669.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1867,
-      "x": 9690.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1871,
-      "x": 9710.9,
-      "button": 1,
-      "push": false,
       "p2": false
     },
     {
       "frame": 1875,
-      "x": 9731.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1879,
-      "x": 9752.5,
+      "x": 9738.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1883,
-      "x": 9773.2,
+      "frame": 1894,
+      "x": 9836.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1887,
-      "x": 9794.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1891,
-      "x": 9814.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1895,
-      "x": 9835.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1899,
-      "x": 9856.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1903,
-      "x": 9877.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1907,
-      "x": 9897.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1911,
-      "x": 9918.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1915,
-      "x": 9939.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1919,
-      "x": 9960.2,
+      "frame": 1906,
+      "x": 9899.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1923,
-      "x": 9980.9,
+      "x": 9987.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1927,
-      "x": 10001.7,
+      "frame": 1934,
+      "x": 10044.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1931,
-      "x": 10022.5,
+      "frame": 1950,
+      "x": 10127.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1935,
-      "x": 10043.3,
+      "frame": 1960,
+      "x": 10179.6,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1939,
-      "x": 10064.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1943,
-      "x": 10084.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1947,
-      "x": 10105.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1951,
-      "x": 10126.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1955,
-      "x": 10147.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1959,
-      "x": 10167.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1961,
-      "x": 10178.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1964,
-      "x": 10193.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1965,
-      "x": 10199.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1966,
-      "x": 10204.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1967,
-      "x": 10209.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1968,
-      "x": 10214.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1974,
-      "x": 10245.8,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 1975,
-      "x": 10251.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1976,
-      "x": 10256.2,
+      "x": 10257.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1977,
-      "x": 10261.4,
+      "frame": 1987,
+      "x": 10319.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1978,
-      "x": 10266.6,
+      "frame": 2011,
+      "x": 10444.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1979,
-      "x": 10271.8,
+      "frame": 2030,
+      "x": 10543.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 1980,
-      "x": 10276.9,
+      "frame": 2048,
+      "x": 10636.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 1985,
-      "x": 10302.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1989,
-      "x": 10323.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 1993,
-      "x": 10344.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 1997,
-      "x": 10365.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2001,
-      "x": 10386.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2005,
-      "x": 10406.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2009,
-      "x": 10427.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2013,
-      "x": 10448.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2017,
-      "x": 10469.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2021,
-      "x": 10489.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2025,
-      "x": 10510.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2029,
-      "x": 10531.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2033,
-      "x": 10552.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2037,
-      "x": 10572.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2041,
-      "x": 10593.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2045,
-      "x": 10614.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2049,
-      "x": 10635.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2053,
-      "x": 10656.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2057,
-      "x": 10676.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2061,
-      "x": 10697.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2065,
-      "x": 10718.4,
+      "frame": 2058,
+      "x": 10688.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2069,
-      "x": 10739.1,
+      "x": 10745.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2073,
-      "x": 10759.9,
+      "frame": 2079,
+      "x": 10797.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2077,
-      "x": 10780.7,
+      "frame": 2096,
+      "x": 10885.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2081,
-      "x": 10801.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2085,
-      "x": 10822.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2089,
-      "x": 10843.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2093,
-      "x": 10863.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2097,
-      "x": 10884.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2101,
-      "x": 10905.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2105,
-      "x": 10926.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2109,
-      "x": 10946.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2113,
-      "x": 10967.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2117,
-      "x": 10988.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2121,
-      "x": 11009.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2123,
-      "x": 11019.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2126,
-      "x": 11035.1,
+      "frame": 2108,
+      "x": 10948.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2127,
-      "x": 11040.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2128,
-      "x": 11045.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2129,
-      "x": 11050.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2130,
-      "x": 11055.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2136,
-      "x": 11087.1,
+      "x": 11046.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2137,
-      "x": 11092.2,
+      "x": 11098.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2138,
-      "x": 11097.4,
+      "frame": 2150,
+      "x": 11166.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2139,
-      "x": 11102.6,
+      "frame": 2158,
+      "x": 11207.8,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2140,
-      "x": 11107.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2141,
-      "x": 11113.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2142,
-      "x": 11118.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2148,
-      "x": 11149.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2154,
-      "x": 11180.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2164,
-      "x": 11232.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2174,
-      "x": 11284.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2175,
-      "x": 11289.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2176,
-      "x": 11294.8,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 2177,
-      "x": 11300.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2178,
-      "x": 11305.2,
+      "x": 11306.5,
       "button": 1,
       "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2179,
-      "x": 11310.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2180,
-      "x": 11315.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2181,
-      "x": 11320.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2182,
-      "x": 11325.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2183,
-      "x": 11331.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2184,
-      "x": 11336.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2185,
-      "x": 11341.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2186,
-      "x": 11346.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2187,
-      "x": 11351.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2188,
-      "x": 11357.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2189,
-      "x": 11362.3,
-      "button": 1,
-      "push": false,
       "p2": false
     },
     {
       "frame": 2190,
-      "x": 11367.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2196,
-      "x": 11398.6,
+      "x": 11374.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2202,
-      "x": 11429.8,
+      "frame": 2205,
+      "x": 11451.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2208,
-      "x": 11461.0,
+      "frame": 2212,
+      "x": 11484.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2214,
-      "x": 11492.1,
+      "frame": 2271,
+      "x": 11793.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2220,
-      "x": 11523.3,
+      "frame": 2289,
+      "x": 11886.8,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2226,
-      "x": 11554.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2232,
-      "x": 11585.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2238,
-      "x": 11616.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2244,
-      "x": 11647.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2250,
-      "x": 11679.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2256,
-      "x": 11710.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2262,
-      "x": 11741.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2268,
-      "x": 11772.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2274,
-      "x": 11803.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2280,
-      "x": 11834.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2286,
-      "x": 11866.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2292,
-      "x": 11897.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2298,
-      "x": 11928.3,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 2304,
-      "x": 11959.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2310,
-      "x": 11990.6,
+      "x": 11964.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2316,
-      "x": 12021.8,
+      "frame": 2311,
+      "x": 12001.0,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2319,
-      "x": 12037.4,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 2325,
-      "x": 12068.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2326,
       "x": 12073.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2327,
-      "x": 12078.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2329,
-      "x": 12089.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 2330,
-      "x": 12094.5,
+      "x": 12099.7,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2332,
-      "x": 12104.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2333,
-      "x": 12110.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2334,
-      "x": 12115.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2335,
-      "x": 12120.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2337,
-      "x": 12130.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2338,
-      "x": 12136.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2339,
-      "x": 12141.2,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 2340,
-      "x": 12146.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2342,
-      "x": 12156.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2343,
-      "x": 12162.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2344,
-      "x": 12167.2,
+      "x": 12151.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2345,
-      "x": 12172.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2346,
       "x": 12177.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2347,
-      "x": 12182.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2349,
-      "x": 12193.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2350,
-      "x": 12198.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2351,
-      "x": 12203.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2352,
-      "x": 12208.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2353,
-      "x": 12213.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2354,
       "x": 12219.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2355,
-      "x": 12224.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2356,
-      "x": 12229.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2357,
-      "x": 12234.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2358,
-      "x": 12239.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2359,
-      "x": 12245.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2360,
-      "x": 12250.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2361,
       "x": 12255.5,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2362,
-      "x": 12260.7,
-      "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2363,
-      "x": 12265.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2364,
-      "x": 12271.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2365,
-      "x": 12276.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2366,
-      "x": 12281.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2367,
-      "x": 12286.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2368,
-      "x": 12291.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2369,
-      "x": 12297.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2370,
-      "x": 12302.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2371,
-      "x": 12307.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2372,
-      "x": 12312.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2373,
-      "x": 12317.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2374,
-      "x": 12323.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2375,
-      "x": 12328.2,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 2376,
-      "x": 12333.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2377,
       "x": 12338.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2378,
-      "x": 12343.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2380,
-      "x": 12354.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2382,
-      "x": 12364.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2384,
-      "x": 12374.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2386,
-      "x": 12385.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 2388,
+      "frame": 2387,
       "x": 12395.7,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2390,
-      "x": 12406.1,
-      "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2392,
-      "x": 12416.5,
+      "frame": 2493,
+      "x": 12946.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2394,
-      "x": 12426.8,
+      "frame": 2569,
+      "x": 13340.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2396,
-      "x": 12437.2,
+      "frame": 2625,
+      "x": 13631.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2398,
-      "x": 12447.6,
+      "frame": 2774,
+      "x": 14405.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2400,
-      "x": 12458.0,
+      "frame": 2852,
+      "x": 14810.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2402,
-      "x": 12468.4,
+      "frame": 2861,
+      "x": 14857.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2406,
-      "x": 12489.2,
+      "frame": 2900,
+      "x": 15059.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2407,
-      "x": 12494.4,
+      "frame": 2909,
+      "x": 15106.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2408,
-      "x": 12499.6,
+      "frame": 3007,
+      "x": 15615.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2409,
-      "x": 12504.7,
+      "frame": 3036,
+      "x": 15765.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2410,
-      "x": 12509.9,
+      "frame": 3070,
+      "x": 15942.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2411,
-      "x": 12515.1,
+      "frame": 3080,
+      "x": 15994.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2412,
-      "x": 12520.3,
+      "frame": 3097,
+      "x": 16082.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2413,
-      "x": 12525.5,
+      "frame": 3106,
+      "x": 16129.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2414,
-      "x": 12530.7,
+      "frame": 3140,
+      "x": 16306.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2415,
-      "x": 12535.9,
+      "frame": 3148,
+      "x": 16347.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2416,
-      "x": 12541.1,
+      "frame": 3190,
+      "x": 16565.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2417,
-      "x": 12546.3,
+      "frame": 3198,
+      "x": 16607.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2541,
-      "x": 13190.2,
+      "frame": 3237,
+      "x": 16809.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2549,
-      "x": 13231.8,
+      "frame": 3248,
+      "x": 16866.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2566,
-      "x": 13320.0,
+      "frame": 3280,
+      "x": 17033.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2574,
-      "x": 13361.6,
+      "frame": 3289,
+      "x": 17079.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2720,
-      "x": 14119.8,
+      "frame": 3319,
+      "x": 17235.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2728,
-      "x": 14161.3,
+      "frame": 3329,
+      "x": 17287.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2745,
-      "x": 14249.6,
+      "frame": 3373,
+      "x": 17516.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2753,
-      "x": 14291.1,
+      "frame": 3449,
+      "x": 17910.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 2769,
-      "x": 14374.2,
+      "frame": 3529,
+      "x": 18326.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 2777,
-      "x": 14415.8,
+      "frame": 3540,
+      "x": 18383.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4388,
-      "x": 22781.7,
+      "frame": 3617,
+      "x": 18783.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4396,
-      "x": 22823.2,
+      "frame": 3627,
+      "x": 18835.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4419,
-      "x": 22942.7,
+      "frame": 3670,
+      "x": 19058.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4420,
-      "x": 22947.9,
+      "frame": 3680,
+      "x": 19110.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4421,
-      "x": 22953.1,
+      "frame": 3707,
+      "x": 19250.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4422,
-      "x": 22958.3,
+      "frame": 3780,
+      "x": 19629.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4423,
-      "x": 22963.4,
+      "frame": 3860,
+      "x": 20045.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4424,
-      "x": 22968.6,
+      "frame": 3870,
+      "x": 20096.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4425,
-      "x": 22973.8,
+      "frame": 3881,
+      "x": 20154.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4426,
-      "x": 22979.0,
+      "frame": 3891,
+      "x": 20206.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4427,
-      "x": 22984.2,
+      "frame": 3906,
+      "x": 20283.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4428,
-      "x": 22989.4,
+      "frame": 3916,
+      "x": 20335.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4429,
-      "x": 22994.6,
+      "frame": 3972,
+      "x": 20626.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4430,
-      "x": 22999.8,
+      "frame": 3979,
+      "x": 20662.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4431,
-      "x": 23005.0,
+      "frame": 4021,
+      "x": 20881.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4432,
-      "x": 23010.2,
+      "frame": 4030,
+      "x": 20927.8,
       "button": 1,
       "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4081,
+      "x": 21192.6,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4091,
+      "x": 21244.6,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4110,
+      "x": 21343.2,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4173,
+      "x": 21670.4,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4194,
+      "x": 21779.4,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4205,
+      "x": 21836.6,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4248,
+      "x": 22059.9,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4257,
+      "x": 22106.6,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4274,
+      "x": 22194.9,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4282,
+      "x": 22236.4,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4315,
+      "x": 22407.8,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4326,
+      "x": 22464.9,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4339,
+      "x": 22532.4,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4349,
+      "x": 22584.4,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4363,
+      "x": 22657.1,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4373,
+      "x": 22709.0,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4391,
+      "x": 22802.5,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 4400,
+      "x": 22849.2,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 4416,
+      "x": 22932.3,
+      "button": 1,
+      "push": true,
       "p2": false
     },
     {
       "frame": 4433,
-      "x": 23015.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4434,
       "x": 23020.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4435,
-      "x": 23025.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4436,
-      "x": 23031.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4437,
-      "x": 23036.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4438,
-      "x": 23041.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4439,
-      "x": 23046.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4440,
-      "x": 23051.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4441,
-      "x": 23056.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4442,
-      "x": 23062.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4443,
-      "x": 23067.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4444,
-      "x": 23072.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4445,
-      "x": 23077.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4446,
-      "x": 23082.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4447,
-      "x": 23088.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4448,
-      "x": 23093.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4449,
-      "x": 23098.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4450,
-      "x": 23103.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4451,
-      "x": 23108.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4452,
-      "x": 23114.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4453,
-      "x": 23119.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4454,
-      "x": 23124.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4455,
-      "x": 23129.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4456,
       "x": 23134.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4457,
-      "x": 23140.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4458,
-      "x": 23145.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4459,
-      "x": 23150.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4460,
-      "x": 23155.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4461,
-      "x": 23160.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4462,
-      "x": 23166.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4463,
-      "x": 23171.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4464,
-      "x": 23176.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4465,
-      "x": 23181.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4466,
-      "x": 23186.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4467,
       "x": 23191.9,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4468,
-      "x": 23197.1,
-      "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4469,
-      "x": 23202.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4470,
-      "x": 23207.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4471,
-      "x": 23212.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4472,
-      "x": 23217.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4473,
-      "x": 23223.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4474,
-      "x": 23228.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4478,
-      "x": 23249.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4480,
-      "x": 23259.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4484,
+      "frame": 4483,
       "x": 23280.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4485,
-      "x": 23285.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4488,
-      "x": 23301.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4490,
-      "x": 23311.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4491,
-      "x": 23316.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4494,
-      "x": 23332.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4495,
-      "x": 23337.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4498,
-      "x": 23352.9,
+      "x": 23342.5,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4499,
-      "x": 23358.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4500,
-      "x": 23363.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4501,
-      "x": 23368.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4503,
-      "x": 23378.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4504,
-      "x": 23384.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4506,
-      "x": 23394.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4507,
-      "x": 23399.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4508,
-      "x": 23404.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4509,
-      "x": 23410.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4511,
-      "x": 23420.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4512,
-      "x": 23425.6,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4513,
-      "x": 23430.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4514,
       "x": 23436.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4515,
-      "x": 23441.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4516,
-      "x": 23446.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4517,
-      "x": 23451.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4518,
-      "x": 23456.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4519,
-      "x": 23462.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4520,
-      "x": 23467.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4522,
-      "x": 23477.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4525,
+      "frame": 4524,
       "x": 23493.1,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4526,
-      "x": 23498.3,
-      "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4527,
-      "x": 23503.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4528,
-      "x": 23508.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4529,
-      "x": 23513.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4530,
-      "x": 23519.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4531,
-      "x": 23524.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4532,
-      "x": 23529.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4533,
-      "x": 23534.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4534,
-      "x": 23539.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4535,
-      "x": 23545.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4536,
-      "x": 23550.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4537,
-      "x": 23555.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4538,
-      "x": 23560.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4539,
-      "x": 23565.8,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4540,
-      "x": 23571.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4541,
       "x": 23576.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4542,
-      "x": 23581.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4543,
-      "x": 23586.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4544,
-      "x": 23591.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4545,
-      "x": 23597.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4546,
-      "x": 23602.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4547,
-      "x": 23607.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4548,
-      "x": 23612.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4549,
-      "x": 23617.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4550,
-      "x": 23623.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4551,
-      "x": 23628.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4552,
       "x": 23633.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4553,
-      "x": 23638.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4554,
-      "x": 23643.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4555,
-      "x": 23648.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4556,
-      "x": 23654.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4557,
-      "x": 23659.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4558,
-      "x": 23664.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4559,
-      "x": 23669.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4560,
-      "x": 23674.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4561,
-      "x": 23680.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4562,
-      "x": 23685.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4563,
-      "x": 23690.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4564,
-      "x": 23695.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4565,
-      "x": 23700.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4566,
-      "x": 23706.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4567,
-      "x": 23711.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4568,
       "x": 23716.4,
       "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4569,
-      "x": 23721.6,
-      "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4570,
-      "x": 23726.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4571,
-      "x": 23732.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4576,
-      "x": 23758.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4580,
+      "frame": 4579,
       "x": 23778.7,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4585,
-      "x": 23804.7,
-      "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4586,
-      "x": 23809.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4587,
-      "x": 23815.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4588,
-      "x": 23820.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4592,
-      "x": 23841.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4593,
-      "x": 23846.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4594,
-      "x": 23851.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4596,
+      "frame": 4595,
       "x": 23861.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4597,
-      "x": 23867.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4599,
-      "x": 23877.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4600,
-      "x": 23882.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4602,
-      "x": 23893.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4603,
-      "x": 23898.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4604,
-      "x": 23903.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4605,
-      "x": 23908.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4606,
-      "x": 23913.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 4607,
-      "x": 23919.0,
+      "x": 23924.2,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4609,
-      "x": 23929.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4610,
-      "x": 23934.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4611,
-      "x": 23939.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4612,
-      "x": 23944.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4613,
-      "x": 23950.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4614,
-      "x": 23955.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4616,
-      "x": 23965.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4617,
-      "x": 23970.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4618,
-      "x": 23976.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4619,
-      "x": 23981.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4620,
-      "x": 23986.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4621,
-      "x": 23991.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4622,
-      "x": 23996.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4623,
-      "x": 24002.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4624,
-      "x": 24007.2,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4625,
-      "x": 24012.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4626,
       "x": 24017.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4627,
-      "x": 24022.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4631,
-      "x": 24043.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4632,
-      "x": 24048.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4633,
-      "x": 24054.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4634,
-      "x": 24059.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4635,
-      "x": 24064.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 4636,
-      "x": 24069.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4637,
       "x": 24074.7,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4638,
-      "x": 24079.9,
-      "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4639,
-      "x": 24085.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4640,
-      "x": 24090.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4641,
-      "x": 24095.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4642,
-      "x": 24100.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4643,
-      "x": 24105.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4644,
-      "x": 24111.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4645,
-      "x": 24116.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4646,
-      "x": 24121.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4647,
-      "x": 24126.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4648,
-      "x": 24131.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4649,
-      "x": 24137.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4650,
-      "x": 24142.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4651,
-      "x": 24147.4,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4652,
-      "x": 24152.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4653,
       "x": 24157.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4654,
-      "x": 24163.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4655,
-      "x": 24168.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4656,
-      "x": 24173.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4657,
-      "x": 24178.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4658,
-      "x": 24183.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4659,
-      "x": 24189.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4660,
-      "x": 24194.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4661,
-      "x": 24199.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4662,
       "x": 24204.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4663,
-      "x": 24209.8,
+      "frame": 4671,
+      "x": 24256.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4664,
-      "x": 24215.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4665,
-      "x": 24220.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4666,
-      "x": 24225.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4667,
-      "x": 24230.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4668,
-      "x": 24235.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4669,
-      "x": 24240.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4674,
-      "x": 24266.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4676,
-      "x": 24277.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4685,
-      "x": 24324.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4686,
-      "x": 24329.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4687,
-      "x": 24334.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4690,
-      "x": 24350.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4691,
-      "x": 24355.2,
+      "frame": 4679,
+      "x": 24298.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4693,
-      "x": 24365.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4694,
       "x": 24370.7,
       "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4703,
-      "x": 24417.5,
-      "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4704,
-      "x": 24422.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4705,
-      "x": 24427.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4706,
-      "x": 24433.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4707,
-      "x": 24438.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4708,
-      "x": 24443.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4709,
-      "x": 24448.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4710,
-      "x": 24453.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4711,
-      "x": 24459.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4712,
-      "x": 24464.2,
+      "frame": 4700,
+      "x": 24407.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4713,
-      "x": 24469.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4714,
       "x": 24474.6,
       "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4715,
-      "x": 24479.8,
-      "button": 1,
       "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4716,
-      "x": 24485.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4717,
-      "x": 24490.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4718,
-      "x": 24495.4,
-      "button": 1,
-      "push": false,
       "p2": false
     },
     {
       "frame": 4719,
-      "x": 24500.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4720,
       "x": 24505.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4721,
-      "x": 24511.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4722,
-      "x": 24516.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4723,
-      "x": 24521.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4724,
-      "x": 24526.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4725,
-      "x": 24531.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4726,
-      "x": 24536.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4727,
-      "x": 24542.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4728,
       "x": 24547.3,
       "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4729,
-      "x": 24552.5,
-      "button": 1,
       "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4730,
-      "x": 24557.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4731,
-      "x": 24562.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4732,
-      "x": 24568.1,
-      "button": 1,
-      "push": false,
       "p2": false
     },
     {
       "frame": 4733,
-      "x": 24573.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4734,
       "x": 24578.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4735,
-      "x": 24583.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4736,
-      "x": 24588.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4737,
-      "x": 24594.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4738,
-      "x": 24599.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4739,
-      "x": 24604.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4740,
-      "x": 24609.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4741,
-      "x": 24614.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4742,
-      "x": 24620.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4743,
-      "x": 24625.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4744,
-      "x": 24630.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4745,
-      "x": 24635.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4746,
-      "x": 24640.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4747,
-      "x": 24646.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 4748,
-      "x": 24651.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4749,
       "x": 24656.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4750,
-      "x": 24661.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4751,
-      "x": 24666.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4757,
-      "x": 24697.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4763,
-      "x": 24729.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4769,
-      "x": 24760.2,
+      "frame": 4760,
+      "x": 24718.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4775,
-      "x": 24791.4,
+      "x": 24796.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4781,
-      "x": 24822.5,
+      "frame": 4789,
+      "x": 24869.3,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4787,
-      "x": 24853.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4793,
-      "x": 24884.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4799,
-      "x": 24916.0,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4805,
-      "x": 24947.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4811,
-      "x": 24978.3,
+      "x": 24952.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4817,
-      "x": 25009.5,
+      "frame": 4813,
+      "x": 24993.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4823,
-      "x": 25040.6,
+      "frame": 4825,
+      "x": 25056.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4829,
-      "x": 25071.8,
+      "frame": 4831,
+      "x": 25087.4,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4835,
-      "x": 25103.0,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4841,
-      "x": 25134.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4847,
-      "x": 25165.3,
+      "x": 25139.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4853,
-      "x": 25196.4,
+      "frame": 4849,
+      "x": 25180.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4859,
+      "frame": 4858,
       "x": 25227.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4865,
-      "x": 25258.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4866,
-      "x": 25263.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 4867,
-      "x": 25269.1,
+      "x": 25274.3,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4869,
-      "x": 25279.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4870,
-      "x": 25284.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4871,
-      "x": 25289.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4872,
-      "x": 25295.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4874,
-      "x": 25305.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4876,
-      "x": 25315.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4877,
-      "x": 25321.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4878,
-      "x": 25326.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4880,
-      "x": 25336.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4881,
-      "x": 25341.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4882,
-      "x": 25347.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4883,
-      "x": 25352.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4884,
-      "x": 25357.4,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4885,
-      "x": 25362.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4886,
       "x": 25367.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4887,
-      "x": 25373.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4888,
-      "x": 25378.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4889,
-      "x": 25383.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4890,
-      "x": 25388.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4891,
-      "x": 25393.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4892,
-      "x": 25399.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4893,
-      "x": 25404.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4894,
-      "x": 25409.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 4895,
-      "x": 25414.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4896,
       "x": 25419.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4897,
-      "x": 25424.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4901,
-      "x": 25445.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4902,
-      "x": 25450.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4903,
-      "x": 25456.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4904,
-      "x": 25461.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4905,
-      "x": 25466.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4906,
       "x": 25471.7,
       "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4907,
-      "x": 25476.9,
-      "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4908,
-      "x": 25482.1,
+      "frame": 4914,
+      "x": 25518.4,
       "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4909,
-      "x": 25487.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4910,
-      "x": 25492.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4911,
-      "x": 25497.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4917,
-      "x": 25528.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4923,
-      "x": 25559.9,
-      "button": 1,
-      "push": true,
       "p2": false
     },
     {
       "frame": 4932,
-      "x": 25606.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4933,
       "x": 25611.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4934,
-      "x": 25617.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4936,
-      "x": 25627.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4937,
-      "x": 25632.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4939,
-      "x": 25643.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4940,
-      "x": 25648.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4941,
-      "x": 25653.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4942,
-      "x": 25658.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4944,
+      "frame": 4943,
       "x": 25669.0,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4945,
-      "x": 25674.2,
-      "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4946,
-      "x": 25679.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4947,
-      "x": 25684.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4949,
-      "x": 25695.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4950,
-      "x": 25700.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4951,
-      "x": 25705.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4952,
-      "x": 25710.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4953,
-      "x": 25715.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4954,
-      "x": 25720.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4955,
-      "x": 25726.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4956,
-      "x": 25731.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4958,
+      "frame": 4957,
       "x": 25741.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4959,
-      "x": 25746.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4963,
-      "x": 25767.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4964,
-      "x": 25772.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4965,
-      "x": 25778.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4966,
-      "x": 25783.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4967,
-      "x": 25788.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4968,
       "x": 25793.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4969,
-      "x": 25798.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4970,
-      "x": 25804.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4971,
-      "x": 25809.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4972,
-      "x": 25814.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4973,
-      "x": 25819.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4974,
-      "x": 25824.8,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4975,
-      "x": 25830.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4976,
-      "x": 25835.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4977,
-      "x": 25840.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4978,
-      "x": 25845.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4979,
-      "x": 25850.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4980,
-      "x": 25855.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4981,
-      "x": 25861.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 4982,
-      "x": 25866.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4983,
       "x": 25871.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 4984,
-      "x": 25876.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4985,
-      "x": 25881.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4986,
-      "x": 25887.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4987,
-      "x": 25892.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4988,
-      "x": 25897.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 4989,
-      "x": 25902.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4990,
       "x": 25907.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 4991,
-      "x": 25913.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 4992,
-      "x": 25918.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 4993,
-      "x": 25923.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
       "frame": 5002,
-      "x": 25970.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5003,
       "x": 25975.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
-      "frame": 5004,
-      "x": 25980.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5006,
-      "x": 25991.0,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5007,
-      "x": 25996.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5009,
-      "x": 26006.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5010,
-      "x": 26011.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5011,
-      "x": 26016.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5012,
-      "x": 26022.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 5014,
-      "x": 26032.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5015,
       "x": 26037.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 5016,
-      "x": 26042.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5017,
-      "x": 26048.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5019,
-      "x": 26058.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5020,
-      "x": 26063.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5021,
-      "x": 26068.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5022,
-      "x": 26074.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5023,
-      "x": 26079.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5024,
-      "x": 26084.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5026,
-      "x": 26094.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5027,
-      "x": 26100.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5028,
-      "x": 26105.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5029,
-      "x": 26110.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 5030,
-      "x": 26115.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5031,
       "x": 26120.8,
       "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5032,
-      "x": 26126.0,
-      "button": 1,
       "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5033,
-      "x": 26131.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5034,
-      "x": 26136.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5035,
-      "x": 26141.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5036,
-      "x": 26146.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5037,
-      "x": 26151.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5038,
-      "x": 26157.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5039,
-      "x": 26162.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5040,
-      "x": 26167.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5041,
-      "x": 26172.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5042,
-      "x": 26177.9,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5043,
-      "x": 26183.1,
-      "button": 1,
-      "push": false,
       "p2": false
     },
     {
       "frame": 5044,
-      "x": 26188.3,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5045,
       "x": 26193.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
-      "frame": 5046,
-      "x": 26198.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5047,
-      "x": 26203.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5048,
-      "x": 26209.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5049,
-      "x": 26214.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5050,
-      "x": 26219.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5051,
-      "x": 26224.6,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5052,
-      "x": 26229.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5053,
-      "x": 26235.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5054,
-      "x": 26240.2,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5055,
-      "x": 26245.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5057,
-      "x": 26255.8,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5059,
-      "x": 26266.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5061,
-      "x": 26276.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5063,
-      "x": 26287.0,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5065,
-      "x": 26297.4,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5066,
-      "x": 26302.5,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5069,
-      "x": 26318.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5070,
-      "x": 26323.3,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5071,
-      "x": 26328.5,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5072,
-      "x": 26333.7,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5073,
-      "x": 26338.9,
+      "frame": 5067,
+      "x": 26312.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 5074,
-      "x": 26344.1,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5075,
       "x": 26349.3,
       "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5076,
-      "x": 26354.5,
-      "button": 1,
       "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5077,
-      "x": 26359.7,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5078,
-      "x": 26364.9,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5079,
-      "x": 26370.1,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 5080,
-      "x": 26375.2,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
-      "frame": 5081,
-      "x": 26380.4,
-      "button": 1,
-      "push": true,
       "p2": false
     }
   ]

@@ -30,7 +30,7 @@
 			"name": "Auto-Play on Enter Saved Level",
 			"description": "Automatically begins playing if a solved macro exists for the current level",
 			"type": "bool",
-			"default": false
+			"default": true
 		},
 		"instant_respawn": {
 			"name": "Instant Respawn During Solve",
