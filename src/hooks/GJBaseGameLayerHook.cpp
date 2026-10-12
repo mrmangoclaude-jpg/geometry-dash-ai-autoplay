@@ -10,13 +10,24 @@ class $modify(AutoPlayBaseGameLayer, GJBaseGameLayer) {
     void update(float dt) {
         auto state = SolverEngine::get().getState();
         if (state == SolverState::Solving) {
-            float speedMult = static_cast<float>(Mod::get()->getSettingValue<double>("solve_speed"));
-            if (speedMult < 1.0f) speedMult = 25.0f;
-            dt *= speedMult;
+            // Headless fixed 60Hz physics sub-stepping:
+            // Prevents tunneling and physics glitches caused by oversized dt
+            const float fixedDt = 1.0f / 60.0f;
+            const int subSteps = 80; // 80x headless simulation per frame
+
+            for (int i = 0; i < subSteps; ++i) {
+                SolverEngine::get().onFrameTick(this);
+                GJBaseGameLayer::update(fixedDt);
+                if (SolverEngine::get().getState() != SolverState::Solving) {
+                    break;
+                }
+            }
+            return;
         }
 
-        GJBaseGameLayer::update(dt);
+        // Normal 1x playback or idle
         SolverEngine::get().onFrameTick(this);
+        GJBaseGameLayer::update(dt);
     }
 };
 #endif

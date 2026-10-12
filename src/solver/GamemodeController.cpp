@@ -56,13 +56,10 @@ int GamemodeController::evaluateCube(const PlayerStateSnapshot& state) {
 
     // 2. On ground
     if (state.isOnGround) {
-        // Imminent obstacle ahead on ground:
-        // Jump only if trajectory simulation confirms we will NOT land in a hazard,
-        // or if staying on ground is guaranteed death within 1-2 frames:
-        if (state.hazardInFront) {
-            if ((state.jumpIsSafe || state.groundHasImmediateThreat) && !state.isHolding) {
-                return 1;
-            }
+        // Jump only when the obstacle enters the optimal clearance window (40 to 75 units):
+        // Prevents premature jumps (jumping 130 units away lands directly into the spike)
+        if (state.hazardInFront && state.obstacleDistX <= 75.0f && !state.isHolding) {
+            return 1;
         }
         if (state.isHolding) {
             return 0; // Release so we can jump again next time

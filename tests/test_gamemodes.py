@@ -7,9 +7,8 @@ def evaluate_gamemode(mode, state):
             if state["isHolding"]:
                 return 0
         if state["isOnGround"]:
-            if state["hazardInFront"]:
-                if (state.get("jumpIsSafe", True) or state.get("groundHasImmediateThreat", False)) and not state["isHolding"]:
-                    return 1
+            if state["hazardInFront"] and state["obstacleDistX"] <= 75.0 and not state["isHolding"]:
+                return 1
             if state["isHolding"]:
                 return 0
         else:
