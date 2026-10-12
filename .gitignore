@@ -1,0 +1,16 @@
+# Build output
+build/
+bin/
+*.geode
+*.dll
+*.exe
+*.obj
+*.pdb
+
+# Local tools
+tools/
+.geode/
+*.log
+check_build.py
+get_job_logs.py
+download_logs.py
