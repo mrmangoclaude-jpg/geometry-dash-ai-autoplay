@@ -29,6 +29,11 @@ struct PlayerStateSnapshot {
     float obstacleDistX = 200.0f;
     bool hazardInFront = false;
     bool ringInReach = false;
+
+    // Advanced Physics Lookahead results
+    bool jumpIsSafe = false;
+    bool groundHasImmediateThreat = false;
+    bool orbIsSafeToTap = false;
 };
 
 class GamemodeController {

@@ -1,11 +1,15 @@
 def evaluate_gamemode(mode, state):
     # Mirroring C++ GamemodeController logic
     if mode == "Cube":
-        if not state["isOnGround"] and state["ringInReach"] and not state["isHolding"]:
-            return 1
-        if state["isOnGround"]:
-            if state["hazardInFront"] and state["obstacleDistX"] < 85.0 and not state["isHolding"]:
+        if not state["isOnGround"] and state["ringInReach"]:
+            if state.get("orbIsSafeToTap", True) and not state["isHolding"]:
                 return 1
+            if state["isHolding"]:
+                return 0
+        if state["isOnGround"]:
+            if state["hazardInFront"]:
+                if (state.get("jumpIsSafe", True) or state.get("groundHasImmediateThreat", False)) and not state["isHolding"]:
+                    return 1
             if state["isHolding"]:
                 return 0
         else:

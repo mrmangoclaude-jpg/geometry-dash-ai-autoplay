@@ -35,12 +35,15 @@ private:
     MacroData m_activeMacro;
     size_t m_playbackIndex = 0;
 
-    // Solving state
+    // Solving state & Frontier memory
     std::vector<PlayerAction> m_recordedActions;
+    std::vector<PlayerAction> m_verifiedBestActions;
     std::deque<DecisionBranch> m_decisionStack;
     size_t m_currentFrame = 0;
+    size_t m_replayIndex = 0;
     int m_totalAttempts = 0;
     float m_bestXPos = 0.0f;
+    float m_currentX = 0.0f;
     bool m_isHolding = false;
     bool m_needsReset = false;
 

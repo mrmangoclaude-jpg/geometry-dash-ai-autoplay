@@ -44,14 +44,25 @@ int GamemodeController::evaluateAction(const PlayerStateSnapshot& state) {
 }
 
 int GamemodeController::evaluateCube(const PlayerStateSnapshot& state) {
-    // In air near a ring / jump orb: trigger tap
-    if (!state.isOnGround && state.ringInReach && !state.isHolding) {
-        return 1;
-    }
-    // On ground with hazard or spike ahead: jump!
-    if (state.isOnGround) {
-        if (state.hazardInFront && state.obstacleDistX < 85.0f && !state.isHolding) {
+    // 1. In air near a ring / jump orb: trigger tap only if simulated trajectory survives
+    if (!state.isOnGround && state.ringInReach) {
+        if (state.orbIsSafeToTap && !state.isHolding) {
             return 1;
+        }
+        if (state.isHolding) {
+            return 0;
+        }
+    }
+
+    // 2. On ground
+    if (state.isOnGround) {
+        // Imminent obstacle ahead on ground:
+        // Jump only if trajectory simulation confirms we will NOT land in a hazard,
+        // or if staying on ground is guaranteed death within 1-2 frames:
+        if (state.hazardInFront) {
+            if ((state.jumpIsSafe || state.groundHasImmediateThreat) && !state.isHolding) {
+                return 1;
+            }
         }
         if (state.isHolding) {
             return 0; // Release so we can jump again next time

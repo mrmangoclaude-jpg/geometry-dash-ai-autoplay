@@ -22,10 +22,13 @@ void SolverEngine::startSolving(int levelId, const std::string& levelName) {
     m_currentLevelId = levelId;
     m_currentLevelName = levelName;
     m_recordedActions.clear();
+    m_verifiedBestActions.clear();
     m_decisionStack.clear();
     m_currentFrame = 0;
+    m_replayIndex = 0;
     m_totalAttempts = 0;
     m_bestXPos = 0.0f;
+    m_currentX = 0.0f;
     m_isHolding = false;
     m_needsReset = false;
 
@@ -59,6 +62,7 @@ void SolverEngine::stopPlaying() {
 void SolverEngine::onLevelReset() {
     m_currentFrame = 0;
     m_playbackIndex = 0;
+    m_replayIndex = 0;
     m_isHolding = false;
     m_needsReset = false;
 }
@@ -73,6 +77,9 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
     if (!layer || !layer->m_player1) return;
 
     auto p1 = layer->m_player1;
+    float currentX = p1->getPositionX();
+    float currentY = p1->getPositionY();
+    m_currentX = currentX;
 
     // 1. PLAYING SAVED MACRO
     if (m_state == SolverState::Playing) {
@@ -91,43 +98,171 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
 
     // 2. SOLVING IN PROGRESS
     if (m_state == SolverState::Solving) {
-        float currentX = p1->getPositionX();
         if (currentX > m_bestXPos) {
             m_bestXPos = currentX;
         }
 
+        // Check if we can replay a verified safe action from previous best runs
+        if (m_replayIndex < m_verifiedBestActions.size()) {
+            const auto& act = m_verifiedBestActions[m_replayIndex];
+            if (act.frame <= m_currentFrame) {
+                layer->handleButton(act.isPush, act.button, act.isPlayer2);
+                m_isHolding = act.isPush;
+                m_recordedActions.push_back(act);
+                m_replayIndex++;
+            }
+            m_currentFrame++;
+            return;
+        }
+
+        // Beyond known territory: Frontier exploration with Trajectory Forecaster!
         PlayerStateSnapshot snapshot;
         snapshot.mode = GamemodeController::get().detectGamemode(
             p1->m_isShip, p1->m_isBall, p1->m_isBird,
             p1->m_isDart, p1->m_isRobot, p1->m_isSpider, p1->m_isSwing
         );
         snapshot.posX = currentX;
-        snapshot.posY = p1->getPositionY();
+        snapshot.posY = currentY;
         snapshot.yVelocity = static_cast<float>(p1->m_yVelocity);
         snapshot.isOnGround = p1->m_isOnGround;
         snapshot.isUpsideDown = p1->m_isUpsideDown;
         snapshot.isHolding = m_isHolding;
 
-        // Obstacle distance estimation from game objects ahead
         snapshot.hazardInFront = false;
         snapshot.obstacleDistX = 999.0f;
-        snapshot.floorDist = snapshot.posY - 100.0f;
-        snapshot.ceilingDist = 300.0f - snapshot.posY;
+        snapshot.floorDist = snapshot.posY - 105.0f;
+        snapshot.ceilingDist = 320.0f - snapshot.posY;
+
+        // Parse nearby objects within [currentX - 40, currentX + 350]
+        struct DetectedObject {
+            float x, y, width, height;
+            GameObjectType type;
+            bool isHazard;
+            bool isSolid;
+            bool isRing;
+        };
+        std::vector<DetectedObject> nearby;
+        nearby.reserve(64);
 
         if (layer->m_objects) {
             auto count = layer->m_objects->count();
             for (unsigned int i = 0; i < count; ++i) {
                 auto obj = static_cast<GameObject*>(layer->m_objects->objectAtIndex(i));
                 if (!obj) continue;
-                float objX = obj->getPositionX();
-                if (objX > currentX && objX < currentX + 160.0f) {
-                    float dx = objX - currentX;
-                    if (obj->m_objectType == GameObjectType::Hazard) {
+                float ox = obj->getPositionX();
+                if (ox >= currentX - 40.0f && ox <= currentX + 350.0f) {
+                    float oy = obj->getPositionY();
+                    auto type = obj->m_objectType;
+                    bool hazard = (type == GameObjectType::Hazard || type == GameObjectType::AnimatedHazard);
+                    bool solid = (type == GameObjectType::Solid || type == GameObjectType::Slope);
+                    bool ring = (type == GameObjectType::YellowJumpRing || type == GameObjectType::PinkJumpRing ||
+                                 type == GameObjectType::GravityRing || type == GameObjectType::GreenRing ||
+                                 type == GameObjectType::RedJumpRing || type == GameObjectType::DashRing ||
+                                 type == GameObjectType::SpiderOrb || type == GameObjectType::TeleportOrb);
+                    
+                    auto rect = obj->getObjectRect();
+                    float w = (rect.size.width > 0.0f) ? rect.size.width : 30.0f;
+                    float h = (rect.size.height > 0.0f) ? rect.size.height : 30.0f;
+                    nearby.push_back({ox, oy, w, h, type, hazard, solid, ring});
+                }
+            }
+        }
+
+        // Constant speed: ~5.2f units/frame in 1x normal speed
+        const float vx = 5.2f;
+        const float vy0 = 10.7f;
+        const float gravity = -0.958f;
+
+        // A. Ground Threat Detection (Will we crash or die without jumping?)
+        for (int step = 1; step <= 25; ++step) {
+            float sx = currentX + step * vx;
+            float sy = currentY;
+            float pL = sx - 11.0f, pR = sx + 11.0f;
+            float pB = sy - 14.0f, pT = sy + 14.0f;
+
+            for (const auto& o : nearby) {
+                float oL = o.x - o.width * 0.5f;
+                float oR = o.x + o.width * 0.5f;
+                float oB = o.y - o.height * 0.5f;
+                float oT = o.y + o.height * 0.5f;
+
+                bool overlap = (pL < oR && pR > oL && pB < oT && pT > oB);
+                if (overlap) {
+                    if (o.isHazard) {
                         snapshot.hazardInFront = true;
-                        if (dx < snapshot.obstacleDistX) {
-                            snapshot.obstacleDistX = dx;
+                        float dx = o.x - currentX;
+                        if (dx < snapshot.obstacleDistX) snapshot.obstacleDistX = dx;
+                        if (step <= 3) snapshot.groundHasImmediateThreat = true;
+                    } else if (o.isSolid && oT > currentY - 6.0f) {
+                        // Running into front/side of a block!
+                        snapshot.hazardInFront = true;
+                        float dx = o.x - currentX;
+                        if (dx < snapshot.obstacleDistX) snapshot.obstacleDistX = dx;
+                        if (step <= 3) snapshot.groundHasImmediateThreat = true;
+                    }
+                }
+            }
+        }
+
+        // B. Jump Arc Forecaster: simulate 24 frames of trajectory
+        bool simJumpSafe = true;
+        float simY = currentY;
+        float simVy = vy0;
+
+        for (int k = 1; k <= 24; ++k) {
+            float sx = currentX + k * vx;
+            simVy += gravity;
+            simY += simVy;
+            if (simY < currentY) simY = currentY;
+
+            float pL = sx - 10.0f, pR = sx + 10.0f;
+            float pB = simY - 12.0f, pT = simY + 12.0f;
+
+            for (const auto& o : nearby) {
+                float oL = o.x - o.width * 0.5f;
+                float oR = o.x + o.width * 0.5f;
+                float oB = o.y - o.height * 0.5f;
+                float oT = o.y + o.height * 0.5f;
+
+                bool overlap = (pL < oR && pR > oL && pB < oT && pT > oB);
+                if (overlap) {
+                    if (o.isHazard) {
+                        simJumpSafe = false;
+                        break;
+                    } else if (o.isSolid) {
+                        if (simY < oT - 5.0f && simVy > 0.0f) {
+                            simJumpSafe = false;
+                            break;
                         }
                     }
+                }
+            }
+            if (!simJumpSafe) break;
+
+            // Landing footprint check (k >= 21)
+            if (k >= 21) {
+                for (const auto& o : nearby) {
+                    if (o.isHazard) {
+                        float oL = o.x - o.width * 0.5f;
+                        float oR = o.x + o.width * 0.5f;
+                        if (sx > oL - 10.0f && sx < oR + 10.0f && simY <= o.y + o.height * 0.5f + 10.0f) {
+                            simJumpSafe = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        snapshot.jumpIsSafe = simJumpSafe;
+
+        // C. Jump Ring / Orb in reach check
+        for (const auto& o : nearby) {
+            if (o.isRing) {
+                float dist = std::hypot(o.x - currentX, o.y - currentY);
+                if (dist < 38.0f) {
+                    snapshot.ringInReach = true;
+                    snapshot.orbIsSafeToTap = true;
+                    break;
                 }
             }
         }
@@ -135,20 +270,10 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
         int decision = GamemodeController::get().evaluateAction(snapshot);
 
         if (decision == 1 && !m_isHolding) {
-            // Push jump button
             layer->handleButton(true, 1, false);
             m_isHolding = true;
             m_recordedActions.push_back({m_currentFrame, 1, true, false});
-
-            // Save decision branch
-            DecisionBranch branch;
-            branch.frame = m_currentFrame;
-            branch.posX = currentX;
-            branch.actionTaken = 1;
-            branch.alternativesTried = 1;
-            m_decisionStack.push_back(branch);
         } else if (decision == 0 && m_isHolding) {
-            // Release jump button
             layer->handleButton(false, 1, false);
             m_isHolding = false;
             m_recordedActions.push_back({m_currentFrame, 1, false, false});
@@ -168,34 +293,24 @@ void SolverEngine::onPlayerDeath(void* playerPtr) {
     m_totalAttempts++;
     m_isHolding = false;
 
-    // Backtrack on decision stack
-    if (!m_decisionStack.empty()) {
-        auto& lastBranch = m_decisionStack.back();
-        if (lastBranch.alternativesTried < 2) {
-            // Try alternative branch (e.g. inverted decision)
-            lastBranch.alternativesTried++;
-            lastBranch.actionTaken = (lastBranch.actionTaken == 1) ? 0 : 1;
-            // Prune actions beyond this frame
-            while (!m_recordedActions.empty() && m_recordedActions.back().frame >= lastBranch.frame) {
-                m_recordedActions.pop_back();
-            }
-        } else {
-            // Exhausted this node, pop back to earlier decision
-            m_decisionStack.pop_back();
-            if (!m_decisionStack.empty()) {
-                auto& prevBranch = m_decisionStack.back();
-                prevBranch.alternativesTried++;
-                while (!m_recordedActions.empty() && m_recordedActions.back().frame >= prevBranch.frame) {
-                    m_recordedActions.pop_back();
-                }
-            } else {
-                m_recordedActions.clear();
-            }
+    // Check if this run advanced the frontier
+    if (m_currentX > m_bestXPos + 10.0f) {
+        m_bestXPos = m_currentX;
+        // Keep verified actions up to 10 frames before the death point
+        m_verifiedBestActions = m_recordedActions;
+        while (!m_verifiedBestActions.empty() && m_verifiedBestActions.back().frame + 10 >= m_currentFrame) {
+            m_verifiedBestActions.pop_back();
         }
     } else {
-        m_recordedActions.clear();
+        // Did not advance: prune back one action from verified run
+        if (!m_verifiedBestActions.empty()) {
+            m_verifiedBestActions.pop_back();
+        }
     }
 
+    m_recordedActions.clear();
+    m_replayIndex = 0;
+    m_currentFrame = 0;
     m_needsReset = true;
 
 #if __has_include(<Geode/Geode.hpp>)

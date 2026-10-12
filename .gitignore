@@ -14,3 +14,5 @@ tools/
 check_build.py
 get_job_logs.py
 download_logs.py
+scripts/
+

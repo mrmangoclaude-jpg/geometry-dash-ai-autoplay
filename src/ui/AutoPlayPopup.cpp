@@ -30,71 +30,83 @@ bool AutoPlayPopup::init() {
     int levelId = (playLayer && playLayer->m_level) ? playLayer->m_level->m_levelID : 0;
     std::string levelName = (playLayer && playLayer->m_level) ? playLayer->m_level->m_levelName : "Unknown";
 
+    // Rounded background card for stats
+    auto bgCard = CCScale9Sprite::create("square02_001.png");
+    if (bgCard) {
+        bgCard->setContentSize({344.0f, 96.0f});
+        bgCard->setOpacity(130);
+        bgCard->setColor({15, 20, 30});
+        bgCard->setPosition({centerX, winSize.height - 88.0f});
+        m_mainLayer->addChild(bgCard);
+    }
+
     // 1. Current Status Display
-    std::string statusText = "Status: Idle";
+    std::string statusText = "[ STATUS: IDLE ]";
+    ccColor3B statusColor = {200, 200, 200};
     auto currentState = SolverEngine::get().getState();
     if (currentState == SolverState::Solving) {
-        statusText = "Status: Solving (Fast-Forward)";
+        statusText = "[ SOLVING (25x Fast-Forward) ]";
+        statusColor = {80, 240, 255}; // Glowing Cyan
     } else if (currentState == SolverState::Playing) {
-        statusText = "Status: Auto-Playing Macro";
+        statusText = "[ PLAYING SOLVED MACRO ]";
+        statusColor = {80, 255, 120}; // Bright Green
     }
 
     m_statusLabel = CCLabelBMFont::create(statusText.c_str(), "bigFont.fnt");
-    m_statusLabel->setScale(0.45f);
-    m_statusLabel->setPosition({centerX, winSize.height - 55.0f});
+    m_statusLabel->setScale(0.42f);
+    m_statusLabel->setColor(statusColor);
+    m_statusLabel->setPosition({centerX, winSize.height - 62.0f});
     m_mainLayer->addChild(m_statusLabel);
 
     // 2. Attempts / Level Info
     std::string attemptsText = "Attempts: " + std::to_string(SolverEngine::get().getTotalAttempts()) +
-                               " | Level: " + levelName + " (" + std::to_string(levelId) + ")";
+                               "  |  Level: " + levelName;
     m_attemptsLabel = CCLabelBMFont::create(attemptsText.c_str(), "goldFont.fnt");
-    m_attemptsLabel->setScale(0.4f);
-    m_attemptsLabel->setPosition({centerX, winSize.height - 80.0f});
+    m_attemptsLabel->setScale(0.40f);
+    m_attemptsLabel->setPosition({centerX, winSize.height - 88.0f});
     m_mainLayer->addChild(m_attemptsLabel);
 
     // 3. Saved Macro Status
     bool isSaved = MacroManager::get().hasSavedMacro(levelId);
-    std::string savedText = isSaved ? "Winning Macro: SAVED ON DISK" : "Winning Macro: Not Solved Yet";
+    std::string savedText = isSaved ? "Macro: VERIFIED & SAVED" : "Macro: Not Solved Yet";
     m_savedInfoLabel = CCLabelBMFont::create(savedText.c_str(), "chatFont.fnt");
-    m_savedInfoLabel->setScale(0.6f);
-    m_savedInfoLabel->setColor(isSaved ? ccColor3B{80, 255, 80} : ccColor3B{255, 180, 80});
-    m_savedInfoLabel->setPosition({centerX, winSize.height - 110.0f});
+    m_savedInfoLabel->setScale(0.65f);
+    m_savedInfoLabel->setColor(isSaved ? ccColor3B{80, 255, 100} : ccColor3B{255, 180, 80});
+    m_savedInfoLabel->setPosition({centerX, winSize.height - 114.0f});
     m_mainLayer->addChild(m_savedInfoLabel);
 
     // 4. Action Buttons Menu
     auto menu = CCMenu::create();
-    menu->setPosition({centerX, 70.0f});
+    menu->setPosition({centerX, 62.0f});
 
-    // Button: Solve Current Level
-    auto solveBtnSprite = ButtonSprite::create("Solve Level", "goldFont.fnt", "GJ_button_01.png", 0.75f);
+    // Row 1: Primary Actions
+    auto solveBtnSprite = ButtonSprite::create("Solve Level", "goldFont.fnt", "GJ_button_01.png", 0.72f);
     auto solveBtn = CCMenuItemSpriteExtra::create(
         solveBtnSprite, this, menu_selector(AutoPlayPopup::onSolve)
     );
-    solveBtn->setPosition({-100.0f, 25.0f});
+    solveBtn->setPosition({-82.0f, 22.0f});
     menu->addChild(solveBtn);
 
-    // Button: Play Saved
-    auto playBtnSprite = ButtonSprite::create("Play Saved", "goldFont.fnt", "GJ_button_02.png", 0.75f);
+    auto playBtnSprite = ButtonSprite::create("Play Run", "goldFont.fnt", "GJ_button_02.png", 0.72f);
     auto playBtn = CCMenuItemSpriteExtra::create(
         playBtnSprite, this, menu_selector(AutoPlayPopup::onPlay)
     );
-    playBtn->setPosition({100.0f, 25.0f});
+    playBtn->setPosition({82.0f, 22.0f});
     menu->addChild(playBtn);
 
-    // Button: Stop All
-    auto stopBtnSprite = ButtonSprite::create("Stop", "bigFont.fnt", "GJ_button_06.png", 0.65f);
+    // Row 2: Secondary / Control Actions
+    auto stopBtnSprite = ButtonSprite::create("Stop", "goldFont.fnt", "GJ_button_06.png", 0.68f);
     auto stopBtn = CCMenuItemSpriteExtra::create(
         stopBtnSprite, this, menu_selector(AutoPlayPopup::onStop)
     );
-    stopBtn->setPosition({-60.0f, -25.0f});
+    stopBtn->setPosition({-70.0f, -24.0f});
     menu->addChild(stopBtn);
 
-    // Button: Delete Macro
-    auto deleteBtnSprite = ButtonSprite::create("Clear Macro", "bigFont.fnt", "GJ_button_05.png", 0.65f);
+    auto deleteBtnSprite = ButtonSprite::create("Clear Macro", "chatFont.fnt", "GJ_button_05.png", 0.68f);
     auto deleteBtn = CCMenuItemSpriteExtra::create(
         deleteBtnSprite, this, menu_selector(AutoPlayPopup::onDeleteSaved)
     );
-    deleteBtn->setPosition({60.0f, -25.0f});
+    deleteBtn->setPosition({70.0f, -24.0f});
     menu->addChild(deleteBtn);
 
     m_mainLayer->addChild(menu);
