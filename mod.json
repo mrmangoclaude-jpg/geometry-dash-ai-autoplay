@@ -1,0 +1,44 @@
+{
+	"geode": "4.2.0",
+	"gd": {
+		"win": "2.2074"
+	},
+	"version": "1.0.0",
+	"id": "antigravity.ai_autoplay",
+	"name": "AI AutoPlay",
+	"developer": "Antigravity",
+	"description": "Visual fast-forward physics pathfinding AI that explores, solves, and auto-plays any Geometry Dash level.",
+	"dependencies": [],
+	"settings": {
+		"solve_speed": {
+			"name": "Fast-Forward Solve Speed",
+			"description": "Speed multiplier during AI pathfinding (10x to 50x)",
+			"type": "float",
+			"default": 25.0,
+			"min": 5.0,
+			"max": 50.0
+		},
+		"mute_while_solving": {
+			"name": "Mute Audio While Solving",
+			"description": "Mutes game music and sound effects while running fast-forward attempts",
+			"type": "bool",
+			"default": true
+		},
+		"auto_play_saved": {
+			"name": "Auto-Play on Enter Saved Level",
+			"description": "Automatically begins playing if a solved macro exists for the current level",
+			"type": "bool",
+			"default": false
+		},
+		"instant_respawn": {
+			"name": "Instant Respawn During Solve",
+			"description": "Bypasses death animation delays during solver attempts",
+			"type": "bool",
+			"default": true
+		}
+	},
+	"resources": {
+		"sprites": []
+	},
+	"tags": ["gameplay", "utility", "cheat"]
+}
