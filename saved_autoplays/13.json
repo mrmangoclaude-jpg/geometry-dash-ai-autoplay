@@ -2,75 +2,85 @@
   "levelId": 13,
   "levelName": "Electroman Adventures",
   "completionPercentage": 100.0,
-  "totalFrames": 4975,
+  "totalFrames": 5035,
   "attemptsToSolve": 1,
   "actions": [
     {
       "frame": 1,
-      "x": 5.2,
+      "x": 5.19,
+      "y": 105.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 5,
-      "x": 26.0,
+      "x": 25.97,
+      "y": 138.64,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 44,
-      "x": 228.5,
+      "x": 228.49,
+      "y": 105.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 52,
-      "x": 270.0,
+      "x": 270.04,
+      "y": 159.84,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 65,
-      "x": 337.5,
+      "x": 337.54,
+      "y": 142.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 76,
-      "x": 394.7,
+      "x": 394.67,
+      "y": 153.31,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 116,
-      "x": 602.4,
+      "x": 602.39,
+      "y": 105.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 157,
-      "x": 815.7,
+      "x": 815.73,
+      "y": 209.36,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 190,
-      "x": 987.5,
+      "x": 987.52,
+      "y": 177.43,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 199,
-      "x": 1034.3,
+      "x": 1034.26,
+      "y": 220.38,
       "button": 1,
       "push": false,
       "p2": false
@@ -78,13 +88,15 @@
     {
       "frame": 235,
       "x": 1222.2,
+      "y": 128.03,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 245,
-      "x": 1274.1,
+      "x": 1274.13,
+      "y": 160.38,
       "button": 1,
       "push": false,
       "p2": false
@@ -92,83 +104,95 @@
     {
       "frame": 291,
       "x": 1513.0,
+      "y": 244.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 302,
-      "x": 1570.1,
+      "x": 1570.12,
+      "y": 284.29,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 337,
-      "x": 1751.9,
+      "x": 1751.87,
+      "y": 176.89,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 346,
-      "x": 1798.6,
+      "x": 1798.61,
+      "y": 200.15,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 354,
-      "x": 1840.2,
+      "x": 1840.15,
+      "y": 182.68,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 365,
-      "x": 1897.3,
+      "x": 1897.27,
+      "y": 199.68,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 399,
-      "x": 2073.8,
+      "x": 2073.83,
+      "y": 105.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 410,
-      "x": 2131.0,
+      "x": 2130.96,
+      "y": 167.57,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 463,
-      "x": 2406.2,
+      "x": 2406.21,
+      "y": 210.99,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 473,
-      "x": 2458.1,
+      "x": 2458.14,
+      "y": 251.66,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 483,
-      "x": 2510.1,
+      "x": 2510.07,
+      "y": 250.22,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 495,
-      "x": 2572.4,
+      "x": 2572.39,
+      "y": 279.94,
       "button": 1,
       "push": false,
       "p2": false
@@ -176,195 +200,223 @@
     {
       "frame": 509,
       "x": 2645.1,
+      "y": 258.87,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 521,
-      "x": 2707.4,
+      "x": 2707.42,
+      "y": 281.39,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 548,
-      "x": 2847.6,
+      "x": 2847.64,
+      "y": 257.74,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 560,
-      "x": 2910.0,
+      "x": 2909.96,
+      "y": 280.38,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 607,
-      "x": 3154.1,
+      "x": 3154.05,
+      "y": 195.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 618,
-      "x": 3211.2,
+      "x": 3211.18,
+      "y": 257.57,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 656,
-      "x": 3408.5,
+      "x": 3408.53,
+      "y": 316.16,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 665,
-      "x": 3455.3,
+      "x": 3455.27,
+      "y": 349.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 685,
-      "x": 3559.1,
+      "x": 3559.13,
+      "y": 271.65,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 697,
-      "x": 3621.5,
+      "x": 3621.45,
+      "y": 229.69,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 706,
-      "x": 3668.2,
+      "x": 3668.19,
+      "y": 210.25,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 733,
-      "x": 3808.4,
+      "x": 3808.41,
+      "y": 274.27,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 753,
-      "x": 3912.3,
+      "x": 3912.28,
+      "y": 337.98,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 758,
-      "x": 3938.2,
+      "x": 3938.25,
+      "y": 342.32,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 791,
-      "x": 4109.6,
+      "x": 4109.63,
+      "y": 244.81,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 804,
-      "x": 4177.1,
+      "x": 4177.14,
+      "y": 196.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 813,
-      "x": 4223.9,
+      "x": 4223.88,
+      "y": 176.47,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 839,
-      "x": 4358.9,
+      "x": 4358.91,
+      "y": 232.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 875,
-      "x": 4545.9,
+      "x": 4545.87,
+      "y": 242.72,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 899,
-      "x": 4670.5,
+      "x": 4670.51,
+      "y": 246.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 926,
-      "x": 4810.7,
+      "x": 4810.73,
+      "y": 246.22,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 945,
-      "x": 4909.4,
+      "x": 4909.41,
+      "y": 250.81,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 954,
-      "x": 4956.1,
+      "x": 4956.15,
+      "y": 269.88,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 969,
-      "x": 5034.0,
+      "x": 5034.05,
+      "y": 323.82,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 990,
-      "x": 5143.1,
+      "x": 5143.11,
+      "y": 366.34,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 996,
-      "x": 5174.3,
+      "x": 5174.27,
+      "y": 366.64,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1028,
-      "x": 5340.5,
+      "x": 5340.45,
+      "y": 262.41,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1053,
-      "x": 5470.3,
+      "x": 5470.29,
+      "y": 235.41,
       "button": 1,
       "push": false,
       "p2": false
@@ -372,55 +424,63 @@
     {
       "frame": 1066,
       "x": 5537.8,
+      "y": 254.77,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1073,
-      "x": 5574.2,
+      "x": 5574.16,
+      "y": 262.43,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1094,
-      "x": 5683.2,
+      "x": 5683.22,
+      "y": 244.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1115,
-      "x": 5792.3,
+      "x": 5792.28,
+      "y": 260.78,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1144,
-      "x": 5942.9,
+      "x": 5942.88,
+      "y": 252.01,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1168,
-      "x": 6067.5,
+      "x": 6067.52,
+      "y": 269.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1194,
-      "x": 6202.6,
+      "x": 6202.55,
+      "y": 283.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1204,
-      "x": 6254.5,
+      "x": 6254.49,
+      "y": 272.31,
       "button": 1,
       "push": false,
       "p2": false
@@ -428,13 +488,15 @@
     {
       "frame": 1217,
       "x": 6322.0,
+      "y": 262.13,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1226,
-      "x": 6368.7,
+      "x": 6368.74,
+      "y": 257.39,
       "button": 1,
       "push": false,
       "p2": false
@@ -442,97 +504,111 @@
     {
       "frame": 1232,
       "x": 6399.9,
+      "y": 260.76,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1244,
-      "x": 6462.2,
+      "x": 6462.22,
+      "y": 288.33,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1260,
-      "x": 6545.3,
+      "x": 6545.31,
+      "y": 310.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1267,
-      "x": 6581.7,
+      "x": 6581.67,
+      "y": 313.95,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1289,
-      "x": 6695.9,
+      "x": 6695.92,
+      "y": 284.46,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1303,
-      "x": 6768.6,
+      "x": 6768.63,
+      "y": 266.89,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1318,
-      "x": 6846.5,
+      "x": 6846.53,
+      "y": 260.41,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1330,
-      "x": 6908.8,
+      "x": 6908.85,
+      "y": 262.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1422,
-      "x": 7386.6,
+      "x": 7386.64,
+      "y": 205.88,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1432,
-      "x": 7438.6,
+      "x": 7438.57,
+      "y": 221.45,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1476,
-      "x": 7667.1,
+      "x": 7667.08,
+      "y": 293.85,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1492,
-      "x": 7750.2,
+      "x": 7750.17,
+      "y": 258.43,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1605,
-      "x": 8337.0,
+      "x": 8336.97,
+      "y": 350.76,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1639,
-      "x": 8513.5,
+      "x": 8513.48,
+      "y": 380.77,
       "button": 1,
       "push": false,
       "p2": false
@@ -540,20 +616,23 @@
     {
       "frame": 1683,
       "x": 8741.9,
+      "y": 278.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1693,
-      "x": 8793.8,
+      "x": 8793.81,
+      "y": 319.14,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1717,
-      "x": 8918.4,
+      "x": 8918.41,
+      "y": 247.0,
       "button": 1,
       "push": true,
       "p2": false
@@ -561,20 +640,23 @@
     {
       "frame": 1729,
       "x": 8980.7,
+      "y": 317.36,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1737,
-      "x": 9022.2,
+      "x": 9022.23,
+      "y": 401.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1749,
-      "x": 9084.5,
+      "x": 9084.53,
+      "y": 330.64,
       "button": 1,
       "push": false,
       "p2": false
@@ -582,202 +664,231 @@
     {
       "frame": 1788,
       "x": 9287.0,
+      "y": 247.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1798,
-      "x": 9338.9,
+      "x": 9338.91,
+      "y": 300.99,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1807,
-      "x": 9385.6,
+      "x": 9385.63,
+      "y": 389.28,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1818,
-      "x": 9442.7,
+      "x": 9442.74,
+      "y": 348.17,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1824,
-      "x": 9473.9,
+      "x": 9473.89,
+      "y": 294.19,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1837,
-      "x": 9541.4,
+      "x": 9541.38,
+      "y": 339.69,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1876,
-      "x": 9743.8,
+      "x": 9743.84,
+      "y": 401.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1886,
-      "x": 9795.8,
+      "x": 9795.75,
+      "y": 347.01,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1894,
-      "x": 9837.3,
+      "x": 9837.29,
+      "y": 337.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1902,
-      "x": 9878.8,
+      "x": 9878.82,
+      "y": 376.47,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1906,
-      "x": 9899.6,
+      "x": 9899.58,
+      "y": 401.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1917,
-      "x": 9956.7,
+      "x": 9956.69,
+      "y": 339.06,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1941,
-      "x": 10081.3,
+      "x": 10081.28,
+      "y": 340.58,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1954,
-      "x": 10148.8,
+      "x": 10148.77,
+      "y": 364.01,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1965,
-      "x": 10205.9,
+      "x": 10205.88,
+      "y": 369.39,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1972,
-      "x": 10242.2,
+      "x": 10242.21,
+      "y": 349.71,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1977,
-      "x": 10268.2,
+      "x": 10268.17,
+      "y": 371.63,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1983,
-      "x": 10299.3,
+      "x": 10299.32,
+      "y": 354.42,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1988,
-      "x": 10325.3,
+      "x": 10325.28,
+      "y": 322.05,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1992,
-      "x": 10346.0,
+      "x": 10346.04,
+      "y": 318.71,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1998,
-      "x": 10377.2,
+      "x": 10377.19,
+      "y": 351.29,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2004,
-      "x": 10408.3,
+      "x": 10408.34,
+      "y": 363.14,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2007,
-      "x": 10423.9,
+      "x": 10423.91,
+      "y": 348.24,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2014,
-      "x": 10460.3,
+      "x": 10460.25,
+      "y": 297.22,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2068,
-      "x": 10740.6,
+      "x": 10740.59,
+      "y": 257.74,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2076,
-      "x": 10782.1,
+      "x": 10782.12,
+      "y": 308.82,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2106,
-      "x": 10938.3,
+      "x": 10938.31,
+      "y": 284.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2117,
-      "x": 10995.4,
+      "x": 10995.42,
+      "y": 347.07,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2133,
-      "x": 11078.5,
+      "x": 11078.48,
+      "y": 270.11,
       "button": 1,
       "push": true,
       "p2": false
@@ -785,48 +896,55 @@
     {
       "frame": 2142,
       "x": 11126.2,
+      "y": 308.82,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2168,
-      "x": 11261.6,
+      "x": 11261.63,
+      "y": 284.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2177,
-      "x": 11308.3,
+      "x": 11308.35,
+      "y": 342.69,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2251,
-      "x": 11692.5,
+      "x": 11692.51,
+      "y": 281.21,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2262,
-      "x": 11749.6,
+      "x": 11749.62,
+      "y": 297.62,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2275,
-      "x": 11817.1,
+      "x": 11817.11,
+      "y": 310.91,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2282,
-      "x": 11853.4,
+      "x": 11853.45,
+      "y": 301.03,
       "button": 1,
       "push": false,
       "p2": false
@@ -834,76 +952,87 @@
     {
       "frame": 2287,
       "x": 11879.4,
+      "y": 342.05,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2296,
-      "x": 11926.1,
+      "x": 11926.13,
+      "y": 286.74,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2318,
-      "x": 12040.8,
+      "x": 12040.79,
+      "y": 295.21,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2326,
-      "x": 12082.3,
+      "x": 12082.32,
+      "y": 278.85,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2332,
-      "x": 12113.5,
+      "x": 12113.47,
+      "y": 251.72,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2341,
-      "x": 12160.6,
+      "x": 12160.64,
+      "y": 236.24,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2382,
-      "x": 12373.5,
+      "x": 12373.48,
+      "y": 263.44,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2390,
-      "x": 12415.0,
+      "x": 12415.02,
+      "y": 298.51,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2412,
-      "x": 12529.2,
+      "x": 12529.23,
+      "y": 273.06,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2421,
-      "x": 12575.9,
+      "x": 12575.95,
+      "y": 310.43,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2464,
-      "x": 12799.2,
+      "x": 12799.18,
+      "y": 158.24,
       "button": 1,
       "push": true,
       "p2": false
@@ -911,48 +1040,55 @@
     {
       "frame": 2473,
       "x": 12845.9,
+      "y": 195.61,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2486,
-      "x": 12913.4,
+      "x": 12913.39,
+      "y": 194.55,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2494,
-      "x": 12954.9,
+      "x": 12954.92,
+      "y": 229.63,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2509,
-      "x": 13032.8,
+      "x": 13032.79,
+      "y": 228.62,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2517,
-      "x": 13074.3,
+      "x": 13074.32,
+      "y": 263.69,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2524,
-      "x": 13110.7,
+      "x": 13110.66,
+      "y": 272.03,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2529,
-      "x": 13136.6,
+      "x": 13136.62,
+      "y": 297.44,
       "button": 1,
       "push": false,
       "p2": false
@@ -960,27 +1096,31 @@
     {
       "frame": 2566,
       "x": 13328.7,
+      "y": 214.81,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2574,
-      "x": 13370.2,
+      "x": 13370.23,
+      "y": 249.88,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2597,
-      "x": 13489.6,
+      "x": 13489.64,
+      "y": 219.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2604,
-      "x": 13526.0,
+      "x": 13525.98,
+      "y": 252.02,
       "button": 1,
       "push": false,
       "p2": false
@@ -988,41 +1128,47 @@
     {
       "frame": 2625,
       "x": 13635.0,
+      "y": 237.86,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2631,
-      "x": 13666.1,
+      "x": 13666.14,
+      "y": 266.95,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2637,
-      "x": 13697.3,
+      "x": 13697.29,
+      "y": 279.67,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2641,
-      "x": 13718.1,
+      "x": 13718.06,
+      "y": 300.92,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2681,
-      "x": 13925.7,
+      "x": 13925.71,
+      "y": 210.93,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2691,
-      "x": 13977.6,
+      "x": 13977.63,
+      "y": 250.13,
       "button": 1,
       "push": false,
       "p2": false
@@ -1030,104 +1176,119 @@
     {
       "frame": 2706,
       "x": 14055.5,
+      "y": 245.74,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2715,
-      "x": 14102.2,
+      "x": 14102.22,
+      "y": 245.58,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2724,
-      "x": 14148.9,
+      "x": 14148.95,
+      "y": 250.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2734,
-      "x": 14200.9,
+      "x": 14200.86,
+      "y": 264.13,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2742,
-      "x": 14242.4,
+      "x": 14242.39,
+      "y": 277.36,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2749,
-      "x": 14278.7,
+      "x": 14278.73,
+      "y": 290.78,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2760,
-      "x": 14335.8,
+      "x": 14335.84,
+      "y": 304.49,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2768,
-      "x": 14377.4,
+      "x": 14377.37,
+      "y": 315.72,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2807,
-      "x": 14579.8,
+      "x": 14579.83,
+      "y": 223.99,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2819,
-      "x": 14642.1,
+      "x": 14642.13,
+      "y": 183.45,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2828,
-      "x": 14688.9,
+      "x": 14688.85,
+      "y": 163.26,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2840,
-      "x": 14751.1,
+      "x": 14751.15,
+      "y": 151.87,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2850,
-      "x": 14803.1,
+      "x": 14803.06,
+      "y": 152.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2870,
-      "x": 14906.9,
+      "x": 14906.89,
+      "y": 201.95,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2887,
-      "x": 14995.1,
+      "x": 14995.14,
+      "y": 245.91,
       "button": 1,
       "push": true,
       "p2": false
@@ -1135,27 +1296,31 @@
     {
       "frame": 2892,
       "x": 15021.1,
+      "y": 251.48,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2921,
-      "x": 15171.7,
+      "x": 15171.65,
+      "y": 201.01,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2945,
-      "x": 15296.2,
+      "x": 15296.25,
+      "y": 185.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2953,
-      "x": 15337.8,
+      "x": 15337.78,
+      "y": 202.17,
       "button": 1,
       "push": true,
       "p2": false
@@ -1163,223 +1328,255 @@
     {
       "frame": 2962,
       "x": 15384.5,
+      "y": 225.03,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2978,
-      "x": 15467.6,
+      "x": 15467.56,
+      "y": 245.65,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2984,
-      "x": 15498.7,
+      "x": 15498.71,
+      "y": 248.15,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3011,
-      "x": 15638.9,
+      "x": 15638.88,
+      "y": 198.18,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3039,
-      "x": 15784.2,
+      "x": 15784.24,
+      "y": 202.83,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3065,
-      "x": 15919.2,
+      "x": 15919.21,
+      "y": 180.93,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3074,
-      "x": 15965.9,
+      "x": 15965.94,
+      "y": 213.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3085,
-      "x": 16023.0,
+      "x": 16023.04,
+      "y": 205.47,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3094,
-      "x": 16069.8,
+      "x": 16069.77,
+      "y": 237.84,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3111,
-      "x": 16158.0,
+      "x": 16158.02,
+      "y": 211.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3119,
-      "x": 16199.6,
+      "x": 16199.55,
+      "y": 241.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3132,
-      "x": 16267.0,
+      "x": 16267.04,
+      "y": 232.64,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3141,
-      "x": 16313.8,
+      "x": 16313.76,
+      "y": 265.01,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3160,
-      "x": 16412.4,
+      "x": 16412.42,
+      "y": 241.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3168,
-      "x": 16454.0,
+      "x": 16453.98,
+      "y": 271.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3192,
-      "x": 16578.7,
+      "x": 16578.67,
+      "y": 206.93,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3199,
-      "x": 16615.0,
+      "x": 16615.04,
+      "y": 235.89,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3216,
-      "x": 16703.4,
+      "x": 16703.36,
+      "y": 197.41,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3224,
-      "x": 16744.9,
+      "x": 16744.92,
+      "y": 228.32,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3239,
-      "x": 16822.8,
+      "x": 16822.85,
+      "y": 212.18,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3246,
-      "x": 16859.2,
+      "x": 16859.22,
+      "y": 241.13,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3268,
-      "x": 16973.5,
+      "x": 16973.51,
+      "y": 197.58,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3275,
-      "x": 17009.9,
+      "x": 17009.88,
+      "y": 226.53,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3296,
-      "x": 17119.0,
+      "x": 17118.98,
+      "y": 188.78,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3304,
-      "x": 17160.5,
+      "x": 17160.54,
+      "y": 219.68,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3311,
-      "x": 17196.9,
+      "x": 17196.91,
+      "y": 222.33,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3321,
-      "x": 17248.9,
+      "x": 17248.87,
+      "y": 255.81,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3330,
-      "x": 17295.6,
+      "x": 17295.62,
+      "y": 249.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3336,
-      "x": 17326.8,
+      "x": 17326.79,
+      "y": 275.86,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3360,
-      "x": 17451.5,
+      "x": 17451.48,
+      "y": 228.63,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3370,
-      "x": 17503.4,
+      "x": 17503.44,
+      "y": 262.11,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3388,
-      "x": 17597.0,
+      "x": 17596.95,
+      "y": 238.38,
       "button": 1,
       "push": true,
       "p2": false
@@ -1387,83 +1584,95 @@
     {
       "frame": 3398,
       "x": 17648.9,
+      "y": 229.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3408,
-      "x": 17700.9,
+      "x": 17700.86,
+      "y": 228.58,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3417,
-      "x": 17747.6,
+      "x": 17747.62,
+      "y": 233.54,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3429,
-      "x": 17810.0,
+      "x": 17809.96,
+      "y": 238.08,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3436,
-      "x": 17846.3,
+      "x": 17846.33,
+      "y": 240.22,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3447,
-      "x": 17903.5,
+      "x": 17903.47,
+      "y": 241.86,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3455,
-      "x": 17945.0,
+      "x": 17945.04,
+      "y": 245.54,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3464,
-      "x": 17991.8,
+      "x": 17991.79,
+      "y": 251.44,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3474,
-      "x": 18043.7,
+      "x": 18043.75,
+      "y": 267.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3541,
-      "x": 18391.8,
+      "x": 18391.83,
+      "y": 213.71,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3557,
-      "x": 18475.0,
+      "x": 18474.96,
+      "y": 191.44,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3580,
-      "x": 18594.5,
+      "x": 18594.45,
+      "y": 181.0,
       "button": 1,
       "push": true,
       "p2": false
@@ -1471,111 +1680,127 @@
     {
       "frame": 3591,
       "x": 18651.6,
+      "y": 206.91,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3602,
-      "x": 18708.7,
+      "x": 18708.75,
+      "y": 229.61,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3610,
-      "x": 18750.3,
+      "x": 18750.31,
+      "y": 245.53,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3623,
-      "x": 18817.8,
+      "x": 18817.85,
+      "y": 258.79,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3630,
-      "x": 18854.2,
+      "x": 18854.22,
+      "y": 263.86,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3641,
-      "x": 18911.4,
+      "x": 18911.37,
+      "y": 267.89,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3648,
-      "x": 18947.7,
+      "x": 18947.73,
+      "y": 271.01,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3665,
-      "x": 19036.1,
+      "x": 19036.05,
+      "y": 260.05,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3675,
-      "x": 19088.0,
+      "x": 19088.01,
+      "y": 252.62,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3737,
-      "x": 19410.1,
+      "x": 19410.12,
+      "y": 219.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3791,
-      "x": 19693.7,
+      "x": 19693.66,
+      "y": 343.88,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3814,
-      "x": 19813.2,
+      "x": 19813.15,
+      "y": 219.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3821,
-      "x": 19849.5,
+      "x": 19849.52,
+      "y": 255.62,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3863,
-      "x": 20068.7,
+      "x": 20068.72,
+      "y": 254.71,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3875,
-      "x": 20131.1,
+      "x": 20131.07,
+      "y": 323.12,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3880,
-      "x": 20157.0,
+      "x": 20157.04,
+      "y": 310.58,
       "button": 1,
       "push": true,
       "p2": false
@@ -1583,34 +1808,39 @@
     {
       "frame": 3890,
       "x": 20209.0,
+      "y": 343.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3894,
-      "x": 20229.8,
+      "x": 20229.78,
+      "y": 351.05,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3903,
-      "x": 20276.5,
+      "x": 20276.54,
+      "y": 310.97,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3907,
-      "x": 20297.3,
+      "x": 20297.32,
+      "y": 313.37,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3917,
-      "x": 20350.3,
+      "x": 20350.27,
+      "y": 281.77,
       "button": 1,
       "push": false,
       "p2": false
@@ -1618,13 +1848,15 @@
     {
       "frame": 3953,
       "x": 20538.3,
+      "y": 236.02,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3962,
-      "x": 20585.1,
+      "x": 20585.06,
+      "y": 243.2,
       "button": 1,
       "push": false,
       "p2": false
@@ -1632,27 +1864,31 @@
     {
       "frame": 3975,
       "x": 20652.6,
+      "y": 189.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3983,
-      "x": 20694.2,
+      "x": 20694.16,
+      "y": 227.74,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4003,
-      "x": 20799.1,
+      "x": 20799.07,
+      "y": 204.42,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4012,
-      "x": 20845.8,
+      "x": 20845.83,
+      "y": 224.73,
       "button": 1,
       "push": false,
       "p2": false
@@ -1660,13 +1896,15 @@
     {
       "frame": 4018,
       "x": 20877.0,
+      "y": 230.45,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4028,
-      "x": 20930.0,
+      "x": 20929.95,
+      "y": 253.88,
       "button": 1,
       "push": false,
       "p2": false
@@ -1674,104 +1912,119 @@
     {
       "frame": 4061,
       "x": 21101.4,
+      "y": 309.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4070,
-      "x": 21148.2,
+      "x": 21148.15,
+      "y": 349.08,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4100,
-      "x": 21305.0,
+      "x": 21305.01,
+      "y": 228.29,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4111,
-      "x": 21362.2,
+      "x": 21362.16,
+      "y": 261.66,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4164,
-      "x": 21637.5,
+      "x": 21637.51,
+      "y": 344.48,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4203,
-      "x": 21841.1,
+      "x": 21841.13,
+      "y": 227.79,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4222,
-      "x": 21939.8,
+      "x": 21939.84,
+      "y": 250.84,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4229,
-      "x": 21976.2,
+      "x": 21976.21,
+      "y": 273.68,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4247,
-      "x": 22069.7,
+      "x": 22069.72,
+      "y": 129.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4255,
-      "x": 22111.3,
+      "x": 22111.29,
+      "y": 167.74,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4298,
-      "x": 22334.7,
+      "x": 22334.69,
+      "y": 99.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4308,
-      "x": 22386.6,
+      "x": 22386.64,
+      "y": 139.64,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4318,
-      "x": 22438.6,
+      "x": 22438.59,
+      "y": 102.53,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4327,
-      "x": 22485.3,
+      "x": 22485.35,
+      "y": 140.16,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4396,
-      "x": 22843.8,
+      "x": 22843.83,
+      "y": 159.0,
       "button": 1,
       "push": true,
       "p2": false
@@ -1779,27 +2032,31 @@
     {
       "frame": 4402,
       "x": 22875.0,
+      "y": 182.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4406,
-      "x": 22895.8,
+      "x": 22895.78,
+      "y": 201.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4413,
-      "x": 22932.1,
+      "x": 22932.15,
+      "y": 172.31,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4416,
-      "x": 22947.7,
+      "x": 22947.73,
+      "y": 159.0,
       "button": 1,
       "push": true,
       "p2": false
@@ -1807,69 +2064,79 @@
     {
       "frame": 4422,
       "x": 22978.9,
+      "y": 182.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4426,
-      "x": 22999.7,
+      "x": 22999.69,
+      "y": 201.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4434,
-      "x": 23041.2,
+      "x": 23041.25,
+      "y": 166.35,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4469,
-      "x": 23223.1,
+      "x": 23223.08,
+      "y": 129.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4479,
-      "x": 23275.0,
+      "x": 23275.04,
+      "y": 176.96,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4513,
-      "x": 23451.7,
+      "x": 23451.68,
+      "y": 291.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4525,
-      "x": 23514.0,
+      "x": 23514.02,
+      "y": 227.88,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4541,
-      "x": 23597.1,
+      "x": 23597.15,
+      "y": 129.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4553,
-      "x": 23659.5,
+      "x": 23659.49,
+      "y": 192.12,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4562,
-      "x": 23706.2,
+      "x": 23706.25,
+      "y": 283.35,
       "button": 1,
       "push": true,
       "p2": false
@@ -1877,111 +2144,127 @@
     {
       "frame": 4572,
       "x": 23758.2,
+      "y": 249.33,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4581,
-      "x": 23805.0,
+      "x": 23804.96,
+      "y": 231.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4589,
-      "x": 23846.5,
+      "x": 23846.52,
+      "y": 265.65,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4595,
-      "x": 23877.7,
+      "x": 23877.69,
+      "y": 291.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4603,
-      "x": 23919.3,
+      "x": 23919.26,
+      "y": 256.35,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4609,
-      "x": 23950.4,
+      "x": 23950.43,
+      "y": 231.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4617,
-      "x": 23992.0,
+      "x": 23991.99,
+      "y": 265.65,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4621,
-      "x": 24012.8,
+      "x": 24012.77,
+      "y": 291.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4629,
-      "x": 24054.3,
+      "x": 24054.33,
+      "y": 256.35,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4633,
-      "x": 24075.1,
+      "x": 24075.12,
+      "y": 231.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4643,
-      "x": 24127.1,
+      "x": 24127.07,
+      "y": 269.58,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4675,
-      "x": 24293.3,
+      "x": 24293.32,
+      "y": 129.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4686,
-      "x": 24350.5,
+      "x": 24350.47,
+      "y": 184.31,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4695,
-      "x": 24397.2,
+      "x": 24397.22,
+      "y": 271.35,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4707,
-      "x": 24459.6,
+      "x": 24459.57,
+      "y": 242.44,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4755,
-      "x": 24708.9,
+      "x": 24708.94,
+      "y": 165.0,
       "button": 1,
       "push": true,
       "p2": false
@@ -1989,27 +2272,31 @@
     {
       "frame": 4764,
       "x": 24755.7,
+      "y": 223.19,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4792,
-      "x": 24902.2,
+      "x": 24902.17,
+      "y": 190.83,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4810,
-      "x": 24995.7,
+      "x": 24995.69,
+      "y": 206.31,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4819,
-      "x": 25042.4,
+      "x": 25042.44,
+      "y": 165.0,
       "button": 1,
       "push": true,
       "p2": false
@@ -2017,13 +2304,15 @@
     {
       "frame": 4829,
       "x": 25094.4,
+      "y": 225.77,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4841,
-      "x": 25156.7,
+      "x": 25156.74,
+      "y": 196.05,
       "button": 1,
       "push": true,
       "p2": false
@@ -2031,90 +2320,103 @@
     {
       "frame": 4849,
       "x": 25198.3,
+      "y": 253.91,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4853,
-      "x": 25219.1,
+      "x": 25219.08,
+      "y": 301.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4860,
-      "x": 25255.5,
+      "x": 25255.45,
+      "y": 253.59,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4863,
-      "x": 25271.0,
+      "x": 25271.04,
+      "y": 221.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4869,
-      "x": 25302.2,
+      "x": 25302.21,
+      "y": 218.76,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4873,
-      "x": 25323.0,
+      "x": 25322.99,
+      "y": 253.91,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4882,
-      "x": 25369.7,
+      "x": 25369.75,
+      "y": 244.34,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4897,
-      "x": 25447.7,
+      "x": 25447.68,
+      "y": 195.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4906,
-      "x": 25494.4,
+      "x": 25494.44,
+      "y": 253.19,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4928,
-      "x": 25609.7,
+      "x": 25609.73,
+      "y": 236.63,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4938,
-      "x": 25661.7,
+      "x": 25661.69,
+      "y": 231.15,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4964,
-      "x": 25797.1,
+      "x": 25797.14,
+      "y": 227.74,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4975,
-      "x": 25854.3,
+      "x": 25854.29,
+      "y": 245.86,
       "button": 1,
       "push": false,
       "p2": false

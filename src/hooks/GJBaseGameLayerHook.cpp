@@ -7,17 +7,14 @@
 using namespace geode::prelude;
 
 class $modify(AutoPlayBaseGameLayer, GJBaseGameLayer) {
-    void update(float dt) {
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
         auto state = SolverEngine::get().getState();
         if (state == SolverState::Solving) {
-            // Pure in-memory corridor solver (Instant < 20ms, 0 FPS drop, no visual death resets)
             SolverEngine::get().solveMathematically(this);
-            return;
         }
-
-        // Normal 1x playback or idle
+        // Run on every 240Hz physics substep so framerate (60/109/144/240 FPS) never causes drift
         SolverEngine::get().onFrameTick(this);
-        GJBaseGameLayer::update(dt);
+        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
     }
 };
 #endif

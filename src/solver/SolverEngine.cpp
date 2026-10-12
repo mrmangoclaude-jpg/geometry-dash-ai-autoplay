@@ -406,6 +406,8 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     std::vector<Checkpoint> history;
     std::unordered_set<uint64_t> visited;
     std::vector<PlayerAction> actions;
+    std::vector<PlayerAction> bestActions;
+    float bestPx = 0.0f;
     int backtracks = 0;
 
     while (state.px < maxLevelX && frame < 15000 && backtracks < 2500) {
@@ -465,11 +467,16 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
 
         if (tap) {
             lastTap = static_cast<int>(frame);
-            actions.push_back({frame, state.px, 1, true, false});
-            actions.push_back({frame + 6, state.px + 6.0f * state.vx, 1, false, false});
+            actions.push_back({frame, state.px, 1, true, false, state.py});
+            actions.push_back({frame + 6, state.px + 6.0f * state.vx, 1, false, false, 0.0f});
         }
 
         stepSim(state, objects, tap, groundY);
+
+        if (!state.dead && state.px > bestPx) {
+            bestPx = state.px;
+            bestActions = actions;
+        }
 
         uint64_t k = state.stateKey();
         if (state.dead || visited.count(k)) {
@@ -485,12 +492,16 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
 
                 if (cp.forcedTap) {
                     lastTap = static_cast<int>(frame);
-                    actions.push_back({frame, state.px, 1, true, false});
-                    actions.push_back({frame + 6, state.px + 6.0f * state.vx, 1, false, false});
+                    actions.push_back({frame, state.px, 1, true, false, state.py});
+                    actions.push_back({frame + 6, state.px + 6.0f * state.vx, 1, false, false, 0.0f});
                 }
                 stepSim(state, objects, cp.forcedTap, groundY);
                 if (!state.dead && !visited.count(state.stateKey())) {
                     visited.insert(state.stateKey());
+                    if (state.px > bestPx) {
+                        bestPx = state.px;
+                        bestActions = actions;
+                    }
                     recovered = true;
                     break;
                 }
@@ -501,16 +512,21 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
         }
     }
 
+    if (bestActions.size() > actions.size()) {
+        actions = bestActions;
+    }
+
     MacroData winMacro;
     winMacro.levelId = m_currentLevelId;
     winMacro.levelName = m_currentLevelName;
-    winMacro.completionPercentage = std::min(100.0f, (state.px / std::max(1.0f, maxLevelX)) * 100.0f);
+    winMacro.completionPercentage = std::min(100.0f, (bestPx / std::max(1.0f, maxLevelX)) * 100.0f);
     winMacro.totalFrames = actions.empty() ? 5000 : actions.back().frame + 100;
     winMacro.attemptsToSolve = 1;
     winMacro.actions = actions;
 
     // Only persist to disk if the mathematical solver reached the end of the level
-    if (state.px >= maxLevelX - 100.0f) {
+    if (bestPx >= maxLevelX - 100.0f) {
+        winMacro.completionPercentage = 100.0f;
         MacroManager::get().saveMacro(winMacro, collectCoins);
     }
 
@@ -569,7 +585,7 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
     m_currentX = currentX;
 
     // 1. PLAYING SAVED MACRO
-    if (m_state == SolverState::Playing) {
+    if (m_state == SolverState::Playing && m_playbackIndex < m_activeMacro.actions.size()) {
         float levelTime = 0.0f;
         if (layer) {
             levelTime = layer->m_gameState.m_levelTime;
@@ -582,25 +598,29 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
             const auto& action = m_activeMacro.actions[m_playbackIndex];
             bool shouldTrigger = false;
             if (action.xPos > 0.0f) {
-                // Spatial position trigger: exact coordinate matching (0.5 unit float tolerance)
                 shouldTrigger = (currentX >= action.xPos - 0.5f);
             } else {
-                // Physics time clock trigger (converts actual in-game levelTime to 60Hz ticks)
                 float physicsFrame = levelTime * 60.0f;
                 shouldTrigger = (physicsFrame >= static_cast<float>(action.frame));
             }
 
             if (shouldTrigger) {
-                // CRITICAL FIX: Never execute more than ONE action per player button per frame tick!
-                // Calling handleButton(true) and handleButton(false) in the same frame tick before
-                // GJBaseGameLayer::update(dt) runs cancels the input before physics consumes the jump/orb!
                 if (action.isPlayer2) {
                     if (actedP2) break;
                 } else {
                     if (actedP1) break;
                 }
 
-                layer->handleButton(action.isPush, action.button, action.isPlayer2);
+                // Input Fix: synchronize vertical position to recorded 240Hz frameFix to prevent drift
+                if (action.yPos > 0.0f && !action.isPlayer2) {
+                    float dy = std::abs(currentY - action.yPos);
+                    if (dy > 1.0f && dy < 40.0f) {
+                        p1->setPositionY(action.yPos);
+                        currentY = action.yPos;
+                    }
+                }
+
+                layer->handleButton(action.isPush, action.button, !action.isPlayer2);
                 if (!action.isPlayer2) {
                     m_isHolding = action.isPush;
                     actedP1 = true;
@@ -616,8 +636,8 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
         return;
     }
 
-    // 2. SOLVING IN PROGRESS
-    if (m_state == SolverState::Solving) {
+    // 2. LIVE REAL-TIME LOOKAHEAD AI (Runs during Solving OR when a custom level macro prefix ends!)
+    if (m_state == SolverState::Solving || m_state == SolverState::Playing) {
         if (currentX > m_bestXPos) {
             m_bestXPos = currentX;
         }
@@ -626,7 +646,7 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
         if (m_replayIndex < m_verifiedBestActions.size()) {
             const auto& act = m_verifiedBestActions[m_replayIndex];
             if (act.frame <= m_currentFrame) {
-                layer->handleButton(act.isPush, act.button, act.isPlayer2);
+                layer->handleButton(act.isPush, act.button, !act.isPlayer2);
                 m_isHolding = act.isPush;
                 m_recordedActions.push_back(act);
                 m_replayIndex++;
@@ -782,13 +802,13 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
         int decision = GamemodeController::get().evaluateAction(snapshot);
 
         if (decision == 1 && !m_isHolding) {
-            layer->handleButton(true, 1, false);
+            layer->handleButton(true, 1, true);
             m_isHolding = true;
-            m_recordedActions.push_back({m_currentFrame, currentX, 1, true, false});
+            m_recordedActions.push_back({m_currentFrame, currentX, 1, true, false, currentY});
         } else if (decision == 0 && m_isHolding) {
-            layer->handleButton(false, 1, false);
+            layer->handleButton(false, 1, true);
             m_isHolding = false;
-            m_recordedActions.push_back({m_currentFrame, currentX, 1, false, false});
+            m_recordedActions.push_back({m_currentFrame, currentX, 1, false, false, currentY});
         }
 
         m_currentFrame++;

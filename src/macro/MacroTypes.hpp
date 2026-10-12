@@ -11,6 +11,7 @@ struct PlayerAction {
     int button = 1;       // 1 = Jump/Primary, 2 = Left, 3 = Right
     bool isPush = true;   // true = push, false = release
     bool isPlayer2 = false;
+    float yPos = 0.0f;    // Optional exact Y coordinate from 240Hz frameFixes
 
     bool operator==(const PlayerAction& other) const {
         return frame == other.frame &&
@@ -41,6 +42,7 @@ struct MacroData {
             const auto& a = actions[i];
             ss << "    {\"frame\": " << a.frame 
                << ", \"x\": " << a.xPos
+               << ", \"y\": " << a.yPos
                << ", \"button\": " << a.button 
                << ", \"push\": " << (a.isPush ? "true" : "false")
                << ", \"p2\": " << (a.isPlayer2 ? "true" : "false") << "}";
@@ -56,7 +58,6 @@ struct MacroData {
 
     static MacroData deserialize(const std::string& jsonStr) {
         MacroData macro;
-        // Simple, robust parser for standalone & Geode environments
         auto findInt = [&](const std::string& key) -> int {
             auto pos = jsonStr.find("\"" + key + "\"");
             if (pos == std::string::npos) return 0;
@@ -89,7 +90,6 @@ struct MacroData {
         macro.totalFrames = static_cast<size_t>(findInt("totalFrames"));
         macro.attemptsToSolve = findInt("attemptsToSolve");
 
-        // Parse action array
         auto arrPos = jsonStr.find("\"actions\"");
         if (arrPos != std::string::npos) {
             auto startBracket = jsonStr.find('[', arrPos);
@@ -108,6 +108,8 @@ struct MacroData {
                     if (fPos != std::string::npos) act.frame = std::stoull(item.substr(fPos + 8));
                     auto xPos = item.find("\"x\":");
                     if (xPos != std::string::npos) act.xPos = std::stof(item.substr(xPos + 4));
+                    auto yPos = item.find("\"y\":");
+                    if (yPos != std::string::npos) act.yPos = std::stof(item.substr(yPos + 4));
                     auto bPos = item.find("\"button\":");
                     if (bPos != std::string::npos) act.button = std::stoi(item.substr(bPos + 9));
                     auto pPos = item.find("\"push\":");
