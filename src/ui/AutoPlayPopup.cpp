@@ -10,7 +10,7 @@ using namespace geode::prelude;
 
 AutoPlayPopup* AutoPlayPopup::create() {
     auto ret = new AutoPlayPopup();
-    if (ret && ret->init(380.0f, 250.0f)) {
+    if (ret && ret->initAnchored(380.0f, 250.0f, "")) {
         ret->autorelease();
         return ret;
     }
@@ -18,11 +18,7 @@ AutoPlayPopup* AutoPlayPopup::create() {
     return nullptr;
 }
 
-bool AutoPlayPopup::init(float width, float height) {
-    if (!Popup::init(width, height)) {
-        return false;
-    }
-
+bool AutoPlayPopup::setup(std::string const& value) {
     this->setTitle("AI AutoPlay Hub");
 
     auto winSize = m_mainLayer->getContentSize();

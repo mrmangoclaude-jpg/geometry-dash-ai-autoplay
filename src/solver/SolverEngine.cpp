@@ -122,9 +122,7 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
                 float objX = obj->getPositionX();
                 if (objX > currentX && objX < currentX + 160.0f) {
                     float dx = objX - currentX;
-                    // Check if object is hazardous
-                    if (obj->m_objectType == GameObjectType::Hazard ||
-                        obj->m_hasHazardEffect) {
+                    if (obj->m_objectType == GameObjectType::Hazard) {
                         snapshot.hazardInFront = true;
                         if (dx < snapshot.obstacleDistX) {
                             snapshot.obstacleDistX = dx;
