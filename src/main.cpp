@@ -21,8 +21,9 @@ class $modify(AutoPlayKeyboardDispatcher, CCKeyboardDispatcher) {
                     Notification::create("AI AutoPlay: Stopped", NotificationIcon::Info)->show();
                 } else {
                     int levelId = playLayer->m_level->m_levelID;
-                    if (MacroManager::get().hasSavedMacro(levelId)) {
-                        auto saved = MacroManager::get().loadMacro(levelId);
+                    bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
+                    if (MacroManager::get().hasSavedMacro(levelId, collectCoins)) {
+                        auto saved = MacroManager::get().loadMacro(levelId, collectCoins);
                         if (saved.has_value()) {
                             SolverEngine::get().startPlaying(*saved);
                             playLayer->resetLevel();
