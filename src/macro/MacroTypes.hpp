@@ -7,6 +7,7 @@
 
 struct PlayerAction {
     size_t frame = 0;
+    float xPos = 0.0f;
     int button = 1;       // 1 = Jump/Primary, 2 = Left, 3 = Right
     bool isPush = true;   // true = push, false = release
     bool isPlayer2 = false;
@@ -39,6 +40,7 @@ struct MacroData {
         for (size_t i = 0; i < actions.size(); ++i) {
             const auto& a = actions[i];
             ss << "    {\"frame\": " << a.frame 
+               << ", \"x\": " << a.xPos
                << ", \"button\": " << a.button 
                << ", \"push\": " << (a.isPush ? "true" : "false")
                << ", \"p2\": " << (a.isPlayer2 ? "true" : "false") << "}";
@@ -104,6 +106,8 @@ struct MacroData {
                     PlayerAction act;
                     auto fPos = item.find("\"frame\":");
                     if (fPos != std::string::npos) act.frame = std::stoull(item.substr(fPos + 8));
+                    auto xPos = item.find("\"x\":");
+                    if (xPos != std::string::npos) act.xPos = std::stof(item.substr(xPos + 4));
                     auto bPos = item.find("\"button\":");
                     if (bPos != std::string::npos) act.button = std::stoi(item.substr(bPos + 9));
                     auto pPos = item.find("\"push\":");

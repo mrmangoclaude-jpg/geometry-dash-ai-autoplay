@@ -99,10 +99,26 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
 
     // 1. PLAYING SAVED MACRO
     if (m_state == SolverState::Playing) {
+        float levelTime = 0.0f;
+        if (layer) {
+            levelTime = layer->m_gameState.m_levelTime;
+        }
+
         while (m_playbackIndex < m_activeMacro.actions.size()) {
             const auto& action = m_activeMacro.actions[m_playbackIndex];
-            if (action.frame <= m_currentFrame) {
+            bool shouldTrigger = false;
+            if (action.xPos > 0.0f) {
+                // Spatial position trigger: 100% FPS-proof (triggers at exact obstacle coordinate even on 44 FPS)
+                shouldTrigger = (currentX >= action.xPos - 3.5f);
+            } else {
+                // Physics time clock trigger (converts actual in-game levelTime to 60Hz ticks)
+                float physicsFrame = levelTime * 60.0f;
+                shouldTrigger = (physicsFrame >= static_cast<float>(action.frame));
+            }
+
+            if (shouldTrigger) {
                 layer->handleButton(action.isPush, action.button, action.isPlayer2);
+                m_isHolding = action.isPush;
                 m_playbackIndex++;
             } else {
                 break;
@@ -288,11 +304,11 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
         if (decision == 1 && !m_isHolding) {
             layer->handleButton(true, 1, false);
             m_isHolding = true;
-            m_recordedActions.push_back({m_currentFrame, 1, true, false});
+            m_recordedActions.push_back({m_currentFrame, currentX, 1, true, false});
         } else if (decision == 0 && m_isHolding) {
             layer->handleButton(false, 1, false);
             m_isHolding = false;
-            m_recordedActions.push_back({m_currentFrame, 1, false, false});
+            m_recordedActions.push_back({m_currentFrame, currentX, 1, false, false});
         }
 
         m_currentFrame++;
