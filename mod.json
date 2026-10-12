@@ -11,7 +11,6 @@
 	"name": "AI AutoPlay",
 	"developer": "Antigravity",
 	"description": "Visual fast-forward physics pathfinding AI that explores, solves, and auto-plays any Geometry Dash level.",
-	"dependencies": [],
 	"settings": {
 		"solve_speed": {
 			"name": "Fast-Forward Solve Speed",
@@ -39,9 +38,6 @@
 			"type": "bool",
 			"default": true
 		}
-	},
-	"resources": {
-		"sprites": []
 	},
 	"tags": ["gameplay", "utility", "cheat"]
 }
