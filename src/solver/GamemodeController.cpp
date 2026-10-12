@@ -56,9 +56,9 @@ int GamemodeController::evaluateCube(const PlayerStateSnapshot& state) {
 
     // 2. On ground
     if (state.isOnGround) {
-        // Jump only when the obstacle enters the optimal clearance window (40 to 75 units):
-        // Prevents premature jumps (jumping 130 units away lands directly into the spike)
-        if (state.hazardInFront && state.obstacleDistX <= 75.0f && !state.isHolding) {
+        // Jump ONLY when a hazard/obstacle is ahead AND the simulated trajectory confirms it is safe to jump!
+        // Clearance window: within 60 units of the obstacle or immediate threat
+        if (state.hazardInFront && state.jumpIsSafe && (state.obstacleDistX <= 60.0f || state.groundHasImmediateThreat) && !state.isHolding) {
             return 1;
         }
         if (state.isHolding) {

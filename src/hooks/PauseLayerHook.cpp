@@ -17,7 +17,7 @@ class $modify(AutoPlayPauseLayer, PauseLayer) {
         if (!rightMenu) return;
 
         auto sprite = CircleButtonSprite::createWithSpriteFrameName(
-            "gj_robotBtn_on_001.png", 0.85f, CircleBaseColor::Cyan
+            "GJ_autoOnBtn_001.png", 0.95f, CircleBaseColor::Green
         );
 
         auto btn = CCMenuItemSpriteExtra::create(

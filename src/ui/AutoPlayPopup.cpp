@@ -19,7 +19,7 @@ AutoPlayPopup* AutoPlayPopup::create() {
 }
 
 bool AutoPlayPopup::init() {
-    if (!Popup::init(380.0f, 250.0f)) return false;
+    if (!Popup::init(390.0f, 260.0f)) return false;
 
     this->setTitle("AI AutoPlay Hub");
 
@@ -30,49 +30,52 @@ bool AutoPlayPopup::init() {
     int levelId = (playLayer && playLayer->m_level) ? playLayer->m_level->m_levelID : 0;
     std::string levelName = (playLayer && playLayer->m_level) ? playLayer->m_level->m_levelName : "Unknown";
 
-    // Rounded background card for stats
+    // Sleek midnight dark card for stats
     auto bgCard = CCScale9Sprite::create("square02_001.png");
     if (bgCard) {
-        bgCard->setContentSize({344.0f, 96.0f});
-        bgCard->setOpacity(130);
-        bgCard->setColor({15, 20, 30});
-        bgCard->setPosition({centerX, winSize.height - 88.0f});
+        bgCard->setContentSize({354.0f, 102.0f});
+        bgCard->setOpacity(170);
+        bgCard->setColor({12, 16, 26});
+        bgCard->setPosition({centerX, winSize.height - 90.0f});
         m_mainLayer->addChild(bgCard);
     }
 
-    // 1. Current Status Display
-    std::string statusText = "[ STATUS: IDLE ]";
-    ccColor3B statusColor = {200, 200, 200};
+    bool isSaved = MacroManager::get().hasSavedMacro(levelId);
     auto currentState = SolverEngine::get().getState();
+
+    // 1. Current Status Display Badge
+    std::string statusText = "[ STATUS: READY ]";
+    ccColor3B statusColor = {220, 220, 220};
     if (currentState == SolverState::Solving) {
-        statusText = "[ SOLVING (25x Fast-Forward) ]";
-        statusColor = {80, 240, 255}; // Glowing Cyan
+        statusText = "[ HEADLESS SOLVER ACTIVE ]";
+        statusColor = {60, 240, 255}; // Radiant Cyan
     } else if (currentState == SolverState::Playing) {
-        statusText = "[ PLAYING SOLVED MACRO ]";
-        statusColor = {80, 255, 120}; // Bright Green
+        statusText = "[ AUTO-PLAYING 100% MACRO ]";
+        statusColor = {50, 255, 120}; // Emerald Green
+    } else if (isSaved) {
+        statusText = "[ 100% SOLVED & VERIFIED ]";
+        statusColor = {60, 255, 140};
     }
 
     m_statusLabel = CCLabelBMFont::create(statusText.c_str(), "bigFont.fnt");
-    m_statusLabel->setScale(0.42f);
+    m_statusLabel->setScale(0.44f);
     m_statusLabel->setColor(statusColor);
     m_statusLabel->setPosition({centerX, winSize.height - 62.0f});
     m_mainLayer->addChild(m_statusLabel);
 
-    // 2. Attempts / Level Info
-    std::string attemptsText = "Attempts: " + std::to_string(SolverEngine::get().getTotalAttempts()) +
-                               "  |  Level: " + levelName;
+    // 2. Level Info
+    std::string attemptsText = "Level: " + levelName + "  (ID: " + std::to_string(levelId) + ")";
     m_attemptsLabel = CCLabelBMFont::create(attemptsText.c_str(), "goldFont.fnt");
-    m_attemptsLabel->setScale(0.40f);
+    m_attemptsLabel->setScale(0.42f);
     m_attemptsLabel->setPosition({centerX, winSize.height - 88.0f});
     m_mainLayer->addChild(m_attemptsLabel);
 
-    // 3. Saved Macro Status
-    bool isSaved = MacroManager::get().hasSavedMacro(levelId);
-    std::string savedText = isSaved ? "Macro: VERIFIED & SAVED" : "Macro: Not Solved Yet";
+    // 3. Saved Macro Details
+    std::string savedText = isSaved ? "Macro: Ready for 1x Playback (Instant)" : "Macro: Not generated yet (Click Solve)";
     m_savedInfoLabel = CCLabelBMFont::create(savedText.c_str(), "chatFont.fnt");
-    m_savedInfoLabel->setScale(0.65f);
-    m_savedInfoLabel->setColor(isSaved ? ccColor3B{80, 255, 100} : ccColor3B{255, 180, 80});
-    m_savedInfoLabel->setPosition({centerX, winSize.height - 114.0f});
+    m_savedInfoLabel->setScale(0.70f);
+    m_savedInfoLabel->setColor(isSaved ? ccColor3B{80, 255, 120} : ccColor3B{255, 190, 80});
+    m_savedInfoLabel->setPosition({centerX, winSize.height - 116.0f});
     m_mainLayer->addChild(m_savedInfoLabel);
 
     // 4. Action Buttons Menu
@@ -80,18 +83,18 @@ bool AutoPlayPopup::init() {
     menu->setPosition({centerX, 62.0f});
 
     // Row 1: Primary Actions
-    auto solveBtnSprite = ButtonSprite::create("Solve Level", "goldFont.fnt", "GJ_button_01.png", 0.72f);
+    auto solveBtnSprite = ButtonSprite::create("Solve Level", "goldFont.fnt", "GJ_button_01.png", 0.75f);
     auto solveBtn = CCMenuItemSpriteExtra::create(
         solveBtnSprite, this, menu_selector(AutoPlayPopup::onSolve)
     );
-    solveBtn->setPosition({-82.0f, 22.0f});
+    solveBtn->setPosition({-85.0f, 22.0f});
     menu->addChild(solveBtn);
 
-    auto playBtnSprite = ButtonSprite::create("Play Run", "goldFont.fnt", "GJ_button_02.png", 0.72f);
+    auto playBtnSprite = ButtonSprite::create("Play Macro", "goldFont.fnt", "GJ_button_02.png", 0.75f);
     auto playBtn = CCMenuItemSpriteExtra::create(
         playBtnSprite, this, menu_selector(AutoPlayPopup::onPlay)
     );
-    playBtn->setPosition({82.0f, 22.0f});
+    playBtn->setPosition({85.0f, 22.0f});
     menu->addChild(playBtn);
 
     // Row 2: Secondary / Control Actions
@@ -99,14 +102,14 @@ bool AutoPlayPopup::init() {
     auto stopBtn = CCMenuItemSpriteExtra::create(
         stopBtnSprite, this, menu_selector(AutoPlayPopup::onStop)
     );
-    stopBtn->setPosition({-70.0f, -24.0f});
+    stopBtn->setPosition({-72.0f, -24.0f});
     menu->addChild(stopBtn);
 
-    auto deleteBtnSprite = ButtonSprite::create("Clear Macro", "chatFont.fnt", "GJ_button_05.png", 0.68f);
+    auto deleteBtnSprite = ButtonSprite::create("Reset Macro", "chatFont.fnt", "GJ_button_05.png", 0.68f);
     auto deleteBtn = CCMenuItemSpriteExtra::create(
         deleteBtnSprite, this, menu_selector(AutoPlayPopup::onDeleteSaved)
     );
-    deleteBtn->setPosition({70.0f, -24.0f});
+    deleteBtn->setPosition({72.0f, -24.0f});
     menu->addChild(deleteBtn);
 
     m_mainLayer->addChild(menu);

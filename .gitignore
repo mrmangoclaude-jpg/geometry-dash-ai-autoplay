@@ -16,3 +16,9 @@ get_job_logs.py
 download_logs.py
 scripts/
 
+
+research/
+scripts/check_*.py
+scripts/inspect_*.py
+scripts/test_*.py
+scripts/sim_*.py

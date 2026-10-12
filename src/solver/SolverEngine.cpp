@@ -18,6 +18,22 @@ SolverEngine& SolverEngine::get() {
 }
 
 void SolverEngine::startSolving(int levelId, const std::string& levelName) {
+    // If this level already has a verified solved macro, immediately play it!
+    if (MacroManager::get().hasSavedMacro(levelId)) {
+        auto saved = MacroManager::get().loadMacro(levelId);
+        if (saved.has_value()) {
+            startPlaying(*saved);
+#if __has_include(<Geode/Geode.hpp>)
+            Notification::create("AI AutoPlay: Level Solved! Playing run...", NotificationIcon::Success)->show();
+            auto playLayer = PlayLayer::get();
+            if (playLayer) {
+                playLayer->resetLevel();
+            }
+#endif
+            return;
+        }
+    }
+
     m_state = SolverState::Solving;
     m_currentLevelId = levelId;
     m_currentLevelName = levelName;
@@ -33,7 +49,7 @@ void SolverEngine::startSolving(int levelId, const std::string& levelName) {
     m_needsReset = false;
 
 #if __has_include(<Geode/Geode.hpp>)
-    Notification::create("AI AutoPlay: Started Solving...", NotificationIcon::Info)->show();
+    Notification::create("AI AutoPlay: Solving Headless in Background...", NotificationIcon::Info)->show();
 #endif
 }
 
@@ -168,17 +184,17 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
             }
         }
 
-        // Constant speed: ~5.2f units/frame in 1x normal speed
-        const float vx = 5.2f;
-        const float vy0 = 10.7f;
-        const float gravity = -0.958f;
+        // Constant speed: exact 60Hz physics (vx = 311.58/60, vy0 = 603.72/60, g = -2794.1/3600)
+        const float vx = 5.193f;
+        const float vy0 = 10.062f;
+        const float gravity = -0.77614f;
 
         // A. Ground Threat Detection (Will we crash or die without jumping?)
-        for (int step = 1; step <= 25; ++step) {
+        for (int step = 1; step <= 26; ++step) {
             float sx = currentX + step * vx;
             float sy = currentY;
-            float pL = sx - 11.0f, pR = sx + 11.0f;
-            float pB = sy - 14.0f, pT = sy + 14.0f;
+            float pL = sx - 9.0f, pR = sx + 9.0f;
+            float pB = sy - 12.0f, pT = sy + 12.0f;
 
             for (const auto& o : nearby) {
                 float oL = o.x - o.width * 0.5f;
@@ -192,31 +208,31 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
                         snapshot.hazardInFront = true;
                         float dx = o.x - currentX;
                         if (dx < snapshot.obstacleDistX) snapshot.obstacleDistX = dx;
-                        if (step <= 3) snapshot.groundHasImmediateThreat = true;
+                        if (step <= 4) snapshot.groundHasImmediateThreat = true;
                     } else if (o.isSolid && oT > currentY - 6.0f) {
                         // Running into front/side of a block!
                         snapshot.hazardInFront = true;
                         float dx = o.x - currentX;
                         if (dx < snapshot.obstacleDistX) snapshot.obstacleDistX = dx;
-                        if (step <= 3) snapshot.groundHasImmediateThreat = true;
+                        if (step <= 4) snapshot.groundHasImmediateThreat = true;
                     }
                 }
             }
         }
 
-        // B. Jump Arc Forecaster: simulate 24 frames of trajectory
+        // B. Jump Arc Forecaster: simulate full 26 frames of trajectory
         bool simJumpSafe = true;
         float simY = currentY;
         float simVy = vy0;
 
-        for (int k = 1; k <= 24; ++k) {
+        for (int k = 1; k <= 26; ++k) {
             float sx = currentX + k * vx;
             simVy += gravity;
             simY += simVy;
             if (simY < currentY) simY = currentY;
 
-            float pL = sx - 10.0f, pR = sx + 10.0f;
-            float pB = simY - 12.0f, pT = simY + 12.0f;
+            float pL = sx - 8.0f, pR = sx + 8.0f;
+            float pB = simY - 10.0f, pT = simY + 10.0f;
 
             for (const auto& o : nearby) {
                 float oL = o.x - o.width * 0.5f;
@@ -239,13 +255,13 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
             }
             if (!simJumpSafe) break;
 
-            // Landing footprint check (k >= 21)
-            if (k >= 21) {
+            // Landing footprint check (k >= 22)
+            if (k >= 22) {
                 for (const auto& o : nearby) {
                     if (o.isHazard) {
                         float oL = o.x - o.width * 0.5f;
                         float oR = o.x + o.width * 0.5f;
-                        if (sx > oL - 10.0f && sx < oR + 10.0f && simY <= o.y + o.height * 0.5f + 10.0f) {
+                        if (sx > oL - 8.0f && sx < oR + 8.0f && simY <= o.y + o.height * 0.5f + 8.0f) {
                             simJumpSafe = false;
                             break;
                         }
