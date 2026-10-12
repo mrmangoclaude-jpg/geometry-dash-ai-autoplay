@@ -35,13 +35,14 @@ std::filesystem::path MacroManager::getMacrosDirectory() {
 #endif
 }
 
-std::filesystem::path MacroManager::getMacroPathForLevel(int levelId) {
-    return getMacrosDirectory() / (std::to_string(levelId) + ".json");
+std::filesystem::path MacroManager::getMacroPathForLevel(int levelId, bool coins) {
+    std::string filename = std::to_string(levelId) + (coins ? "_coins.json" : ".json");
+    return getMacrosDirectory() / filename;
 }
 
-bool MacroManager::saveMacro(const MacroData& macro) {
+bool MacroManager::saveMacro(const MacroData& macro, bool coins) {
     try {
-        auto path = getMacroPathForLevel(macro.levelId);
+        auto path = getMacroPathForLevel(macro.levelId, coins);
         std::ofstream file(path);
         if (!file.is_open()) return false;
         file << macro.serialize();
@@ -51,9 +52,20 @@ bool MacroManager::saveMacro(const MacroData& macro) {
     }
 }
 
-std::optional<MacroData> MacroManager::loadMacro(int levelId) {
+std::optional<MacroData> MacroManager::loadMacro(int levelId, bool coins) {
     try {
-        auto path = getMacroPathForLevel(levelId);
+        if (coins) {
+            auto pathCoins = getMacroPathForLevel(levelId, true);
+            if (std::filesystem::exists(pathCoins)) {
+                std::ifstream file(pathCoins);
+                if (file.is_open()) {
+                    std::string content((std::istreambuf_iterator<char>(file)),
+                                        std::istreambuf_iterator<char>());
+                    return MacroData::deserialize(content);
+                }
+            }
+        }
+        auto path = getMacroPathForLevel(levelId, false);
         if (!std::filesystem::exists(path)) return std::nullopt;
 
         std::ifstream file(path);
@@ -67,8 +79,12 @@ std::optional<MacroData> MacroManager::loadMacro(int levelId) {
     }
 }
 
-bool MacroManager::hasSavedMacro(int levelId) {
-    auto path = getMacroPathForLevel(levelId);
+bool MacroManager::hasSavedMacro(int levelId, bool coins) {
+    if (coins) {
+        auto pathCoins = getMacroPathForLevel(levelId, true);
+        if (std::filesystem::exists(pathCoins)) return true;
+    }
+    auto path = getMacroPathForLevel(levelId, false);
     return std::filesystem::exists(path);
 }
 
@@ -90,9 +106,9 @@ std::vector<MacroData> MacroManager::getAllSavedMacros() {
     return results;
 }
 
-bool MacroManager::deleteMacro(int levelId) {
+bool MacroManager::deleteMacro(int levelId, bool coins) {
     try {
-        auto path = getMacroPathForLevel(levelId);
+        auto path = getMacroPathForLevel(levelId, coins);
         if (std::filesystem::exists(path)) {
             return std::filesystem::remove(path);
         }

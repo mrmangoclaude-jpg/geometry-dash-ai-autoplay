@@ -37,6 +37,12 @@
 			"description": "Bypasses death animation delays during solver attempts",
 			"type": "bool",
 			"default": true
+		},
+		"collect_coins": {
+			"name": "Collect Secret Coins",
+			"description": "Route pathfinding and playback to collect secret coins if available",
+			"type": "bool",
+			"default": false
 		}
 	},
 	"tags": ["gameplay", "utility", "cheat"]

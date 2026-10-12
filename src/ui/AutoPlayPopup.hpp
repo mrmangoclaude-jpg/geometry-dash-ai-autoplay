@@ -9,6 +9,7 @@ protected:
     cocos2d::CCLabelBMFont* m_statusLabel = nullptr;
     cocos2d::CCLabelBMFont* m_attemptsLabel = nullptr;
     cocos2d::CCLabelBMFont* m_savedInfoLabel = nullptr;
+    geode::ButtonSprite* m_coinsBtnSprite = nullptr;
 
     bool init();
 
@@ -16,6 +17,7 @@ protected:
     void onPlay(cocos2d::CCObject* sender);
     void onStop(cocos2d::CCObject* sender);
     void onDeleteSaved(cocos2d::CCObject* sender);
+    void onToggleCoins(cocos2d::CCObject* sender);
 
 public:
     static AutoPlayPopup* create();

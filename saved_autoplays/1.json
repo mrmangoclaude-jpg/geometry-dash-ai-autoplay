@@ -762,20 +762,6 @@
       "p2": false
     },
     {
-      "frame": 2625,
-      "x": 13631.6,
-      "button": 1,
-      "push": true,
-      "p2": false
-    },
-    {
-      "frame": 2774,
-      "x": 14405.4,
-      "button": 1,
-      "push": false,
-      "p2": false
-    },
-    {
       "frame": 2852,
       "x": 14810.4,
       "button": 1,

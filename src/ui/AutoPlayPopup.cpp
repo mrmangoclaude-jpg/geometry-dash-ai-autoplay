@@ -98,18 +98,27 @@ bool AutoPlayPopup::init() {
     menu->addChild(playBtn);
 
     // Row 2: Secondary / Control Actions
-    auto stopBtnSprite = ButtonSprite::create("Stop", "goldFont.fnt", "GJ_button_06.png", 0.68f);
+    auto stopBtnSprite = ButtonSprite::create("Stop", "goldFont.fnt", "GJ_button_06.png", 0.65f);
     auto stopBtn = CCMenuItemSpriteExtra::create(
         stopBtnSprite, this, menu_selector(AutoPlayPopup::onStop)
     );
-    stopBtn->setPosition({-72.0f, -24.0f});
+    stopBtn->setPosition({-105.0f, -24.0f});
     menu->addChild(stopBtn);
 
-    auto deleteBtnSprite = ButtonSprite::create("Reset Macro", "chatFont.fnt", "GJ_button_05.png", 0.68f);
+    bool coinsEnabled = Mod::get()->getSettingValue<bool>("collect_coins");
+    std::string coinText = coinsEnabled ? "Coins: ON" : "Coins: OFF";
+    m_coinsBtnSprite = ButtonSprite::create(coinText.c_str(), "goldFont.fnt", coinsEnabled ? "GJ_button_02.png" : "GJ_button_04.png", 0.65f);
+    auto coinsBtn = CCMenuItemSpriteExtra::create(
+        m_coinsBtnSprite, this, menu_selector(AutoPlayPopup::onToggleCoins)
+    );
+    coinsBtn->setPosition({0.0f, -24.0f});
+    menu->addChild(coinsBtn);
+
+    auto deleteBtnSprite = ButtonSprite::create("Reset", "chatFont.fnt", "GJ_button_05.png", 0.65f);
     auto deleteBtn = CCMenuItemSpriteExtra::create(
         deleteBtnSprite, this, menu_selector(AutoPlayPopup::onDeleteSaved)
     );
-    deleteBtn->setPosition({72.0f, -24.0f});
+    deleteBtn->setPosition({105.0f, -24.0f});
     menu->addChild(deleteBtn);
 
     m_mainLayer->addChild(menu);
@@ -127,6 +136,18 @@ void AutoPlayPopup::onSolve(CCObject*) {
     this->onClose(nullptr);
 }
 
+void AutoPlayPopup::onToggleCoins(CCObject*) {
+    bool current = Mod::get()->getSettingValue<bool>("collect_coins");
+    bool next = !current;
+    Mod::get()->setSettingValue("collect_coins", next);
+
+    std::string text = next ? "Coins: ON" : "Coins: OFF";
+    if (m_coinsBtnSprite) {
+        m_coinsBtnSprite->setString(text.c_str());
+    }
+    Notification::create(next ? "Secret Coins Route: ENABLED" : "Secret Coins Route: DISABLED", NotificationIcon::Info)->show();
+}
+
 void AutoPlayPopup::onPlay(CCObject*) {
     auto playLayer = PlayLayer::get();
     if (!playLayer || !playLayer->m_level) {
@@ -134,7 +155,8 @@ void AutoPlayPopup::onPlay(CCObject*) {
         return;
     }
 
-    auto macro = MacroManager::get().loadMacro(playLayer->m_level->m_levelID);
+    bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
+    auto macro = MacroManager::get().loadMacro(playLayer->m_level->m_levelID, collectCoins);
     if (!macro.has_value()) {
         Notification::create("No saved macro for this level! Click 'Solve Level' first.", NotificationIcon::Warning)->show();
         return;
@@ -156,7 +178,8 @@ void AutoPlayPopup::onDeleteSaved(CCObject*) {
     auto playLayer = PlayLayer::get();
     if (!playLayer || !playLayer->m_level) return;
 
-    if (MacroManager::get().deleteMacro(playLayer->m_level->m_levelID)) {
+    bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
+    if (MacroManager::get().deleteMacro(playLayer->m_level->m_levelID, collectCoins)) {
         Notification::create("Macro Deleted from Disk", NotificationIcon::Success)->show();
         if (m_savedInfoLabel) {
             m_savedInfoLabel->setString("Winning Macro: Not Solved Yet");

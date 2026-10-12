@@ -15,11 +15,11 @@ public:
 
     void setCustomDirectory(const std::filesystem::path& path);
     std::filesystem::path getMacrosDirectory();
-    std::filesystem::path getMacroPathForLevel(int levelId);
+    std::filesystem::path getMacroPathForLevel(int levelId, bool coins = false);
 
-    bool saveMacro(const MacroData& macro);
-    std::optional<MacroData> loadMacro(int levelId);
-    bool hasSavedMacro(int levelId);
+    bool saveMacro(const MacroData& macro, bool coins = false);
+    std::optional<MacroData> loadMacro(int levelId, bool coins = false);
+    bool hasSavedMacro(int levelId, bool coins = false);
     std::vector<MacroData> getAllSavedMacros();
-    bool deleteMacro(int levelId);
+    bool deleteMacro(int levelId, bool coins = false);
 };

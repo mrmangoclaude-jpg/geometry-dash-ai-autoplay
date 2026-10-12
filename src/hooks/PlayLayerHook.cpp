@@ -15,12 +15,13 @@ class $modify(AutoPlayPlayLayer, PlayLayer) {
 
         if (level) {
             int levelId = level->m_levelID;
-            if (MacroManager::get().hasSavedMacro(levelId)) {
+            bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
+            if (MacroManager::get().hasSavedMacro(levelId, collectCoins)) {
                 Notification::create("AI AutoPlay: Saved run available! (Press 'G' to Play)", NotificationIcon::Info)->show();
                 
                 bool autoPlay = Mod::get()->getSettingValue<bool>("auto_play_saved");
                 if (autoPlay) {
-                    auto saved = MacroManager::get().loadMacro(levelId);
+                    auto saved = MacroManager::get().loadMacro(levelId, collectCoins);
                     if (saved.has_value()) {
                         SolverEngine::get().startPlaying(*saved);
                     }

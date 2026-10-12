@@ -54,6 +54,7 @@ public:
 
     void startSolving(int levelId, const std::string& levelName);
     void stopSolving();
+    void solveMathematically(void* gameLayerPtr);
     
     void startPlaying(const MacroData& macro);
     void stopPlaying();
