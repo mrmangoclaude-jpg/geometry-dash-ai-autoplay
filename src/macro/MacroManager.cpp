@@ -35,14 +35,31 @@ std::filesystem::path MacroManager::getMacrosDirectory() {
 #endif
 }
 
-std::filesystem::path MacroManager::getMacroPathForLevel(int levelId, bool coins) {
-    std::string filename = std::to_string(levelId) + (coins ? "_coins.json" : ".json");
+static std::string sanitizeLevelName(const std::string& name) {
+    std::string out;
+    out.reserve(name.size());
+    for (unsigned char c : name) {
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '-' || c == '_') {
+            out.push_back(static_cast<char>(c));
+        } else if (c == ' ') {
+            out.push_back('_');
+        }
+    }
+    return out.empty() ? "unnamed" : out;
+}
+
+std::filesystem::path MacroManager::getMacroPathForLevel(int levelId, bool coins, const std::string& levelName) {
+    std::string base = (levelId > 0 || levelName.empty())
+        ? std::to_string(levelId)
+        : ("local_" + sanitizeLevelName(levelName));
+    std::string filename = base + (coins ? "_coins.json" : ".json");
     return getMacrosDirectory() / filename;
 }
 
 bool MacroManager::saveMacro(const MacroData& macro, bool coins) {
+    if (macro.actions.empty()) return false;
     try {
-        auto path = getMacroPathForLevel(macro.levelId, coins);
+        auto path = getMacroPathForLevel(macro.levelId, coins, macro.levelName);
         std::ofstream file(path);
         if (!file.is_open()) return false;
         file << macro.serialize();
@@ -52,20 +69,21 @@ bool MacroManager::saveMacro(const MacroData& macro, bool coins) {
     }
 }
 
-std::optional<MacroData> MacroManager::loadMacro(int levelId, bool coins) {
+std::optional<MacroData> MacroManager::loadMacro(int levelId, bool coins, const std::string& levelName) {
     try {
         if (coins) {
-            auto pathCoins = getMacroPathForLevel(levelId, true);
+            auto pathCoins = getMacroPathForLevel(levelId, true, levelName);
             if (std::filesystem::exists(pathCoins)) {
                 std::ifstream file(pathCoins);
                 if (file.is_open()) {
                     std::string content((std::istreambuf_iterator<char>(file)),
                                         std::istreambuf_iterator<char>());
-                    return MacroData::deserialize(content);
+                    auto data = MacroData::deserialize(content);
+                    if (!data.actions.empty()) return data;
                 }
             }
         }
-        auto path = getMacroPathForLevel(levelId, false);
+        auto path = getMacroPathForLevel(levelId, false, levelName);
         if (!std::filesystem::exists(path)) return std::nullopt;
 
         std::ifstream file(path);
@@ -73,19 +91,16 @@ std::optional<MacroData> MacroManager::loadMacro(int levelId, bool coins) {
 
         std::string content((std::istreambuf_iterator<char>(file)),
                             std::istreambuf_iterator<char>());
-        return MacroData::deserialize(content);
+        auto data = MacroData::deserialize(content);
+        if (data.actions.empty()) return std::nullopt;
+        return data;
     } catch (...) {
         return std::nullopt;
     }
 }
 
-bool MacroManager::hasSavedMacro(int levelId, bool coins) {
-    if (coins) {
-        auto pathCoins = getMacroPathForLevel(levelId, true);
-        if (std::filesystem::exists(pathCoins)) return true;
-    }
-    auto path = getMacroPathForLevel(levelId, false);
-    return std::filesystem::exists(path);
+bool MacroManager::hasSavedMacro(int levelId, bool coins, const std::string& levelName) {
+    return loadMacro(levelId, coins, levelName).has_value();
 }
 
 std::vector<MacroData> MacroManager::getAllSavedMacros() {
@@ -106,9 +121,9 @@ std::vector<MacroData> MacroManager::getAllSavedMacros() {
     return results;
 }
 
-bool MacroManager::deleteMacro(int levelId, bool coins) {
+bool MacroManager::deleteMacro(int levelId, bool coins, const std::string& levelName) {
     try {
-        auto path = getMacroPathForLevel(levelId, coins);
+        auto path = getMacroPathForLevel(levelId, coins, levelName);
         if (std::filesystem::exists(path)) {
             return std::filesystem::remove(path);
         }

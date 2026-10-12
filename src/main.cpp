@@ -21,15 +21,17 @@ class $modify(AutoPlayKeyboardDispatcher, CCKeyboardDispatcher) {
                     Notification::create("AI AutoPlay: Stopped", NotificationIcon::Info)->show();
                 } else {
                     int levelId = playLayer->m_level->m_levelID;
+                    std::string levelName = playLayer->m_level->m_levelName;
                     bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
-                    if (MacroManager::get().hasSavedMacro(levelId, collectCoins)) {
-                        auto saved = MacroManager::get().loadMacro(levelId, collectCoins);
+                    if (MacroManager::get().hasSavedMacro(levelId, collectCoins, levelName)) {
+                        auto saved = MacroManager::get().loadMacro(levelId, collectCoins, levelName);
                         if (saved.has_value()) {
                             SolverEngine::get().startPlaying(*saved);
                             playLayer->resetLevel();
                         }
                     } else {
-                        SolverEngine::get().startSolving(levelId, playLayer->m_level->m_levelName);
+                        SolverEngine::get().startSolving(levelId, levelName, playLayer);
+                        playLayer->resetLevel();
                     }
                 }
                 return true;

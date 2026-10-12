@@ -52,7 +52,7 @@ private:
 public:
     static SolverEngine& get();
 
-    void startSolving(int levelId, const std::string& levelName);
+    void startSolving(int levelId, const std::string& levelName, void* gameLayerPtr = nullptr);
     void stopSolving();
     void solveMathematically(void* gameLayerPtr);
     

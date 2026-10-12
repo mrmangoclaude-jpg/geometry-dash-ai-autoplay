@@ -15,20 +15,17 @@ class $modify(AutoPlayPlayLayer, PlayLayer) {
 
         if (m_level) {
             int levelId = m_level->m_levelID;
+            std::string levelName = m_level->m_levelName;
             bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
-            bool autoPlay = Mod::get()->getSettingValue<bool>("auto_play_saved");
 
-            if (MacroManager::get().hasSavedMacro(levelId, collectCoins)) {
-                Notification::create("AI AutoPlay: Saved run ready! (Press 'G' to toggle)", NotificationIcon::Info)->show();
-                if (autoPlay) {
-                    auto saved = MacroManager::get().loadMacro(levelId, collectCoins);
-                    if (saved.has_value()) {
-                        SolverEngine::get().startPlaying(*saved);
-                    }
+            if (MacroManager::get().hasSavedMacro(levelId, collectCoins, levelName)) {
+                auto saved = MacroManager::get().loadMacro(levelId, collectCoins, levelName);
+                if (saved.has_value()) {
+                    SolverEngine::get().startPlaying(*saved);
                 }
-            } else if (autoPlay) {
+            } else {
                 // Pre-solve the entire level (including Move Triggers) BEFORE gameplay starts!
-                SolverEngine::get().startSolving(levelId, m_level->m_levelName);
+                SolverEngine::get().startSolving(levelId, levelName, this);
             }
         }
     }

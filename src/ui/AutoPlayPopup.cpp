@@ -40,7 +40,8 @@ bool AutoPlayPopup::init() {
         m_mainLayer->addChild(bgCard);
     }
 
-    bool isSaved = MacroManager::get().hasSavedMacro(levelId);
+    bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
+    bool isSaved = MacroManager::get().hasSavedMacro(levelId, collectCoins, levelName);
     auto currentState = SolverEngine::get().getState();
 
     // 1. Current Status Display Badge
@@ -132,7 +133,8 @@ void AutoPlayPopup::onSolve(CCObject*) {
         return;
     }
 
-    SolverEngine::get().startSolving(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName);
+    SolverEngine::get().startSolving(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName, playLayer);
+    playLayer->resetLevel();
     this->onClose(nullptr);
 }
 
@@ -156,13 +158,12 @@ void AutoPlayPopup::onPlay(CCObject*) {
     }
 
     bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
-    auto macro = MacroManager::get().loadMacro(playLayer->m_level->m_levelID, collectCoins);
+    auto macro = MacroManager::get().loadMacro(playLayer->m_level->m_levelID, collectCoins, playLayer->m_level->m_levelName);
     if (!macro.has_value()) {
-        Notification::create("No saved macro for this level! Click 'Solve Level' first.", NotificationIcon::Warning)->show();
-        return;
+        SolverEngine::get().startSolving(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName, playLayer);
+    } else {
+        SolverEngine::get().startPlaying(*macro);
     }
-
-    SolverEngine::get().startPlaying(*macro);
     playLayer->resetLevel();
     this->onClose(nullptr);
 }
@@ -179,7 +180,7 @@ void AutoPlayPopup::onDeleteSaved(CCObject*) {
     if (!playLayer || !playLayer->m_level) return;
 
     bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
-    if (MacroManager::get().deleteMacro(playLayer->m_level->m_levelID, collectCoins)) {
+    if (MacroManager::get().deleteMacro(playLayer->m_level->m_levelID, collectCoins, playLayer->m_level->m_levelName)) {
         Notification::create("Macro Deleted from Disk", NotificationIcon::Success)->show();
         if (m_savedInfoLabel) {
             m_savedInfoLabel->setString("Winning Macro: Not Solved Yet");

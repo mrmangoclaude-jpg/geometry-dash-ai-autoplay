@@ -14,6 +14,7 @@
 #include <Geode/binding/PlayerObject.hpp>
 #include <Geode/binding/GameObject.hpp>
 #include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/LevelSettingsObject.hpp>
 using namespace geode::prelude;
 #endif
 
@@ -22,14 +23,14 @@ SolverEngine& SolverEngine::get() {
     return instance;
 }
 
-void SolverEngine::startSolving(int levelId, const std::string& levelName) {
+void SolverEngine::startSolving(int levelId, const std::string& levelName, void* gameLayerPtr) {
 #if __has_include(<Geode/Geode.hpp>)
     bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
-    if (MacroManager::get().hasSavedMacro(levelId, collectCoins)) {
-        auto saved = MacroManager::get().loadMacro(levelId, collectCoins);
+    if (MacroManager::get().hasSavedMacro(levelId, collectCoins, levelName)) {
+        auto saved = MacroManager::get().loadMacro(levelId, collectCoins, levelName);
         if (saved.has_value()) {
             startPlaying(*saved);
-            auto playLayer = PlayLayer::get();
+            auto playLayer = gameLayerPtr ? static_cast<PlayLayer*>(gameLayerPtr) : PlayLayer::get();
             if (playLayer && playLayer->m_gameState.m_levelTime > 0.05) {
                 playLayer->resetLevel();
             }
@@ -53,16 +54,16 @@ void SolverEngine::startSolving(int levelId, const std::string& levelName) {
     m_needsReset = false;
 
 #if __has_include(<Geode/Geode.hpp>)
-    auto playLayer = PlayLayer::get();
-    if (playLayer) {
-        solveMathematically(playLayer);
+    void* targetLayer = gameLayerPtr ? gameLayerPtr : static_cast<void*>(PlayLayer::get());
+    if (targetLayer) {
+        solveMathematically(targetLayer);
     }
 #endif
 }
 
 #if __has_include(<Geode/Geode.hpp>)
 namespace {
-    enum class SimMode { Cube, Ship, Ball, UFO, Wave, Robot, Spider };
+    enum class SimMode : uint8_t { Cube = 0, Ship = 1, Ball = 2, UFO = 3, Wave = 4, Robot = 5, Spider = 6 };
 
     struct MoveTrigger {
         float triggerX;
@@ -75,9 +76,11 @@ namespace {
     struct LevelObj {
         int uid;
         int id;
+        int orient;
         float x, y, w, h;
         float baseX, baseY;
         bool isHazard;
+        bool isSaw;
         bool isSolid;
         bool isSlope;
         bool isStopDash;
@@ -105,6 +108,103 @@ namespace {
         }
     }
 
+    inline bool classifyKnownObject(int oid, float rot, float& w, float& h, bool& isSolid, bool& isSlope, bool& isHazard, bool& isSaw) {
+        bool rot90 = (static_cast<int>(std::round(std::abs(rot) / 90.0f)) % 2) == 1;
+
+        // 30x30 standard solid blocks (including 467, 469, 470, 471 outline blocks)
+        if ((oid >= 1 && oid <= 7) || oid == 63 || (oid >= 69 && oid <= 72) || (oid >= 74 && oid <= 78) ||
+            (oid >= 81 && oid <= 83) || (oid >= 90 && oid <= 96) || (oid >= 116 && oid <= 119) ||
+            oid == 121 || oid == 122 || oid == 146 || (oid >= 160 && oid <= 163) || (oid >= 165 && oid <= 169) ||
+            oid == 173 || oid == 175 || (oid >= 207 && oid <= 210) || oid == 212 || oid == 213 ||
+            (oid >= 247 && oid <= 250) || (oid >= 252 && oid <= 258) || oid == 260 || oid == 261 ||
+            (oid >= 263 && oid <= 265) || (oid >= 267 && oid <= 272) || oid == 274 || oid == 275 ||
+            oid == 467 || oid == 469 || oid == 470 || oid == 471) {
+            isSolid = true; w = 30.0f; h = 30.0f; return true;
+        }
+        // 15x15 mini solid blocks
+        if (oid == 64 || oid == 195 || oid == 206 || oid == 220 || oid == 661) {
+            isSolid = true; w = 15.0f; h = 15.0f; return true;
+        }
+        // 30x14 slabs
+        if (oid == 40 || oid == 147 || oid == 215 || oid == 369 || oid == 370) {
+            isSolid = true; w = rot90 ? 14.0f : 30.0f; h = rot90 ? 30.0f : 14.0f; return true;
+        }
+        // 30x15 slabs
+        if (oid == 662 || oid == 663 || oid == 664) {
+            isSolid = true; w = rot90 ? 15.0f : 30.0f; h = rot90 ? 30.0f : 15.0f; return true;
+        }
+        // 30x5 thin solid barriers
+        if (oid == 468 || oid == 475) {
+            isSolid = true; w = rot90 ? 5.0f : 30.0f; h = rot90 ? 30.0f : 5.0f; return true;
+        }
+        // 30x16 slabs
+        if (oid == 62 || oid == 65 || oid == 66 || oid == 68) {
+            isSolid = true; w = rot90 ? 16.0f : 30.0f; h = rot90 ? 30.0f : 16.0f; return true;
+        }
+        // 30x30 slopes
+        switch (oid) {
+            case 289: case 294: case 299: case 305: case 309: case 315:
+            case 321: case 326: case 331: case 337: case 343: case 349:
+            case 353: case 371: case 483: case 492: case 651: case 665:
+            case 673: case 709: case 711: case 726: case 728: case 886:
+                isSlope = true; w = 30.0f; h = 30.0f; return true;
+            default: break;
+        }
+        // 60x30 slopes
+        switch (oid) {
+            case 291: case 295: case 301: case 307: case 311: case 317:
+            case 323: case 327: case 333: case 339: case 345: case 351:
+            case 355: case 367: case 372: case 484: case 493: case 652:
+            case 666: case 674: case 710: case 712: case 727: case 729: case 887:
+                isSlope = true; w = rot90 ? 30.0f : 60.0f; h = rot90 ? 60.0f : 30.0f; return true;
+            default: break;
+        }
+        // Known rectangular hazards (spikes)
+        float hw = 0.0f, hh = 0.0f;
+        switch (oid) {
+            case 720: hw = 2.4f; hh = 3.2f; break;
+            case 61:  hw = 9.0f; hh = 7.2f; break;
+            case 365: case 667: hw = 9.0f; hh = 6.0f; break;
+            case 392: case 458: case 459: hw = 2.6f; hh = 4.8f; break;
+            case 8: case 144: case 177: case 216: hw = 6.0f; hh = 12.0f; break;
+            case 103: case 145: case 218: hw = 4.0f; hh = 7.6f; break;
+            case 39: case 205: case 217: hw = 6.0f; hh = 5.6f; break;
+            case 9: hw = 9.0f; hh = 10.8f; break;
+            default: break;
+        }
+        if (hw > 0.0f) {
+            isHazard = true;
+            w = rot90 ? hh : hw;
+            h = rot90 ? hw : hh;
+            return true;
+        }
+        // Known sawblades (circular hazards)
+        float sawDiam = 0.0f;
+        switch (oid) {
+            case 88: case 186: case 740: sawDiam = 64.6f; break;
+            case 89:  sawDiam = 43.2f; break;
+            case 98:  sawDiam = 24.0f; break;
+            case 397: sawDiam = 57.8f; break;
+            case 398: sawDiam = 34.88f; break;
+            case 399: sawDiam = 25.8f; break;
+            case 675: sawDiam = 64.0f; break;
+            case 676: sawDiam = 35.02f; break;
+            case 677: sawDiam = 24.96f; break;
+            case 678: sawDiam = 60.8f; break;
+            case 679: sawDiam = 37.08f; break;
+            case 680: sawDiam = 21.6f; break;
+            default: break;
+        }
+        if (sawDiam > 0.0f) {
+            isHazard = true;
+            isSaw = true;
+            w = sawDiam;
+            h = sawDiam;
+            return true;
+        }
+        return false;
+    }
+
     struct ActionNode {
         int parentIdx = -1;
         PlayerAction action;
@@ -116,105 +216,158 @@ namespace {
         float vy = 0.0f;
         float vx = 5.193f;
         float gravDir = 1.0f;
+        float floorY = 90.0f;
+        float ceilY = 1200.0f;
         SimMode mode = SimMode::Cube;
         bool mini = false;
         bool grounded = true;
         bool dashing = false;
         bool holding = false;
+        bool hasBufferedInput = false;
         bool dead = false;
-        int holdFramesRemaining = 0;
         int robotBoostFrames = 0;
-        int lastTapFrame = -100;
         int lastOrb = -1;
         int lastPad = -1;
         int lastPortal = -1;
         int actionIdx = -1;
 
         uint32_t beamKey() const {
-            uint32_t ky = static_cast<uint32_t>(static_cast<int>(std::round(py / 5.0f)) & 0x3FF);
-            uint32_t kv = static_cast<uint32_t>(static_cast<int>(std::round(vy / 1.5f)) & 0x3F);
+            uint32_t ky = static_cast<uint32_t>(static_cast<int>(std::round(py)) & 0x3FFF);
+            uint32_t kv = static_cast<uint32_t>(static_cast<int>(std::round(vy * 2.0f)) & 0xFF);
+            bool useHoldBit = holding && (mode == SimMode::Cube || mode == SimMode::Ball || mode == SimMode::UFO || mode == SimMode::Robot || mode == SimMode::Spider);
             uint32_t flags = (grounded ? 1U : 0U)
                            | ((gravDir < 0.0f ? 1U : 0U) << 1)
-                           | ((holding ? 1U : 0U) << 2)
-                           | ((dashing ? 1U : 0U) << 3)
-                           | (static_cast<uint32_t>(mode) << 4);
-            return (ky << 14) | (kv << 8) | flags;
+                           | ((useHoldBit ? 1U : 0U) << 2)
+                           | (static_cast<uint32_t>(mode) << 3);
+            return (ky << 16) | (kv << 8) | flags;
         }
     };
 
-    void stepSim(SimPlayer& s, const std::vector<LevelObj>& objs, bool wantHold, float groundY) {
+    void stepSim(SimPlayer& s, const std::vector<LevelObj>& objs, bool wantHold) {
         if (s.dead) return;
         float prevY = s.py;
         bool freshPress = wantHold && !s.holding;
-        float playerHalfH = s.mini ? 9.0f : 15.0f;
+        if (freshPress) {
+            s.hasBufferedInput = true;
+        } else if (!wantHold) {
+            s.hasBufferedInput = false;
+        }
 
-        auto itStart = std::lower_bound(objs.begin(), objs.end(), s.px - 45.0f,
+        float playerHalfW = (s.mode == SimMode::Wave) ? (s.mini ? 3.0f : 5.0f) : (s.mini ? 9.0f : 15.0f);
+        float playerHalfH = playerHalfW;
+
+        auto itStart = std::lower_bound(objs.begin(), objs.end(), s.px - 55.0f,
             [](const LevelObj& o, float val) { return o.x < val; });
 
-        // 1. Check portals, S-blocks & pads
-        for (auto it = itStart; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
+        // 1. Portals, S-blocks & pads
+        for (auto it = itStart; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
             const auto& o = *it;
             float ox, oy;
             evalObjPos(o, s.px, s.vx, ox, oy);
 
-            if (std::abs(s.px - ox) < 16.0f && std::abs(s.py - oy) < std::max(28.0f, o.h * 0.6f)) {
+            if (std::abs(s.px - ox) < std::max(18.0f, o.w * 0.5f + playerHalfW) &&
+                std::abs(s.py - oy) < std::max(55.0f, o.h * 0.5f) + playerHalfH) {
                 if (o.speedVal > 0.0f) s.vx = o.speedVal;
                 if (o.isStopDash) s.dashing = false;
-                if (o.isPortalShip) s.mode = SimMode::Ship;
-                else if (o.isPortalCube) s.mode = SimMode::Cube;
-                else if (o.isPortalBall) s.mode = SimMode::Ball;
-                else if (o.isPortalUFO) s.mode = SimMode::UFO;
-                else if (o.isPortalWave) s.mode = SimMode::Wave;
-                else if (o.isPortalRobot) s.mode = SimMode::Robot;
-                else if (o.isPortalSpider) s.mode = SimMode::Spider;
+
+                bool isModePortal = false;
+                if (o.isPortalShip) { s.mode = SimMode::Ship; isModePortal = true; }
+                else if (o.isPortalCube) { s.mode = SimMode::Cube; isModePortal = true; }
+                else if (o.isPortalBall) { s.mode = SimMode::Ball; isModePortal = true; }
+                else if (o.isPortalUFO) { s.mode = SimMode::UFO; isModePortal = true; }
+                else if (o.isPortalWave) { s.mode = SimMode::Wave; isModePortal = true; }
+                else if (o.isPortalRobot) { s.mode = SimMode::Robot; isModePortal = true; }
+                else if (o.isPortalSpider) { s.mode = SimMode::Spider; isModePortal = true; }
+
+                if (isModePortal && o.uid != s.lastPortal) {
+                    s.lastPortal = o.uid;
+                    if (s.mode == SimMode::Ship || s.mode == SimMode::UFO || s.mode == SimMode::Wave) {
+                        float fl = std::max(90.0f, std::floor((oy - 240.0f + 1.0f) / 30.0f) * 30.0f + 90.0f);
+                        s.floorY = fl;
+                        s.ceilY = fl + 300.0f;
+                    } else if (s.mode == SimMode::Ball || s.mode == SimMode::Spider) {
+                        float fl = std::max(90.0f, std::floor((oy - 210.0f + 1.0f) / 30.0f) * 30.0f + 90.0f);
+                        s.floorY = fl;
+                        s.ceilY = fl + 240.0f;
+                    } else {
+                        s.floorY = 90.0f;
+                        s.ceilY = 1200.0f;
+                    }
+                }
 
                 if (o.isPortalMini) s.mini = true;
                 else if (o.isPortalNormalSize) s.mini = false;
 
-                if (o.isPortalGravNorm) s.gravDir = 1.0f;
-                else if (o.isPortalGravInv) s.gravDir = -1.0f;
-                else if (o.isPortalGravToggle && o.uid != s.lastPortal) {
+                if (o.isPortalGravNorm) {
+                    if (s.gravDir < 0.0f) { s.gravDir = 1.0f; s.vy *= 0.5f; s.grounded = false; }
+                } else if (o.isPortalGravInv) {
+                    if (s.gravDir > 0.0f) { s.gravDir = -1.0f; s.vy *= 0.5f; s.grounded = false; }
+                } else if (o.isPortalGravToggle && o.uid != s.lastPortal) {
                     s.lastPortal = o.uid;
                     s.gravDir = -s.gravDir;
+                    s.vy *= 0.5f;
+                    s.grounded = false;
                 }
             }
 
-            if (o.isPad && o.uid != s.lastPad && std::abs(s.px - ox) < 16.0f && std::abs(s.py - oy) < 20.0f) {
+            if (o.isPad && o.uid != s.lastPad &&
+                std::abs(s.px - ox) < (o.w * 0.5f + playerHalfW) &&
+                std::abs(s.py - oy) < (o.h * 0.5f + playerHalfH + 4.0f)) {
                 s.lastPad = o.uid;
                 s.dashing = false;
                 s.robotBoostFrames = 0;
                 float miniMult = s.mini ? 0.8f : 1.0f;
-                if (o.isYellowPad) { s.vy = 14.35f * miniMult * s.gravDir; s.grounded = false; }
-                else if (o.isPinkPad) { s.vy = 9.35f * miniMult * s.gravDir; s.grounded = false; }
-                else if (o.isRedPad) { s.vy = 18.2f * miniMult * s.gravDir; s.grounded = false; }
-                else if (o.isGravPad || o.isSpiderPad) { s.gravDir = -s.gravDir; s.vy = 7.5f * s.gravDir; s.grounded = false; }
+                if (o.isYellowPad) {
+                    float vyPad = (s.mode == SimMode::Ball) ? 8.65f : ((s.mode == SimMode::UFO) ? 7.2f : 15.94f);
+                    s.vy = vyPad * miniMult * s.gravDir;
+                    s.grounded = false;
+                } else if (o.isPinkPad) {
+                    float vyPad = (s.mode == SimMode::Ball) ? 6.0f : 10.39f;
+                    s.vy = vyPad * miniMult * s.gravDir;
+                    s.grounded = false;
+                } else if (o.isRedPad) {
+                    float vyPad = (s.mode == SimMode::Ball) ? 10.8f : 20.22f;
+                    s.vy = vyPad * miniMult * s.gravDir;
+                    s.grounded = false;
+                } else if (o.isGravPad || o.isSpiderPad) {
+                    s.gravDir = -s.gravDir;
+                    float vyPad = (s.mode == SimMode::Ball) ? 3.5f : 6.44f;
+                    s.vy = -vyPad * miniMult * s.gravDir;
+                    s.grounded = false;
+                }
             }
         }
 
+        // Recompute playerHalfW/H in case mode/mini changed
+        playerHalfW = (s.mode == SimMode::Wave) ? (s.mini ? 3.0f : 5.0f) : (s.mini ? 9.0f : 15.0f);
+        playerHalfH = playerHalfW;
+        float floorCenterY = s.floorY + playerHalfH;
+        float ceilCenterY = s.ceilY - playerHalfH;
+
         // 2. Check platform support when grounded
         if ((s.mode == SimMode::Cube || s.mode == SimMode::Ball || s.mode == SimMode::Robot || s.mode == SimMode::Spider) && s.grounded) {
-            if (s.gravDir > 0.0f && s.py > groundY + 1.0f) {
+            if (s.gravDir > 0.0f && s.py > floorCenterY + 1.5f) {
                 bool supported = false;
-                for (auto it = itStart; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
+                for (auto it = itStart; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
                     if (it->isSolid || it->isSlope) {
                         float ox, oy;
                         evalObjPos(*it, s.px, s.vx, ox, oy);
                         float oTop = oy + it->h * 0.5f;
-                        if (std::abs(s.px - ox) <= it->w * 0.5f + 12.0f && std::abs((s.py - playerHalfH) - oTop) <= 4.5f) {
+                        if (std::abs(s.px - ox) <= it->w * 0.5f + playerHalfW && std::abs((s.py - playerHalfH) - oTop) <= 5.0f) {
                             supported = true;
                             break;
                         }
                     }
                 }
                 if (!supported) s.grounded = false;
-            } else if (s.gravDir < 0.0f && s.py < 390.0f) {
+            } else if (s.gravDir < 0.0f && s.py < ceilCenterY - 1.5f) {
                 bool supported = false;
-                for (auto it = itStart; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
+                for (auto it = itStart; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
                     if (it->isSolid || it->isSlope) {
                         float ox, oy;
                         evalObjPos(*it, s.px, s.vx, ox, oy);
                         float oBot = oy - it->h * 0.5f;
-                        if (std::abs(s.px - ox) <= it->w * 0.5f + 12.0f && std::abs((s.py + playerHalfH) - oBot) <= 4.5f) {
+                        if (std::abs(s.px - ox) <= it->w * 0.5f + playerHalfW && std::abs((s.py + playerHalfH) - oBot) <= 5.0f) {
                             supported = true;
                             break;
                         }
@@ -232,54 +385,73 @@ namespace {
         if (wantHold) {
             bool hitOrb = false;
             float miniMult = s.mini ? 0.8f : 1.0f;
-            for (auto it = itStart; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
-                const auto& o = *it;
-                if (!o.isOrb || o.uid == s.lastOrb) continue;
-                float ox, oy;
-                evalObjPos(o, s.px, s.vx, ox, oy);
-                if (std::abs(s.px - ox) < 24.0f && std::abs(s.py - oy) < 24.0f) {
-                    s.lastOrb = o.uid;
-                    s.robotBoostFrames = 0;
-                    if (o.isYellowOrb) s.vy = 10.062f * miniMult * s.gravDir;
-                    else if (o.isPinkOrb) s.vy = 7.25f * miniMult * s.gravDir;
-                    else if (o.isRedOrb) s.vy = 14.1f * miniMult * s.gravDir;
-                    else if (o.isGravOrb || o.isSpiderOrb) { s.gravDir = -s.gravDir; s.vy = 7.0f * s.gravDir; }
-                    else if (o.isGreenOrb) { s.gravDir = -s.gravDir; s.vy = 10.062f * miniMult * s.gravDir; }
-                    else if (o.isDashOrb) {
-                        if (o.id == 1751) s.gravDir = -s.gravDir;
-                        s.vy = 0.0f;
-                        s.dashing = true;
+            if (s.hasBufferedInput) {
+                for (auto it = itStart; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
+                    const auto& o = *it;
+                    if (!o.isOrb || o.uid == s.lastOrb) continue;
+                    float ox, oy;
+                    evalObjPos(o, s.px, s.vx, ox, oy);
+                    if (std::abs(s.px - ox) < (18.0f + playerHalfW) && std::abs(s.py - oy) < (18.0f + playerHalfH)) {
+                        s.lastOrb = o.uid;
+                        s.hasBufferedInput = false;
+                        s.robotBoostFrames = 0;
+                        if (o.isYellowOrb) {
+                            float vyOrb = (s.mode == SimMode::Ball) ? 7.05f : 11.18f;
+                            s.vy = vyOrb * miniMult * s.gravDir;
+                        } else if (o.isPinkOrb) {
+                            float vyOrb = (s.mode == SimMode::Ball) ? 5.42f : ((s.mode == SimMode::UFO) ? 4.22f : ((s.mode == SimMode::Ship) ? 3.72f : 8.05f));
+                            s.vy = vyOrb * miniMult * s.gravDir;
+                        } else if (o.isRedOrb) {
+                            float vyOrb = (s.mode == SimMode::Ball) ? 9.32f : 15.2f;
+                            s.vy = vyOrb * miniMult * s.gravDir;
+                        } else if (o.isGravOrb || o.isSpiderOrb) {
+                            s.gravDir = -s.gravDir;
+                            float vyOrb = (s.mode == SimMode::Ball) ? 2.82f : 4.45f;
+                            s.vy = -vyOrb * miniMult * s.gravDir;
+                        } else if (o.isGreenOrb) {
+                            s.gravDir = -s.gravDir;
+                            float vyOrb = (s.mode == SimMode::Ball) ? 6.92f : 10.97f;
+                            s.vy = vyOrb * miniMult * s.gravDir;
+                        } else if (o.isDashOrb) {
+                            if (o.id == 1751) s.gravDir = -s.gravDir;
+                            s.vy = 0.0f;
+                            s.dashing = true;
+                        }
+                        s.grounded = false;
+                        hitOrb = true;
+                        break;
                     }
-                    s.grounded = false;
-                    hitOrb = true;
-                    break;
                 }
             }
             if (!hitOrb) {
                 if (s.mode == SimMode::Cube && s.grounded) {
-                    s.vy = 10.062f * miniMult * s.gravDir;
+                    s.vy = 11.18f * miniMult * s.gravDir;
                     s.grounded = false;
+                    s.hasBufferedInput = false;
                 } else if (s.mode == SimMode::Robot) {
-                    if (s.grounded && freshPress) {
+                    if (s.grounded && s.hasBufferedInput) {
                         s.vy = 7.5f * miniMult * s.gravDir;
                         s.grounded = false;
+                        s.hasBufferedInput = false;
                         s.robotBoostFrames = 12;
                     } else if (s.robotBoostFrames > 0) {
                         s.vy = 9.8f * miniMult * s.gravDir;
                         s.robotBoostFrames--;
                     }
-                } else if (s.mode == SimMode::Ball && s.grounded && freshPress) {
+                } else if (s.mode == SimMode::Ball && s.grounded && s.hasBufferedInput) {
                     s.gravDir = -s.gravDir;
-                    s.vy = 3.0f * s.gravDir;
+                    s.vy = -3.02f * miniMult * s.gravDir;
                     s.grounded = false;
-                } else if (s.mode == SimMode::Spider && s.grounded && freshPress) {
+                    s.hasBufferedInput = false;
+                } else if (s.mode == SimMode::Spider && s.grounded && s.hasBufferedInput) {
                     s.gravDir = -s.gravDir;
-                    float targetY = (s.gravDir > 0.0f) ? groundY : 390.0f;
-                    for (auto it = itStart; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
+                    s.hasBufferedInput = false;
+                    float targetY = (s.gravDir > 0.0f) ? floorCenterY : ceilCenterY;
+                    for (auto it = itStart; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
                         if (it->isSolid) {
                             float ox, oy;
                             evalObjPos(*it, s.px, s.vx, ox, oy);
-                            if (std::abs(s.px - ox) <= it->w * 0.5f + 10.0f) {
+                            if (std::abs(s.px - ox) <= it->w * 0.5f + playerHalfW - 1.0f) {
                                 if (s.gravDir < 0.0f) {
                                     float surf = oy - it->h * 0.5f - playerHalfH;
                                     if (surf > s.py && surf < targetY) targetY = surf;
@@ -293,110 +465,214 @@ namespace {
                     s.py = targetY;
                     s.vy = 0.0f;
                     s.grounded = true;
-                } else if (s.mode == SimMode::UFO && freshPress) {
-                    s.vy = 7.2f * miniMult * s.gravDir;
+                } else if (s.mode == SimMode::UFO && s.hasBufferedInput) {
+                    s.vy = (s.mini ? 5.98f : 6.18f) * s.gravDir;
                     s.grounded = false;
+                    s.hasBufferedInput = false;
                 }
             }
         }
 
         // 4. Integrate motion
-        const float gravity = -0.77614f;
         s.px += s.vx;
         if (s.dashing) {
             s.vy = 0.0f;
-        } else if (s.mode == SimMode::Cube || s.mode == SimMode::Ball || s.mode == SimMode::UFO || s.mode == SimMode::Robot || s.mode == SimMode::Spider) {
+        } else if (s.mode == SimMode::Cube || s.mode == SimMode::Robot) {
+            const float gravity = -0.9582f;
             if (!s.grounded) {
                 s.py += s.vy;
                 s.vy += gravity * s.gravDir;
-                if (std::abs(s.vy) > 15.6f) s.vy = (s.vy > 0.0f) ? 15.6f : -15.6f;
-                if (s.gravDir > 0.0f && s.py <= groundY) {
-                    s.py = groundY;
+                if (std::abs(s.vy) > 15.0f) s.vy = (s.vy > 0.0f) ? 15.0f : -15.0f;
+                if (s.gravDir > 0.0f && s.py <= floorCenterY) {
+                    s.py = floorCenterY;
                     s.vy = 0.0f;
                     s.grounded = true;
+                } else if (s.py >= ceilCenterY || (s.gravDir < 0.0f && s.py <= floorCenterY)) {
+                    s.dead = true;
+                    s.holding = wantHold;
+                    return;
                 }
             }
+        } else if (s.mode == SimMode::Ball) {
+            const float gravity = -0.4657f;
+            if (!s.grounded) {
+                s.py += s.vy;
+                s.vy += gravity * s.gravDir;
+                if (std::abs(s.vy) > 13.5f) s.vy = (s.vy > 0.0f) ? 13.5f : -13.5f;
+                if (s.gravDir > 0.0f && s.py <= floorCenterY) {
+                    s.py = floorCenterY; s.vy = 0.0f; s.grounded = true;
+                } else if (s.gravDir < 0.0f && s.py >= ceilCenterY) {
+                    s.py = ceilCenterY; s.vy = 0.0f; s.grounded = true;
+                } else if (s.gravDir > 0.0f && s.py >= ceilCenterY) {
+                    s.py = ceilCenterY; s.vy = 0.0f;
+                } else if (s.gravDir < 0.0f && s.py <= floorCenterY) {
+                    s.py = floorCenterY; s.vy = 0.0f;
+                }
+            }
+        } else if (s.mode == SimMode::UFO) {
+            float gravity = (s.vy * s.gravDir > 1.72f) ? -0.464f : -0.310f;
+            if (s.mini) gravity *= 1.18f;
+            if (!s.grounded) {
+                s.py += s.vy;
+                s.vy += gravity * s.gravDir;
+                float maxDown = s.mini ? 6.77f : 5.76f;
+                float maxUp = s.mini ? 8.47f : 7.20f;
+                if (s.gravDir > 0.0f) s.vy = std::clamp(s.vy, -maxDown, maxUp);
+                else s.vy = std::clamp(s.vy, -maxUp, maxDown);
+            }
+            if (s.py <= floorCenterY) {
+                s.py = floorCenterY; s.vy = 0.0f;
+                if (s.gravDir > 0.0f) s.grounded = true;
+            } else if (s.py >= ceilCenterY) {
+                s.py = ceilCenterY; s.vy = 0.0f;
+                if (s.gravDir < 0.0f) s.grounded = true;
+            }
         } else if (s.mode == SimMode::Ship) {
-            float accel = wantHold ? 0.45f : -0.45f;
+            float accel = wantHold
+                ? ((s.vy * s.gravDir <= 1.72f) ? 0.388f : 0.310f)
+                : ((s.vy * s.gravDir >= 1.72f) ? -0.372f : -0.248f);
             if (s.mini) accel *= 1.18f;
             s.vy += accel * s.gravDir;
-            s.vy = std::clamp(s.vy, -7.0f, 7.0f);
+            float maxDown = s.mini ? 6.77f : 5.76f;
+            float maxUp = s.mini ? 8.47f : 7.20f;
+            if (s.gravDir > 0.0f) s.vy = std::clamp(s.vy, -maxDown, maxUp);
+            else s.vy = std::clamp(s.vy, -maxUp, maxDown);
             s.py += s.vy;
-            if (s.py <= groundY) { s.py = groundY; s.vy = 0.0f; }
-            else if (s.py >= 500.0f) { s.py = 500.0f; s.vy = 0.0f; }
+            if (s.py <= floorCenterY) {
+                s.py = floorCenterY; s.vy = 0.0f;
+                if (s.gravDir > 0.0f) s.grounded = true;
+            } else if (s.py >= ceilCenterY) {
+                s.py = ceilCenterY; s.vy = 0.0f;
+                if (s.gravDir < 0.0f) s.grounded = true;
+            }
         } else if (s.mode == SimMode::Wave) {
             float waveMult = s.mini ? 2.0f : 1.0f;
             s.vy = (wantHold ? 1.0f : -1.0f) * s.vx * waveMult * s.gravDir;
             s.py += s.vy;
-            if (s.py <= groundY) { s.py = groundY; s.vy = 0.0f; }
-            else if (s.py >= 500.0f) { s.py = 500.0f; s.vy = 0.0f; }
+            if (s.py <= floorCenterY) {
+                s.py = floorCenterY; s.vy = 0.0f;
+            } else if (s.py >= ceilCenterY) {
+                s.py = ceilCenterY; s.vy = 0.0f;
+            }
         }
 
-        auto itAfter = std::lower_bound(objs.begin(), objs.end(), s.px - 45.0f,
+        auto itAfter = std::lower_bound(objs.begin(), objs.end(), s.px - 55.0f,
             [](const LevelObj& o, float val) { return o.x < val; });
 
-        // 5. Solid block & Slope landing
-        for (auto it = itAfter; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
+        // 5. Solid block & Slope collisions
+        for (auto it = itAfter; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
             if (!it->isSolid && !it->isSlope) continue;
             float ox, oy;
             evalObjPos(*it, s.px, s.vx, ox, oy);
-            if (std::abs(s.px - ox) > it->w * 0.5f + 9.0f) continue;
+            float w = it->w, h = it->h;
+            if (std::abs(s.px - ox) > w * 0.5f + playerHalfW) continue;
+
+            float oTop = oy + h * 0.5f;
+            float oBot = oy - h * 0.5f;
 
             if (it->isSlope) {
-                float oTop = oy + it->h * 0.5f;
-                float oBot = oy - it->h * 0.5f;
-                if (s.gravDir > 0.0f && s.py - playerHalfH <= oTop && s.py + playerHalfH >= oBot) {
-                    float t = std::clamp((s.px - (ox - it->w * 0.5f)) / std::max(1.0f, it->w), 0.0f, 1.0f);
-                    float surfY = oBot + t * it->h + playerHalfH;
-                    if (s.py <= surfY + 4.0f) {
-                        s.py = surfY;
-                        if (s.vy < 4.5f) s.vy = 4.5f;
-                        s.grounded = true;
+                int orient = it->orient;
+                float t = std::clamp((s.px - (ox - w * 0.5f)) / std::max(1.0f, w), 0.0f, 1.0f);
+                float diagY = (orient == 0 || orient == 2) ? (oBot + t * h) : (oTop - t * h);
+                if (orient == 0 || orient == 1) { // Floor slope (solid below diagY)
+                    if (s.py + playerHalfH > oBot && s.py - playerHalfH <= diagY + 4.0f) {
+                        if (s.mode == SimMode::Wave) {
+                            if (s.py - playerHalfH < diagY - 2.0f) {
+                                s.dead = true; s.holding = wantHold; return;
+                            }
+                        } else if (prevY + playerHalfH <= oBot + 4.0f && s.py < oy) {
+                            if (s.mode == SimMode::Ship || s.mode == SimMode::Ball || s.mode == SimMode::UFO) {
+                                s.py = oBot - playerHalfH;
+                                if (s.vy > 0.0f) s.vy = 0.0f;
+                                if (s.gravDir < 0.0f) s.grounded = true;
+                            } else {
+                                s.dead = true; s.holding = wantHold; return;
+                            }
+                        } else {
+                            s.py = diagY + playerHalfH;
+                            if (s.gravDir > 0.0f) {
+                                s.grounded = true;
+                                if (orient == 0) s.vy = std::max(s.vy, s.vx * (h / w) * 0.9f);
+                                else if (s.vy <= 0.1f) s.vy = -s.vx * (h / w) * 0.75f;
+                            } else {
+                                if (s.vy < 0.0f) s.vy = 0.0f;
+                            }
+                        }
+                    }
+                } else { // Ceiling slope (orient 2, 3: solid above diagY)
+                    if (s.py - playerHalfH < oTop && s.py + playerHalfH >= diagY - 4.0f) {
+                        if (s.mode == SimMode::Wave) {
+                            if (s.py + playerHalfH > diagY + 2.0f) {
+                                s.dead = true; s.holding = wantHold; return;
+                            }
+                        } else if (prevY - playerHalfH >= oTop - 4.0f && s.py > oy) {
+                            if (s.gravDir > 0.0f && s.vy <= 0.1f) {
+                                s.py = oTop + playerHalfH; s.vy = 0.0f; s.grounded = true;
+                            }
+                        } else {
+                            s.py = diagY - playerHalfH;
+                            if (s.gravDir < 0.0f) {
+                                s.grounded = true;
+                                if (orient == 3) s.vy = std::min(s.vy, -s.vx * (h / w) * 0.9f);
+                                else if (s.vy >= -0.1f) s.vy = s.vx * (h / w) * 0.75f;
+                            } else {
+                                if (s.vy > 0.0f) s.vy = 0.0f;
+                            }
+                        }
                     }
                 }
                 continue;
             }
 
-            if (s.mode == SimMode::Cube || s.mode == SimMode::Ball || s.mode == SimMode::UFO || s.mode == SimMode::Robot || s.mode == SimMode::Spider || s.mode == SimMode::Ship) {
-                if (s.gravDir > 0.0f && s.vy <= 0.1f) {
-                    float oTop = oy + it->h * 0.5f;
-                    if (s.py - playerHalfH <= oTop + 2.5f && prevY - playerHalfH >= oTop - 14.0f) {
+            if (s.mode != SimMode::Wave && std::abs(s.px - ox) <= w * 0.5f + playerHalfW - 1.0f) {
+                float clip = (s.mode == SimMode::Ship || s.mode == SimMode::UFO) ? 7.0f : 10.0f;
+                if (s.gravDir > 0.0f) {
+                    if (s.vy <= 0.1f && (s.py - playerHalfH) <= oTop + 2.5f && (prevY - playerHalfH) >= oTop - clip) {
                         s.py = oTop + playerHalfH;
                         s.vy = 0.0f;
                         s.grounded = true;
+                    } else if ((s.mode == SimMode::Ship || s.mode == SimMode::Ball || s.mode == SimMode::UFO) &&
+                               s.vy >= -0.1f && (s.py + playerHalfH) >= oBot - 2.5f && (prevY + playerHalfH) <= oBot + clip) {
+                        s.py = oBot - playerHalfH;
+                        s.vy = 0.0f;
                     }
-                } else if (s.gravDir < 0.0f && s.vy >= -0.1f) {
-                    float oBot = oy - it->h * 0.5f;
-                    if (s.py + playerHalfH >= oBot - 2.5f && prevY + playerHalfH <= oBot + 14.0f) {
+                } else {
+                    if (s.vy >= -0.1f && (s.py + playerHalfH) >= oBot - 2.5f && (prevY + playerHalfH) <= oBot + clip) {
                         s.py = oBot - playerHalfH;
                         s.vy = 0.0f;
                         s.grounded = true;
+                    } else if ((s.mode == SimMode::Ship || s.mode == SimMode::Ball || s.mode == SimMode::UFO) &&
+                               s.vy <= 0.1f && (s.py - playerHalfH) <= oTop + 2.5f && (prevY - playerHalfH) >= oTop - clip) {
+                        s.py = oTop + playerHalfH;
+                        s.vy = 0.0f;
                     }
                 }
             }
         }
 
-        // 6. Accurate GD Inner-Hitbox Death checks
-        for (auto it = itAfter; it != objs.end() && it->x <= s.px + 45.0f; ++it) {
+        // 6. Fatal collision checks (Solids & Hazards)
+        for (auto it = itAfter; it != objs.end() && it->x <= s.px + 55.0f; ++it) {
             if (!it->isSolid && !it->isHazard) continue;
             float ox, oy;
             evalObjPos(*it, s.px, s.vx, ox, oy);
+            float w = it->w, h = it->h;
             if (it->isSolid) {
-                // GD uses a smaller inner hitbox for solid block crashes so standing on top/bottom never kills
-                float crashW = it->w * 0.5f + 2.0f;
-                float crashH = std::max(2.0f, it->h * 0.5f - 3.0f);
-                if (std::abs(s.px - ox) < crashW && std::abs(s.py - oy) < crashH) {
-                    s.dead = true;
-                    s.holding = wantHold;
-                    return;
+                float innerHalf = (s.mode == SimMode::Wave && s.mini) ? 3.0f : 4.5f;
+                if (std::abs(s.px - ox) < (w * 0.5f + innerHalf) && std::abs(s.py - oy) < (h * 0.5f + innerHalf)) {
+                    s.dead = true; s.holding = wantHold; return;
                 }
             } else if (it->isHazard) {
-                float hazW = std::clamp(it->w * 0.45f, 4.0f, 12.0f) + 5.0f;
-                float hazH = std::clamp(it->h * 0.45f, 4.0f, 14.0f) + 6.0f;
-                if (std::abs(s.px - ox) < hazW && std::abs(s.py - oy) < hazH) {
-                    s.dead = true;
-                    s.holding = wantHold;
-                    return;
+                if (it->isSaw) {
+                    float radius = w * 0.5f;
+                    float dx = std::max(0.0f, std::abs(s.px - ox) - playerHalfW * 0.7f);
+                    float dy = std::max(0.0f, std::abs(s.py - oy) - playerHalfH * 0.7f);
+                    if (dx * dx + dy * dy < radius * radius) {
+                        s.dead = true; s.holding = wantHold; return;
+                    }
+                } else {
+                    if (std::abs(s.px - ox) < (w * 0.5f + playerHalfW) && std::abs(s.py - oy) < (h * 0.5f + playerHalfH)) {
+                        s.dead = true; s.holding = wantHold; return;
+                    }
                 }
             }
         }
@@ -408,20 +684,19 @@ namespace {
 
 void SolverEngine::solveMathematically(void* gameLayerPtr) {
 #if __has_include(<Geode/Geode.hpp>)
-    auto layer = static_cast<GJBaseGameLayer*>(gameLayerPtr);
+    auto layer = static_cast<PlayLayer*>(gameLayerPtr);
     if (!layer || !layer->m_player1) {
         m_state = SolverState::Idle;
         return;
     }
 
     bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
-    if (MacroManager::get().hasSavedMacro(m_currentLevelId, collectCoins)) {
-        auto saved = MacroManager::get().loadMacro(m_currentLevelId, collectCoins);
+    if (MacroManager::get().hasSavedMacro(m_currentLevelId, collectCoins, m_currentLevelName)) {
+        auto saved = MacroManager::get().loadMacro(m_currentLevelId, collectCoins, m_currentLevelName);
         if (saved.has_value()) {
             startPlaying(*saved);
-            auto playLayer = PlayLayer::get();
-            if (playLayer && playLayer->m_gameState.m_levelTime > 0.05) {
-                playLayer->resetLevel();
+            if (layer->m_gameState.m_levelTime > 0.05) {
+                layer->resetLevel();
             }
             return;
         }
@@ -461,32 +736,25 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
         }
     }
 
-    // Pass 2: Parse all interactive & physical objects (filtering out Decoration!)
+    // Pass 2: Parse all interactive & physical objects
     std::vector<LevelObj> objects;
     if (layer->m_objects) {
         auto count = layer->m_objects->count();
         objects.reserve(count / 2 + 16);
         for (unsigned int i = 0; i < count; ++i) {
             auto obj = static_cast<GameObject*>(layer->m_objects->objectAtIndex(i));
-            if (!obj) continue;
+            if (!obj || obj == layer->m_anticheatSpike) continue;
             if (obj->m_isDisabled || obj->m_isDisabled2 || obj->m_isGroupDisabled) continue;
 
             int oid = obj->m_objectID;
             if (oid == 901 || oid == 1049) continue;
 
-            auto type = obj->m_objectType;
-            // Skip pure decoration objects so online levels with 20,000+ deco objects solve cleanly & fast
-            if (type == GameObjectType::Decoration || type == GameObjectType::EnterEffectObject) {
-                if (oid != 200 && oid != 201 && oid != 202 && oid != 203 && oid != 1334 && oid != 1829) {
-                    continue;
-                }
-            }
-
-            auto rect = obj->getObjectRect();
-            float w = (rect.size.width > 0.1f) ? rect.size.width : 30.0f;
-            float h = (rect.size.height > 0.1f) ? rect.size.height : 30.0f;
-            float baseX = (rect.size.width > 0.1f) ? rect.getMidX() : obj->getPositionX();
-            float baseY = (rect.size.height > 0.1f) ? rect.getMidY() : obj->getPositionY();
+            float baseX = obj->getPositionX();
+            float baseY = obj->getPositionY();
+            float rot = obj->getRotation();
+            bool fx = obj->isFlipX();
+            bool fy = obj->isFlipY();
+            bool rot90 = (static_cast<int>(std::round(std::abs(rot) / 90.0f)) % 2) == 1;
 
             bool toggledOff = false;
             std::vector<MoveTrigger> objMoves;
@@ -510,6 +778,7 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             }
             if (toggledOff) continue;
 
+            auto type = obj->m_objectType;
             LevelObj lo{};
             lo.uid = static_cast<int>(i);
             lo.id = oid;
@@ -517,22 +786,48 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             lo.baseY = baseY;
             lo.x = baseX;
             lo.y = baseY;
-            lo.w = w;
-            lo.h = (oid == 40) ? 15.0f : h;
+            lo.w = 30.0f;
+            lo.h = 30.0f;
             lo.moveTriggers = std::move(objMoves);
 
-            if (!lo.moveTriggers.empty()) {
-                float estX, estY;
-                evalObjPos(lo, baseX, 5.193f, estX, estY);
-                lo.x = estX;
-                lo.y = estY;
+            bool known = classifyKnownObject(oid, rot, lo.w, lo.h, lo.isSolid, lo.isSlope, lo.isHazard, lo.isSaw);
+            if (!known) {
+                if (type == GameObjectType::Decoration || type == GameObjectType::EnterEffectObject) {
+                    if (oid != 200 && oid != 201 && oid != 202 && oid != 203 && oid != 1334 && oid != 1829) {
+                        continue;
+                    }
+                }
+                auto rect = obj->getObjectRect();
+                if (rect.size.width > 0.1f && rect.size.height > 0.1f) {
+                    lo.w = rect.size.width;
+                    lo.h = rect.size.height;
+                }
+                lo.isSlope = (type == GameObjectType::Slope && !obj->m_slopeIsHazard);
+                lo.isSaw = (type == GameObjectType::AnimatedHazard);
+                lo.isHazard = (type == GameObjectType::Hazard || type == GameObjectType::AnimatedHazard ||
+                               (type == GameObjectType::Slope && obj->m_slopeIsHazard));
+                lo.isSolid = (type == GameObjectType::Solid);
+                if (lo.isHazard && !lo.isSaw && lo.w >= 24.0f && lo.h >= 24.0f) {
+                    lo.w = rot90 ? 12.0f : 6.0f;
+                    lo.h = rot90 ? 6.0f : 12.0f;
+                }
             }
 
-            lo.isSlope = (type == GameObjectType::Slope && !obj->m_slopeIsHazard);
-            lo.isHazard = (type == GameObjectType::Hazard || type == GameObjectType::AnimatedHazard ||
-                           (type == GameObjectType::Slope && obj->m_slopeIsHazard) ||
-                           oid == 8 || oid == 9 || oid == 39 || oid == 61 || oid == 62 || oid == 103);
-            lo.isSolid = (type == GameObjectType::Solid);
+            // Filter out any anticheat spike at the spawn point (x < 80)
+            if (lo.isHazard && baseX < 80.0f) {
+                continue;
+            }
+
+            if (lo.isSlope) {
+                int orient = ((static_cast<int>(std::round(rot / 90.0f)) % 4) + 4) % 4;
+                if (fx && fy) orient = (orient + 2) % 4;
+                else if (fx) orient = (orient + 1) % 4;
+                else if (fy) orient = (orient + 3) % 4;
+                lo.orient = orient;
+            } else {
+                lo.orient = 0;
+            }
+
             lo.isStopDash = (oid == 1829);
 
             lo.isYellowPad = (type == GameObjectType::YellowJumpPad || oid == 35);
@@ -541,6 +836,10 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             lo.isGravPad = (type == GameObjectType::GravityPad || oid == 67);
             lo.isSpiderPad = (type == GameObjectType::SpiderPad || oid == 3005);
             lo.isPad = lo.isYellowPad || lo.isPinkPad || lo.isRedPad || lo.isGravPad || lo.isSpiderPad;
+            if (lo.isPad) {
+                lo.w = 25.0f;
+                lo.h = 5.0f;
+            }
 
             lo.isYellowOrb = (type == GameObjectType::YellowJumpRing || oid == 36);
             lo.isPinkOrb = (type == GameObjectType::PinkJumpRing || oid == 141);
@@ -550,6 +849,10 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             lo.isDashOrb = (type == GameObjectType::DashRing || type == GameObjectType::GravityDashRing || oid == 1704 || oid == 1751);
             lo.isSpiderOrb = (type == GameObjectType::SpiderOrb || oid == 3004);
             lo.isOrb = lo.isYellowOrb || lo.isPinkOrb || lo.isRedOrb || lo.isGravOrb || lo.isGreenOrb || lo.isDashOrb || lo.isSpiderOrb;
+            if (lo.isOrb) {
+                lo.w = 36.0f;
+                lo.h = 36.0f;
+            }
 
             lo.isPortalCube = (type == GameObjectType::CubePortal || oid == 12);
             lo.isPortalShip = (type == GameObjectType::ShipPortal || oid == 13);
@@ -571,6 +874,26 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             else if (oid == 203) lo.speedVal = 7.800f;
             else if (oid == 1334) lo.speedVal = 9.600f;
 
+            if (lo.isPortalGravNorm || lo.isPortalGravInv || lo.isPortalGravToggle) {
+                lo.w = rot90 ? 75.0f : 25.0f;
+                lo.h = rot90 ? 25.0f : 75.0f;
+            } else if (lo.isPortalCube || lo.isPortalShip || lo.isPortalBall || lo.isPortalUFO ||
+                       lo.isPortalWave || lo.isPortalRobot || lo.isPortalSpider ||
+                       lo.isPortalMini || lo.isPortalNormalSize) {
+                lo.w = rot90 ? 86.0f : 34.0f;
+                lo.h = rot90 ? 34.0f : 86.0f;
+            } else if (lo.speedVal > 0.0f) {
+                lo.w = rot90 ? 56.0f : 50.0f;
+                lo.h = rot90 ? 50.0f : 56.0f;
+            }
+
+            if (!lo.moveTriggers.empty()) {
+                float estX, estY;
+                evalObjPos(lo, baseX, 5.193f, estX, estY);
+                lo.x = estX;
+                lo.y = estY;
+            }
+
             bool isPortal = lo.isPortalCube || lo.isPortalShip || lo.isPortalBall || lo.isPortalUFO ||
                             lo.isPortalWave || lo.isPortalRobot || lo.isPortalSpider ||
                             lo.isPortalGravNorm || lo.isPortalGravInv || lo.isPortalGravToggle ||
@@ -585,36 +908,50 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     }
     std::sort(objects.begin(), objects.end(), [](const auto& a, const auto& b) { return a.x < b.x; });
 
-    float groundY = 105.0f;
     float maxLevelX = objects.empty() ? 5000.0f : (objects.back().x + 300.0f);
 
     SimPlayer initial;
-    auto p1 = layer->m_player1;
-    initial.px = std::max(0.0f, p1->getPositionX());
-    initial.py = std::max(groundY, p1->getPositionY());
-    initial.gravDir = p1->m_isUpsideDown ? -1.0f : 1.0f;
-    if (p1->m_isShip) initial.mode = SimMode::Ship;
-    else if (p1->m_isBall) initial.mode = SimMode::Ball;
-    else if (p1->m_isBird) initial.mode = SimMode::UFO;
-    else if (p1->m_isDart) initial.mode = SimMode::Wave;
-    else if (p1->m_isRobot) initial.mode = SimMode::Robot;
-    else if (p1->m_isSpider) initial.mode = SimMode::Spider;
+    initial.px = 0.0f;
+    initial.py = 105.0f;
+    initial.vy = 0.0f;
+    initial.vx = 5.193f;
+    initial.gravDir = 1.0f;
+    initial.mode = SimMode::Cube;
+    initial.mini = false;
+    initial.grounded = true;
+    initial.floorY = 90.0f;
+    initial.ceilY = 1200.0f;
 
-    if (p1->m_playerSpeed <= 0.75f) initial.vx = 4.186f;
-    else if (p1->m_playerSpeed <= 0.95f) initial.vx = 5.193f;
-    else if (p1->m_playerSpeed <= 1.15f) initial.vx = 6.456f;
-    else if (p1->m_playerSpeed <= 1.40f) initial.vx = 7.800f;
-    else initial.vx = 9.600f;
+    if (layer->m_levelSettings) {
+        auto ls = layer->m_levelSettings;
+        initial.mini = ls->m_startMini;
+        initial.gravDir = ls->m_isFlipped ? -1.0f : 1.0f;
+        switch (ls->m_startMode) {
+            case 1: initial.mode = SimMode::Ship; initial.ceilY = 390.0f; break;
+            case 2: initial.mode = SimMode::Ball; initial.ceilY = 330.0f; break;
+            case 3: initial.mode = SimMode::UFO;  initial.ceilY = 390.0f; break;
+            case 4: initial.mode = SimMode::Wave; initial.ceilY = 390.0f; break;
+            case 5: initial.mode = SimMode::Robot; break;
+            case 6: initial.mode = SimMode::Spider; initial.ceilY = 330.0f; break;
+            default: initial.mode = SimMode::Cube; break;
+        }
+        switch (static_cast<int>(ls->m_startSpeed)) {
+            case 1: initial.vx = 4.186f; break; // 0.5x
+            case 2: initial.vx = 6.456f; break; // 2x
+            case 3: initial.vx = 7.800f; break; // 3x
+            case 4: initial.vx = 9.600f; break; // 4x
+            default: initial.vx = 5.193f; break; // 1x
+        }
+    }
 
-    // Parallel Wavefront Beam Search across the entire level!
+    // Parallel Wavefront Beam Search with Stratified Vertical-Band Pruning
     std::vector<ActionNode> actionPool;
-    actionPool.reserve(32768);
+    actionPool.reserve(65536);
 
-    auto recordTransition = [&](SimPlayer& s, size_t f, float xAtAction, bool newHold) {
+    auto recordTransition = [&](SimPlayer& s, size_t f, float xAtAction, float yAtAction, bool newHold) {
         if (newHold != s.holding) {
             int newIdx = static_cast<int>(actionPool.size());
-            // Set yPos = 0.0f for solver-generated actions so real 240Hz GD physics controls vertical arc
-            actionPool.push_back({s.actionIdx, PlayerAction{f, xAtAction, 1, newHold, false, 0.0f}});
+            actionPool.push_back({s.actionIdx, PlayerAction{f, xAtAction, 1, newHold, false, yAtAction}});
             s.actionIdx = newIdx;
         }
     };
@@ -625,8 +962,8 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     SimPlayer bestOverall = initial;
     size_t bestFrame = 0;
 
-    const size_t maxFrames = 18000;
-    const size_t maxBeamWidth = 48;
+    const size_t maxFrames = 20000;
+    const size_t maxBeamWidth = 256;
 
     for (size_t frame = 1; frame <= maxFrames; ++frame) {
         if (beam.empty()) break;
@@ -637,97 +974,33 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
         }
 
         std::vector<SimPlayer> nextBeam;
-        nextBeam.reserve(maxBeamWidth * 2);
+        nextBeam.reserve(beam.size() * 2);
         std::unordered_set<uint32_t> seenBuckets;
-        seenBuckets.reserve(maxBeamWidth * 2);
+        seenBuckets.reserve(beam.size() * 2);
 
         for (const auto& cur : beam) {
-            bool inOrb = false;
-            bool inDashOrb = false;
-            auto it = std::lower_bound(objects.begin(), objects.end(), cur.px - 35.0f,
-                [](const LevelObj& o, float val) { return o.x < val; });
-            for (; it != objects.end() && it->x <= cur.px + 35.0f; ++it) {
-                if (it->isOrb && it->uid != cur.lastOrb) {
-                    float ox, oy;
-                    evalObjPos(*it, cur.px, cur.vx, ox, oy);
-                    if (std::abs(cur.px - ox) < 24.0f && std::abs(cur.py - oy) < 24.0f) {
-                        inOrb = true;
-                        if (it->isDashOrb) inDashOrb = true;
-                        break;
-                    }
+            bool nearOrb = false;
+            if ((cur.mode == SimMode::Cube || cur.mode == SimMode::Ball || cur.mode == SimMode::Spider) && !cur.grounded && !cur.dashing) {
+                auto itO = std::lower_bound(objects.begin(), objects.end(), cur.px - 40.0f,
+                    [](const LevelObj& o, float val) { return o.x < val; });
+                for (; itO != objects.end() && itO->x <= cur.px + 45.0f; ++itO) {
+                    if (itO->isOrb) { nearOrb = true; break; }
                 }
             }
 
-            if (cur.mode == SimMode::Cube || cur.mode == SimMode::Ball || cur.mode == SimMode::Robot || cur.mode == SimMode::Spider) {
-                // Branch A: Default continuation (release after holdFramesRemaining expires, or keep holding if dashing)
-                {
-                    SimPlayer cNo = cur;
-                    bool holdNo = cNo.dashing;
-                    if (!cNo.dashing && cNo.holdFramesRemaining > 0) {
-                        holdNo = true;
-                        cNo.holdFramesRemaining--;
-                    }
-                    // If an unactivated orb is right ahead, ensure we release 1 frame early so we can tap the orb
-                    if (inOrb && cNo.holding && !cNo.dashing) {
-                        holdNo = false;
-                        cNo.holdFramesRemaining = 0;
-                    }
-                    float actX = cNo.px;
-                    recordTransition(cNo, frame, actX, holdNo);
-                    stepSim(cNo, objects, holdNo, groundY);
-                    if (!cNo.dead) {
-                        uint32_t k = cNo.beamKey();
-                        if (seenBuckets.insert(k).second) {
-                            nextBeam.push_back(cNo);
-                        }
-                    }
+            for (int w = 0; w <= 1; ++w) {
+                bool wantHold = (w == 1);
+                if (wantHold && (cur.mode == SimMode::Cube || cur.mode == SimMode::Ball || cur.mode == SimMode::Spider) &&
+                    !cur.grounded && !cur.dashing && !nearOrb) {
+                    continue;
                 }
-
-                // Branch B: Active decision (Jump from ground, Activate Orb, Extend Robot jump, or Release Dash)
-                bool canJumpOrOrb = (cur.grounded || inOrb) && !cur.holding && (static_cast<int>(frame) - cur.lastTapFrame >= 2);
-                bool canRobotHold = (cur.mode == SimMode::Robot && cur.robotBoostFrames > 0 && cur.holding);
-                bool canReleaseDash = cur.dashing;
-
-                if (canJumpOrOrb || canRobotHold || canReleaseDash) {
-                    SimPlayer cYes = cur;
-                    bool holdYes = !canReleaseDash;
-                    if (holdYes) {
-                        cYes.lastTapFrame = static_cast<int>(frame);
-                        cYes.holdFramesRemaining = inDashOrb ? 0 : 2;
-                    }
-                    float actX = cYes.px;
-                    recordTransition(cYes, frame, actX, holdYes);
-                    stepSim(cYes, objects, holdYes, groundY);
-                    if (!cYes.dead) {
-                        uint32_t k = cYes.beamKey();
-                        if (seenBuckets.insert(k).second) {
-                            nextBeam.push_back(cYes);
-                        }
-                    }
-                }
-            } else {
-                // Ship / UFO / Wave: explore both Hold and Release branches
-                bool tryBoth = (cur.mode == SimMode::Wave) || (cur.mode == SimMode::Ship) ||
-                               (cur.mode == SimMode::UFO && (!cur.holding && static_cast<int>(frame) - cur.lastTapFrame >= 3));
-
-                // Prefer keeping current hold state first, then toggling on decision frames
-                bool firstChoice = cur.holding;
-                if (cur.mode == SimMode::UFO) firstChoice = false;
-
-                for (int b = 0; b < (tryBoth ? 2 : 1); ++b) {
-                    bool wantHold = (b == 0) ? firstChoice : !firstChoice;
-                    SimPlayer cBranch = cur;
-                    if (wantHold && !cBranch.holding) {
-                        cBranch.lastTapFrame = static_cast<int>(frame);
-                    }
-                    float actX = cBranch.px;
-                    recordTransition(cBranch, frame, actX, wantHold);
-                    stepSim(cBranch, objects, wantHold, groundY);
-                    if (!cBranch.dead) {
-                        uint32_t k = cBranch.beamKey();
-                        if (seenBuckets.insert(k).second) {
-                            nextBeam.push_back(cBranch);
-                        }
+                SimPlayer cB = cur;
+                recordTransition(cB, frame, cur.px, cur.py, wantHold);
+                stepSim(cB, objects, wantHold);
+                if (!cB.dead) {
+                    uint32_t k = cB.beamKey();
+                    if (seenBuckets.insert(k).second) {
+                        nextBeam.push_back(cB);
                     }
                 }
             }
@@ -735,13 +1008,32 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
 
         if (nextBeam.empty()) break;
 
-        // If nextBeam exceeds maxBeamWidth, keep a diverse spread of heights + grounded states
         if (nextBeam.size() > maxBeamWidth) {
             std::sort(nextBeam.begin(), nextBeam.end(), [](const SimPlayer& a, const SimPlayer& b) {
-                if (a.grounded != b.grounded) return a.grounded > b.grounded;
-                return std::abs(a.py - 180.0f) < std::abs(b.py - 180.0f);
+                bool aG = a.grounded && (a.mode == SimMode::Cube || a.mode == SimMode::Ball || a.mode == SimMode::Robot || a.mode == SimMode::Spider);
+                bool bG = b.grounded && (b.mode == SimMode::Cube || b.mode == SimMode::Ball || b.mode == SimMode::Robot || b.mode == SimMode::Spider);
+                if (aG != bG) return aG > bG;
+                return std::abs(a.vy) < std::abs(b.vy);
             });
-            nextBeam.resize(maxBeamWidth);
+
+            std::unordered_map<int, int> bandCounts;
+            struct ScoredIdx { int rank; size_t idx; };
+            std::vector<ScoredIdx> scored;
+            scored.reserve(nextBeam.size());
+            for (size_t i = 0; i < nextBeam.size(); ++i) {
+                int band = static_cast<int>(nextBeam[i].py / 10.0f);
+                int cnt = bandCounts[band]++;
+                scored.push_back({cnt, i});
+            }
+            std::stable_sort(scored.begin(), scored.end(), [](const ScoredIdx& a, const ScoredIdx& b) {
+                return a.rank < b.rank;
+            });
+            std::vector<SimPlayer> pruned;
+            pruned.reserve(maxBeamWidth);
+            for (size_t i = 0; i < maxBeamWidth; ++i) {
+                pruned.push_back(nextBeam[scored[i].idx]);
+            }
+            nextBeam = std::move(pruned);
         }
 
         beam = std::move(nextBeam);
@@ -760,11 +1052,15 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     }
     std::reverse(actions.begin(), actions.end());
 
-    // Guarantee the button is NEVER left held down at the end of the macro!
+    // Guarantee the button is NEVER left held down at the end of the macro
     if (!actions.empty() && actions.back().isPush) {
         const auto& lastAct = actions.back();
         actions.push_back({lastAct.frame + 3, lastAct.xPos + 15.0f, 1, false, false, 0.0f});
     }
+
+    log::info("SOLVER: '{}' (ID {}) solved to x={:.1f}/{:.1f} ({:.1f}%) with {} actions",
+        m_currentLevelName, m_currentLevelId, bestOverall.px, maxLevelX,
+        std::min(100.0f, (bestOverall.px / std::max(1.0f, maxLevelX)) * 100.0f), actions.size());
 
     MacroData winMacro;
     winMacro.levelId = m_currentLevelId;
@@ -782,9 +1078,8 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     startPlaying(winMacro);
 
     Notification::create("AI AutoPlay: Level Solved! Playing run...", NotificationIcon::Success)->show();
-    auto playLayer = PlayLayer::get();
-    if (playLayer && playLayer->m_gameState.m_levelTime > 0.05) {
-        playLayer->resetLevel();
+    if (layer->m_gameState.m_levelTime > 0.05) {
+        layer->resetLevel();
     }
 #endif
 }
@@ -858,11 +1153,11 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
                     if (actedP1) break;
                 }
 
-                // Input Fix: synchronize exact (X, Y) coordinates on pre-recorded 240Hz frameFixes
+                // Input Fix: synchronize exact (X, Y) coordinates at action transitions
                 if (action.xPos > 0.0f && action.yPos > 0.0f && !action.isPlayer2) {
                     float dx = std::abs(currentX - action.xPos);
                     float dy = std::abs(currentY - action.yPos);
-                    if (dx < 15.0f && dy < 35.0f) {
+                    if (dx < 18.0f && dy < 40.0f) {
                         p1->setPosition({action.xPos, action.yPos});
                         currentX = action.xPos;
                         currentY = action.yPos;
