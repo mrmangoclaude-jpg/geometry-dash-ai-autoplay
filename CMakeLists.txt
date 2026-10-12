@@ -5,6 +5,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(AIAutoPlay VERSION 1.0.0)
 
+# Disable consteval on fmt for Clang 20+ compatibility
+add_definitions(-DFMT_USE_CONSTEVAL=0)
+
 add_library(${PROJECT_NAME} SHARED
     src/main.cpp
     src/macro/MacroManager.cpp
