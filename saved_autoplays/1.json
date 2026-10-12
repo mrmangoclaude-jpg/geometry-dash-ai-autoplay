@@ -42,1505 +42,1519 @@
     },
     {
       "frame": 340,
-      "x": 1766.9,
+      "x": 1768.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 449,
-      "x": 2333.0,
+      "x": 2335.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 459,
-      "x": 2384.9,
+      "x": 2386.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 482,
-      "x": 2504.3,
+      "x": 2506.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 490,
-      "x": 2545.9,
+      "x": 2547.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 533,
-      "x": 2769.2,
+      "x": 2771.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 542,
-      "x": 2815.9,
+      "x": 2817.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 578,
-      "x": 3002.9,
+      "x": 3004.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 586,
-      "x": 3044.4,
+      "x": 3046.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 620,
-      "x": 3221.0,
+      "x": 3223.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 626,
-      "x": 3252.1,
+      "x": 3254.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 672,
-      "x": 3491.0,
+      "x": 3493.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 679,
-      "x": 3527.3,
+      "x": 3529.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 718,
-      "x": 3729.9,
+      "x": 3732.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 727,
-      "x": 3776.6,
+      "x": 3778.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 739,
-      "x": 3838.9,
+      "x": 3841.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 748,
-      "x": 3885.7,
+      "x": 3887.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 761,
-      "x": 3953.2,
+      "x": 3955.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 770,
-      "x": 3999.9,
+      "x": 4003.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 786,
-      "x": 4083.0,
+      "x": 4087.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 794,
-      "x": 4124.5,
+      "x": 4128.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 810,
-      "x": 4207.6,
+      "x": 4212.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 819,
-      "x": 4254.4,
+      "x": 4259.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 832,
-      "x": 4321.9,
+      "x": 4327.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 841,
-      "x": 4368.6,
+      "x": 4374.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 877,
-      "x": 4555.6,
+      "x": 4561.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 886,
-      "x": 4602.3,
+      "x": 4608.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 924,
-      "x": 4799.6,
+      "x": 4805.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 933,
-      "x": 4846.4,
+      "x": 4852.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1024,
-      "x": 5318.9,
+      "x": 5325.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1032,
-      "x": 5360.5,
+      "x": 5366.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1051,
-      "x": 5459.1,
+      "x": 5466.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1060,
-      "x": 5505.9,
+      "x": 5513.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1112,
-      "x": 5775.9,
+      "x": 5783.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1122,
-      "x": 5827.8,
+      "x": 5835.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1142,
-      "x": 5931.7,
+      "x": 5939.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1152,
-      "x": 5983.6,
+      "x": 5990.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1188,
-      "x": 6170.6,
+      "x": 6177.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1197,
-      "x": 6217.3,
+      "x": 6224.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1236,
-      "x": 6419.8,
+      "x": 6427.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1336,
-      "x": 6939.1,
+      "x": 6949.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1560,
-      "x": 8102.4,
+      "x": 8113.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1583,
-      "x": 8221.8,
+      "x": 8233.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1618,
-      "x": 8403.6,
+      "x": 8414.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1650,
-      "x": 8569.7,
+      "x": 8581.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1682,
-      "x": 8735.9,
+      "x": 8747.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1699,
-      "x": 8824.2,
+      "x": 8835.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1716,
-      "x": 8912.5,
+      "x": 8923.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1724,
-      "x": 8954.0,
+      "x": 8965.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1735,
-      "x": 9011.2,
+      "x": 9022.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1739,
-      "x": 9031.9,
+      "x": 9043.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1749,
-      "x": 9083.9,
+      "x": 9095.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1756,
-      "x": 9120.2,
+      "x": 9131.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1763,
-      "x": 9156.6,
+      "x": 9167.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1773,
-      "x": 9208.5,
+      "x": 9219.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1781,
-      "x": 9250.0,
+      "x": 9261.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1786,
-      "x": 9276.0,
+      "x": 9287.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1799,
-      "x": 9343.5,
+      "x": 9354.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1807,
-      "x": 9385.0,
+      "x": 9396.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1820,
-      "x": 9452.6,
+      "x": 9463.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1829,
-      "x": 9499.3,
+      "x": 9510.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1844,
-      "x": 9577.2,
+      "x": 9588.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1854,
-      "x": 9629.1,
+      "x": 9640.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1866,
-      "x": 9691.4,
+      "x": 9702.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1875,
-      "x": 9738.2,
+      "x": 9749.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1894,
-      "x": 9836.8,
+      "x": 9847.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1906,
-      "x": 9899.2,
+      "x": 9910.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1923,
-      "x": 9987.4,
+      "x": 9998.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1934,
-      "x": 10044.6,
+      "x": 10055.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1950,
-      "x": 10127.6,
+      "x": 10138.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1960,
-      "x": 10179.6,
+      "x": 10190.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 1975,
-      "x": 10257.5,
+      "x": 10268.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 1987,
-      "x": 10319.8,
+      "x": 10330.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2011,
-      "x": 10444.4,
+      "x": 10455.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2030,
-      "x": 10543.1,
+      "x": 10553.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2048,
-      "x": 10636.6,
+      "x": 10647.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2058,
-      "x": 10688.5,
+      "x": 10699.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2069,
-      "x": 10745.6,
+      "x": 10756.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2079,
-      "x": 10797.5,
+      "x": 10808.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2096,
-      "x": 10885.8,
+      "x": 10896.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2108,
-      "x": 10948.1,
+      "x": 10958.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2127,
-      "x": 11046.8,
+      "x": 11057.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2137,
-      "x": 11098.7,
+      "x": 11109.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2150,
-      "x": 11166.2,
+      "x": 11176.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2158,
-      "x": 11207.8,
+      "x": 11218.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2177,
-      "x": 11306.5,
+      "x": 11316.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2190,
-      "x": 11374.0,
+      "x": 11384.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2205,
-      "x": 11451.9,
+      "x": 11462.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2212,
-      "x": 11484.3,
+      "x": 11494.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2271,
-      "x": 11793.3,
+      "x": 11803.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2289,
-      "x": 11886.8,
+      "x": 11897.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2304,
-      "x": 11964.7,
+      "x": 11974.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2311,
-      "x": 12001.0,
+      "x": 12011.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2325,
-      "x": 12073.7,
+      "x": 12083.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2330,
-      "x": 12099.7,
+      "x": 12109.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2340,
-      "x": 12151.6,
+      "x": 12161.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2345,
-      "x": 12177.6,
+      "x": 12187.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2353,
-      "x": 12219.1,
+      "x": 12229.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2360,
-      "x": 12255.5,
+      "x": 12265.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2376,
-      "x": 12338.6,
+      "x": 12348.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2387,
-      "x": 12395.7,
+      "x": 12405.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2493,
-      "x": 12946.1,
+      "x": 12956.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2569,
-      "x": 13340.8,
+      "x": 13352.6,
+      "button": 1,
+      "push": false,
+      "p2": false
+    },
+    {
+      "frame": 2625,
+      "x": 13644.4,
+      "button": 1,
+      "push": true,
+      "p2": false
+    },
+    {
+      "frame": 2774,
+      "x": 14423.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2852,
-      "x": 14810.4,
+      "x": 14829.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2861,
-      "x": 14857.2,
+      "x": 14876.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 2900,
-      "x": 15059.7,
+      "x": 15078.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 2909,
-      "x": 15106.4,
+      "x": 15125.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3007,
-      "x": 15615.4,
+      "x": 15634.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3036,
-      "x": 15765.9,
+      "x": 15784.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3070,
-      "x": 15942.5,
+      "x": 15961.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3080,
-      "x": 15994.4,
+      "x": 16013.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3097,
-      "x": 16082.7,
+      "x": 16101.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3106,
-      "x": 16129.5,
+      "x": 16148.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3140,
-      "x": 16306.0,
+      "x": 16325.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3148,
-      "x": 16347.6,
+      "x": 16367.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3190,
-      "x": 16565.7,
+      "x": 16585.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3198,
-      "x": 16607.2,
+      "x": 16626.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3237,
-      "x": 16809.7,
+      "x": 16829.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3248,
-      "x": 16866.9,
+      "x": 16886.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3280,
-      "x": 17033.0,
+      "x": 17052.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3289,
-      "x": 17079.8,
+      "x": 17099.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3319,
-      "x": 17235.6,
+      "x": 17255.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3329,
-      "x": 17287.5,
+      "x": 17307.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3373,
-      "x": 17516.0,
+      "x": 17536.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3449,
-      "x": 17910.7,
+      "x": 17932.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3529,
-      "x": 18326.1,
+      "x": 18349.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3540,
-      "x": 18383.2,
+      "x": 18406.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3617,
-      "x": 18783.1,
+      "x": 18806.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3627,
-      "x": 18835.0,
+      "x": 18858.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3670,
-      "x": 19058.3,
+      "x": 19082.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3680,
-      "x": 19110.2,
+      "x": 19134.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3707,
-      "x": 19250.5,
+      "x": 19274.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3780,
-      "x": 19629.5,
+      "x": 19655.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3860,
-      "x": 20045.0,
+      "x": 20072.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3870,
-      "x": 20096.9,
+      "x": 20124.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3881,
-      "x": 20154.0,
+      "x": 20181.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3891,
-      "x": 20206.0,
+      "x": 20233.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3906,
-      "x": 20283.9,
+      "x": 20311.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3916,
-      "x": 20335.8,
+      "x": 20363.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 3972,
-      "x": 20626.6,
+      "x": 20654.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 3979,
-      "x": 20662.9,
+      "x": 20690.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4021,
-      "x": 20881.1,
+      "x": 20908.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4030,
-      "x": 20927.8,
+      "x": 20955.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4081,
-      "x": 21192.6,
+      "x": 21220.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4091,
-      "x": 21244.6,
+      "x": 21272.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4110,
-      "x": 21343.2,
+      "x": 21370.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4173,
-      "x": 21670.4,
+      "x": 21698.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4194,
-      "x": 21779.4,
+      "x": 21808.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4205,
-      "x": 21836.6,
+      "x": 21865.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4248,
-      "x": 22059.9,
+      "x": 22089.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4257,
-      "x": 22106.6,
+      "x": 22136.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4274,
-      "x": 22194.9,
+      "x": 22226.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4282,
-      "x": 22236.4,
+      "x": 22267.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4315,
-      "x": 22407.8,
+      "x": 22439.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4326,
-      "x": 22464.9,
+      "x": 22496.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4339,
-      "x": 22532.4,
+      "x": 22563.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4349,
-      "x": 22584.4,
+      "x": 22615.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4363,
-      "x": 22657.1,
+      "x": 22688.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4373,
-      "x": 22709.0,
+      "x": 22741.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4391,
-      "x": 22802.5,
+      "x": 22834.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4400,
-      "x": 22849.2,
+      "x": 22880.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4416,
-      "x": 22932.3,
+      "x": 22964.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4433,
-      "x": 23020.6,
+      "x": 23052.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4455,
-      "x": 23134.8,
+      "x": 23166.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4466,
-      "x": 23191.9,
+      "x": 23223.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4483,
-      "x": 23280.2,
+      "x": 23312.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4495,
-      "x": 23342.5,
+      "x": 23374.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4513,
-      "x": 23436.0,
+      "x": 23468.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4524,
-      "x": 23493.1,
+      "x": 23525.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4540,
-      "x": 23576.2,
+      "x": 23608.3,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4551,
-      "x": 23633.3,
+      "x": 23665.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4567,
-      "x": 23716.4,
+      "x": 23748.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4579,
-      "x": 23778.7,
+      "x": 23810.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4595,
-      "x": 23861.8,
+      "x": 23894.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4607,
-      "x": 23924.2,
+      "x": 23956.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4625,
-      "x": 24017.6,
+      "x": 24049.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4636,
-      "x": 24074.7,
+      "x": 24107.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4652,
-      "x": 24157.8,
+      "x": 24190.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4661,
-      "x": 24204.6,
+      "x": 24236.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4671,
-      "x": 24256.5,
+      "x": 24288.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4679,
-      "x": 24298.0,
+      "x": 24330.4,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4693,
-      "x": 24370.7,
+      "x": 24403.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4700,
-      "x": 24407.1,
+      "x": 24439.5,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4713,
-      "x": 24474.6,
+      "x": 24507.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4719,
-      "x": 24505.8,
+      "x": 24538.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4727,
-      "x": 24547.3,
+      "x": 24579.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4733,
-      "x": 24578.5,
+      "x": 24611.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4748,
-      "x": 24656.4,
+      "x": 24688.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4760,
-      "x": 24718.7,
+      "x": 24751.2,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4775,
-      "x": 24796.6,
+      "x": 24829.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4789,
-      "x": 24869.3,
+      "x": 24901.9,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4805,
-      "x": 24952.4,
+      "x": 24985.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4813,
-      "x": 24993.9,
+      "x": 25026.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4825,
-      "x": 25056.2,
+      "x": 25088.9,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4831,
-      "x": 25087.4,
+      "x": 25120.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4841,
-      "x": 25139.3,
+      "x": 25172.1,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4849,
-      "x": 25180.9,
+      "x": 25213.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4858,
-      "x": 25227.6,
+      "x": 25260.4,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4867,
-      "x": 25274.3,
+      "x": 25307.1,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4885,
-      "x": 25367.8,
+      "x": 25400.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4895,
-      "x": 25419.7,
+      "x": 25452.6,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4905,
-      "x": 25471.7,
+      "x": 25504.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4914,
-      "x": 25518.4,
+      "x": 25551.3,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4932,
-      "x": 25611.9,
+      "x": 25644.8,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4943,
-      "x": 25669.0,
+      "x": 25702.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4957,
-      "x": 25741.7,
+      "x": 25774.7,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4967,
-      "x": 25793.6,
+      "x": 25826.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 4982,
-      "x": 25871.5,
+      "x": 25904.6,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 4989,
-      "x": 25907.9,
+      "x": 25941.0,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 5002,
-      "x": 25975.4,
+      "x": 26008.5,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 5014,
-      "x": 26037.7,
+      "x": 26070.8,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 5030,
-      "x": 26120.8,
+      "x": 26154.0,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 5044,
-      "x": 26193.5,
+      "x": 26226.7,
       "button": 1,
       "push": false,
       "p2": false
     },
     {
       "frame": 5067,
-      "x": 26312.9,
+      "x": 26346.2,
       "button": 1,
       "push": true,
       "p2": false
     },
     {
       "frame": 5074,
-      "x": 26349.3,
+      "x": 26382.6,
       "button": 1,
       "push": false,
       "p2": false
