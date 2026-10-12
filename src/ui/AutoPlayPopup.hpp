@@ -4,13 +4,13 @@
 #include <Geode/Geode.hpp>
 #include <Geode/ui/Popup.hpp>
 
-class AutoPlayPopup : public geode::Popup<std::string const&> {
+class AutoPlayPopup : public geode::Popup {
 protected:
     cocos2d::CCLabelBMFont* m_statusLabel = nullptr;
     cocos2d::CCLabelBMFont* m_attemptsLabel = nullptr;
     cocos2d::CCLabelBMFont* m_savedInfoLabel = nullptr;
 
-    bool setup(std::string const& value) override;
+    bool init();
 
     void onSolve(cocos2d::CCObject* sender);
     void onPlay(cocos2d::CCObject* sender);
