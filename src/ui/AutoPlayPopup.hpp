@@ -9,7 +9,7 @@ protected:
     cocos2d::CCLabelBMFont* m_statusLabel = nullptr;
     cocos2d::CCLabelBMFont* m_attemptsLabel = nullptr;
     cocos2d::CCLabelBMFont* m_savedInfoLabel = nullptr;
-    geode::ButtonSprite* m_coinsBtnSprite = nullptr;
+    ButtonSprite* m_coinsBtnSprite = nullptr;
 
     bool init();
 
