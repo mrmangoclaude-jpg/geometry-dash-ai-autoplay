@@ -176,10 +176,9 @@ void SolverEngine::solveLevelAsync(int levelId, const std::string& levelName, vo
         m_isSolving = false;
 
         if (solved) {
-            std::string key = MacroManager::get().getLevelKey(levelId, levelName);
-            MacroManager::get().saveMacro(key, newMacro);
-            log::info("[AI AutoPlay] Successfully solved level! Key: {}, Actions: {}, Total Frames: {}",
-                      key, newMacro.actions.size(), newMacro.totalFrames);
+            MacroManager::get().saveMacro(newMacro);
+            log::info("[AI AutoPlay] Successfully solved level! Level: {} (ID {}), Actions: {}, Total Frames: {}",
+                      newMacro.levelName, newMacro.levelId, newMacro.actions.size(), newMacro.totalFrames);
 
             geode::Loader::get()->queueInMainThread([this, newMacro]() {
                 startPlaying(newMacro);
