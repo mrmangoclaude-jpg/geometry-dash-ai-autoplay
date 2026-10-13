@@ -41,8 +41,8 @@ class $modify(AutoPlayPlayLayer, PlayLayer) {
                     }
                 }
             } else {
-                // Pre-solve the entire level (including Move Triggers) BEFORE gameplay starts!
-                SolverEngine::get().startSolving(levelId, levelName, this);
+                // Pre-solve the level cold in background via reachability DP engine!
+                SolverEngine::get().solveLevelAsync(levelId, levelName, this);
                 if (trajNode) {
                     SolverEngine::get().renderTrajectory(trajNode);
                 }

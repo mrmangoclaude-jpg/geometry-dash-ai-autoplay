@@ -1,9 +1,9 @@
 #pragma once
 
 #include "../macro/MacroTypes.hpp"
-#include "GamemodeController.hpp"
 #include <vector>
 #include <string>
+#include <atomic>
 #include <deque>
 
 #if __has_include(<Geode/Geode.hpp>)
@@ -17,39 +17,21 @@ enum class SolverState {
     Paused
 };
 
-struct DecisionBranch {
-    size_t frame = 0;
-    float posX = 0.0f;
-    int actionTaken = 0;     // 1 = push, 0 = release
-    int alternativesTried = 0; // count of explored options
-    float bestProgress = 0.0f;
-};
-
 class SolverEngine {
 private:
     SolverState m_state = SolverState::Idle;
+    std::atomic<bool> m_isSolving{false};
     int m_currentLevelId = 0;
     std::string m_currentLevelName = "";
     
     // Playback data
     MacroData m_activeMacro;
     size_t m_playbackIndex = 0;
-
-    // Solving state & Frontier memory
-    std::vector<PlayerAction> m_recordedActions;
-    std::vector<PlayerAction> m_verifiedBestActions;
-    std::deque<DecisionBranch> m_decisionStack;
-    size_t m_currentFrame = 0;
-    size_t m_replayIndex = 0;
-    int m_totalAttempts = 0;
-    float m_bestXPos = 0.0f;
-    float m_currentX = 0.0f;
+    size_t m_currentTick = 0;
+    bool m_injecting = false;
     bool m_isHolding = false;
-    bool m_needsReset = false;
 
-    // Debug & Trajectory Visualizer
-    float m_lastDeathX = -1.0f;
-    float m_lastDeathY = -1.0f;
+    // Visualizer
     std::vector<std::pair<float, float>> m_solvedTrajectoryPath;
     void* m_activeDrawNode = nullptr;
 
@@ -58,28 +40,27 @@ private:
 public:
     static SolverEngine& get();
 
-    void startSolving(int levelId, const std::string& levelName, void* gameLayerPtr = nullptr);
+    void solveLevelAsync(int levelId, const std::string& levelName, void* gameLayerPtr);
     void stopSolving();
-    void solveMathematically(void* gameLayerPtr);
-    
+
     void startPlaying(const MacroData& macro);
     void stopPlaying();
 
-    void onProcessButtons(void* gameLayerPtr);
-    void onFrameTick(void* gameLayerPtr);
+    void onProcessCommands(void* gameLayerPtr);
+    void onAfterProcessCommands();
+    void onLevelReset();
     void onPlayerDeath(void* playerPtr);
     void onLevelComplete();
-    void onLevelReset();
+
+    bool shouldBlockUserInput() const {
+        return m_state == SolverState::Playing && !m_injecting;
+    }
 
     void renderTrajectory(void* drawNodePtr);
     void clearTrajectoryNode() { m_activeDrawNode = nullptr; }
 
     SolverState getState() const { return m_state; }
-    int getTotalAttempts() const { return m_totalAttempts; }
-    float getBestXPos() const { return m_bestXPos; }
-    size_t getCurrentFrame() const { return m_currentFrame; }
-    bool shouldReset() const { return m_needsReset; }
-    void clearResetFlag() { m_needsReset = false; }
-    
+    size_t getCurrentTick() const { return m_currentTick; }
     const MacroData& getActiveMacro() const { return m_activeMacro; }
+    bool isSolving() const { return m_isSolving.load(); }
 };

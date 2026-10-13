@@ -7,14 +7,17 @@
 using namespace geode::prelude;
 
 class $modify(AutoPlayBaseGameLayer, GJBaseGameLayer) {
-    void processQueuedButtons(float dt, bool clearInputQueue) {
-        SolverEngine::get().onProcessButtons(this);
-        GJBaseGameLayer::processQueuedButtons(dt, clearInputQueue);
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
+        SolverEngine::get().onProcessCommands(this);
+        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
+        SolverEngine::get().onAfterProcessCommands();
     }
 
-    void processCommands(float dt, bool isHalfTick, bool isLastTick) {
-        GJBaseGameLayer::processCommands(dt, isHalfTick, isLastTick);
-        SolverEngine::get().onFrameTick(this);
+    void handleButton(bool down, int button, bool isPlayer1) {
+        if (SolverEngine::get().shouldBlockUserInput()) {
+            return; // Block human clicks during bot playback to prevent accidental desync
+        }
+        GJBaseGameLayer::handleButton(down, button, isPlayer1);
     }
 };
 #endif

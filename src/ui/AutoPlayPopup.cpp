@@ -133,7 +133,7 @@ void AutoPlayPopup::onSolve(CCObject*) {
         return;
     }
 
-    SolverEngine::get().startSolving(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName, playLayer);
+    SolverEngine::get().solveLevelAsync(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName, playLayer);
     playLayer->resetLevel();
     this->onClose(nullptr);
 }
@@ -160,7 +160,7 @@ void AutoPlayPopup::onPlay(CCObject*) {
     bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
     auto macro = MacroManager::get().loadMacro(playLayer->m_level->m_levelID, collectCoins, playLayer->m_level->m_levelName);
     if (!macro.has_value()) {
-        SolverEngine::get().startSolving(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName, playLayer);
+        SolverEngine::get().solveLevelAsync(playLayer->m_level->m_levelID, playLayer->m_level->m_levelName, playLayer);
     } else {
         SolverEngine::get().startPlaying(*macro);
     }

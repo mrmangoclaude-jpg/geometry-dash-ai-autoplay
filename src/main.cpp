@@ -30,7 +30,7 @@ class $modify(AutoPlayKeyboardDispatcher, CCKeyboardDispatcher) {
                             playLayer->resetLevel();
                         }
                     } else {
-                        SolverEngine::get().startSolving(levelId, levelName, playLayer);
+                        SolverEngine::get().solveLevelAsync(levelId, levelName, playLayer);
                         playLayer->resetLevel();
                     }
                 }
