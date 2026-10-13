@@ -43,6 +43,18 @@
 			"description": "Route pathfinding and playback to collect secret coins if available",
 			"type": "bool",
 			"default": false
+		},
+		"show_trajectory": {
+			"name": "Show Trajectory (Debug Visualizer)",
+			"description": "Draws the planned path and death markers in-game using a visual overlay",
+			"type": "bool",
+			"default": true
+		},
+		"debug_logs": {
+			"name": "Debug Logs & Telemetry",
+			"description": "Logs detailed player positions, velocities, and macro offsets to console",
+			"type": "bool",
+			"default": true
 		}
 	},
 	"tags": ["gameplay", "utility", "cheat"]

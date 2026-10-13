@@ -8,9 +8,9 @@ using namespace geode::prelude;
 
 class $modify(AutoPlayPlayerObject, PlayerObject) {
     void playDeathEffect() {
+        SolverEngine::get().onPlayerDeath(this);
         if (SolverEngine::get().getState() == SolverState::Solving) {
             // Suppress standard death sequence animation and delay
-            SolverEngine::get().onPlayerDeath(this);
             return;
         }
 

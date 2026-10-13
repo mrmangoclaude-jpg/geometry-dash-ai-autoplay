@@ -47,6 +47,12 @@ private:
     bool m_isHolding = false;
     bool m_needsReset = false;
 
+    // Debug & Trajectory Visualizer
+    float m_lastDeathX = -1.0f;
+    float m_lastDeathY = -1.0f;
+    std::vector<std::pair<float, float>> m_solvedTrajectoryPath;
+    void* m_activeDrawNode = nullptr;
+
     SolverEngine() = default;
 
 public:
@@ -59,10 +65,13 @@ public:
     void startPlaying(const MacroData& macro);
     void stopPlaying();
 
+    void onProcessButtons(void* gameLayerPtr);
     void onFrameTick(void* gameLayerPtr);
     void onPlayerDeath(void* playerPtr);
     void onLevelComplete();
     void onLevelReset();
+
+    void renderTrajectory(void* drawNodePtr);
 
     SolverState getState() const { return m_state; }
     int getTotalAttempts() const { return m_totalAttempts; }

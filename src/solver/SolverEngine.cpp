@@ -790,13 +790,20 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             lo.h = 30.0f;
             lo.moveTriggers = std::move(objMoves);
 
+            // Ignore non-interactive portals (mirror, dual, teleport)
+            if (oid == 29 || oid == 30 || oid == 45 || oid == 46 || oid == 59 || oid == 60 || oid == 747 || oid == 749) {
+                continue;
+            }
+
+            // Always ignore decorative / passable blocks (e.g. fake blocks in The Lightning Road)
+            if (type == GameObjectType::Decoration || type == GameObjectType::EnterEffectObject) {
+                if (oid != 200 && oid != 201 && oid != 202 && oid != 203 && oid != 1334 && oid != 1829) {
+                    continue;
+                }
+            }
+
             bool known = classifyKnownObject(oid, rot, lo.w, lo.h, lo.isSolid, lo.isSlope, lo.isHazard, lo.isSaw);
             if (!known) {
-                if (type == GameObjectType::Decoration || type == GameObjectType::EnterEffectObject) {
-                    if (oid != 200 && oid != 201 && oid != 202 && oid != 203 && oid != 1334 && oid != 1829) {
-                        continue;
-                    }
-                }
                 auto rect = obj->getObjectRect();
                 if (rect.size.width > 0.1f && rect.size.height > 0.1f) {
                     lo.w = rect.size.width;
@@ -861,8 +868,8 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             lo.isPortalWave = (type == GameObjectType::WavePortal || oid == 660);
             lo.isPortalRobot = (type == GameObjectType::RobotPortal || oid == 745);
             lo.isPortalSpider = (type == GameObjectType::SpiderPortal || oid == 1331);
-            lo.isPortalGravNorm = (type == GameObjectType::NormalGravityPortal || oid == 10);
-            lo.isPortalGravInv = (type == GameObjectType::InverseGravityPortal || oid == 11);
+            lo.isPortalGravInv = (type == GameObjectType::NormalGravityPortal || oid == 10);
+            lo.isPortalGravNorm = (type == GameObjectType::InverseGravityPortal || oid == 11);
             lo.isPortalGravToggle = (type == GameObjectType::GravityTogglePortal || oid == 2926);
             lo.isPortalMini = (type == GameObjectType::MiniSizePortal || oid == 101);
             lo.isPortalNormalSize = (type == GameObjectType::RegularSizePortal || oid == 99);
@@ -1045,12 +1052,17 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
 
     // Reconstruct chronological action sequence from bestOverall.actionIdx
     std::vector<PlayerAction> actions;
+    m_solvedTrajectoryPath.clear();
     int curIdx = bestOverall.actionIdx;
     while (curIdx >= 0 && curIdx < static_cast<int>(actionPool.size())) {
         actions.push_back(actionPool[curIdx].action);
+        if (actionPool[curIdx].action.xPos > 0.0f) {
+            m_solvedTrajectoryPath.push_back({actionPool[curIdx].action.xPos, actionPool[curIdx].action.yPos});
+        }
         curIdx = actionPool[curIdx].parentIdx;
     }
     std::reverse(actions.begin(), actions.end());
+    std::reverse(m_solvedTrajectoryPath.begin(), m_solvedTrajectoryPath.end());
 
     // Guarantee the button is NEVER left held down at the end of the macro
     if (!actions.empty() && actions.back().isPush) {
@@ -1073,6 +1085,9 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     if (bestOverall.px >= maxLevelX - 150.0f && !actions.empty()) {
         winMacro.completionPercentage = 100.0f;
         MacroManager::get().saveMacro(winMacro, collectCoins);
+    } else {
+        log::warn("SOLVER DIAGNOSTIC: '{}' (ID {}) stopped early at {:.1f}% (x={:.1f}/{:.1f})",
+            m_currentLevelName, m_currentLevelId, winMacro.completionPercentage, bestOverall.px, maxLevelX);
     }
 
     startPlaying(winMacro);
@@ -1096,6 +1111,15 @@ void SolverEngine::startPlaying(const MacroData& macro) {
     m_currentFrame = 0;
     m_isHolding = false;
 
+    if (m_solvedTrajectoryPath.empty() && !macro.actions.empty()) {
+        m_solvedTrajectoryPath.reserve(macro.actions.size());
+        for (const auto& act : macro.actions) {
+            if (act.xPos > 0.0f) {
+                m_solvedTrajectoryPath.push_back({act.xPos, act.yPos});
+            }
+        }
+    }
+
 #if __has_include(<Geode/Geode.hpp>)
     Notification::create("AI AutoPlay: Playing Macro", NotificationIcon::Success)->show();
 #endif
@@ -1112,10 +1136,66 @@ void SolverEngine::onLevelReset() {
     m_replayIndex = 0;
     m_isHolding = false;
     m_needsReset = false;
+    if (m_activeDrawNode) {
+        renderTrajectory(m_activeDrawNode);
+    }
+}
+
+void SolverEngine::onProcessButtons(void* gameLayerPtr) {
+    if (m_state != SolverState::Playing) return;
+
+#if __has_include(<Geode/Geode.hpp>)
+    auto layer = static_cast<GJBaseGameLayer*>(gameLayerPtr);
+    if (!layer || !layer->m_player1) return;
+
+    auto p1 = layer->m_player1;
+    if (p1->m_isDead) return;
+
+    float currentX = p1->getPositionX();
+    float levelTime = layer->m_gameState.m_levelTime;
+    bool actedP1 = false;
+    bool actedP2 = false;
+
+    while (m_playbackIndex < m_activeMacro.actions.size()) {
+        const auto& action = m_activeMacro.actions[m_playbackIndex];
+        bool shouldTrigger = false;
+        if (action.xPos > 0.0f) {
+            shouldTrigger = (currentX >= action.xPos - 0.75f);
+        } else {
+            float physicsFrame = levelTime * 60.0f;
+            shouldTrigger = (physicsFrame >= static_cast<float>(action.frame));
+        }
+
+        if (!shouldTrigger) {
+            break;
+        }
+
+        if (action.isPlayer2) {
+            if (actedP2) break;
+        } else {
+            if (actedP1) break;
+        }
+
+        auto targetPlayer = (action.isPlayer2 && layer->m_player2) ? layer->m_player2 : p1;
+        if (action.isPush) {
+            targetPlayer->pushButton(PlayerButton::Jump);
+        } else {
+            targetPlayer->releaseButton(PlayerButton::Jump);
+        }
+
+        layer->handleButton(action.isPush, action.button, !action.isPlayer2);
+        if (!action.isPlayer2) {
+            m_isHolding = action.isPush;
+            actedP1 = true;
+        } else {
+            actedP2 = true;
+        }
+        m_playbackIndex++;
+    }
+#endif
 }
 
 void SolverEngine::onFrameTick(void* gameLayerPtr) {
-    // Strictly O(1) macro playback during gameplay — ZERO object scanning or mid-game calculations!
     if (m_state != SolverState::Playing) {
         return;
     }
@@ -1127,64 +1207,73 @@ void SolverEngine::onFrameTick(void* gameLayerPtr) {
     auto p1 = layer->m_player1;
     if (p1->m_isDead) return;
 
-    float currentX = p1->getPositionX();
-    float currentY = p1->getPositionY();
-    m_currentX = currentX;
-
-    if (m_playbackIndex < m_activeMacro.actions.size()) {
-        float levelTime = layer->m_gameState.m_levelTime;
-        bool actedP1 = false;
-        bool actedP2 = false;
-
-        while (m_playbackIndex < m_activeMacro.actions.size()) {
-            const auto& action = m_activeMacro.actions[m_playbackIndex];
-            bool shouldTrigger = false;
-            if (action.xPos > 0.0f) {
-                shouldTrigger = (currentX >= action.xPos - 0.25f);
-            } else {
-                float physicsFrame = levelTime * 60.0f;
-                shouldTrigger = (physicsFrame >= static_cast<float>(action.frame));
-            }
-
-            if (shouldTrigger) {
-                if (action.isPlayer2) {
-                    if (actedP2) break;
-                } else {
-                    if (actedP1) break;
-                }
-
-                // Input Fix: synchronize exact (X, Y) coordinates at action transitions
-                if (action.xPos > 0.0f && action.yPos > 0.0f && !action.isPlayer2) {
-                    float dx = std::abs(currentX - action.xPos);
-                    float dy = std::abs(currentY - action.yPos);
-                    if (dx < 18.0f && dy < 40.0f) {
-                        p1->setPosition({action.xPos, action.yPos});
-                        currentX = action.xPos;
-                        currentY = action.yPos;
-                    }
-                }
-
-                layer->handleButton(action.isPush, action.button, !action.isPlayer2);
-                if (!action.isPlayer2) {
-                    m_isHolding = action.isPush;
-                    actedP1 = true;
-                } else {
-                    actedP2 = true;
-                }
-                m_playbackIndex++;
-            } else {
-                break;
-            }
-        }
-    }
+    m_currentX = p1->getPositionX();
     m_currentFrame++;
 #else
     m_currentFrame++;
 #endif
 }
 
+void SolverEngine::renderTrajectory(void* drawNodePtr) {
+    m_activeDrawNode = drawNodePtr;
+#if __has_include(<Geode/Geode.hpp>)
+    if (!drawNodePtr) return;
+    auto drawNode = static_cast<CCDrawNode*>(drawNodePtr);
+    drawNode->clear();
+
+    if (m_solvedTrajectoryPath.size() < 2) return;
+
+    ccColor4F pathColor = (m_activeMacro.completionPercentage >= 99.0f)
+        ? ccc4f(0.0f, 1.0f, 0.35f, 0.75f)
+        : ccc4f(1.0f, 0.75f, 0.0f, 0.75f);
+
+    for (size_t i = 0; i + 1 < m_solvedTrajectoryPath.size(); ++i) {
+        CCPoint pA = {m_solvedTrajectoryPath[i].first, m_solvedTrajectoryPath[i].second};
+        CCPoint pB = {m_solvedTrajectoryPath[i+1].first, m_solvedTrajectoryPath[i+1].second};
+        drawNode->drawSegment(pA, pB, 1.5f, pathColor);
+    }
+
+    if (m_lastDeathX > 0.0f && m_lastDeathY > 0.0f) {
+        drawNode->drawDot({m_lastDeathX, m_lastDeathY}, 6.0f, ccc4f(1.0f, 0.15f, 0.15f, 1.0f));
+    }
+#endif
+}
+
 void SolverEngine::onPlayerDeath(void* playerPtr) {
     m_isHolding = false;
+#if __has_include(<Geode/Geode.hpp>)
+    if (!playerPtr) return;
+    auto player = static_cast<PlayerObject*>(playerPtr);
+    m_lastDeathX = player->getPositionX();
+    m_lastDeathY = player->getPositionY();
+
+    if (m_state == SolverState::Playing) {
+        bool debugLogs = Mod::get()->getSettingValue<bool>("debug_logs");
+        if (debugLogs) {
+            float expX = 0.0f, expY = 0.0f;
+            bool expPush = false;
+            if (m_playbackIndex < m_activeMacro.actions.size()) {
+                const auto& act = m_activeMacro.actions[m_playbackIndex];
+                expX = act.xPos;
+                expY = act.yPos;
+                expPush = act.isPush;
+            }
+            log::warn("[AutoPlay Debug] Player DIED at x={:.2f}, y={:.2f}, vy={:.2f}, grav={:.1f}",
+                m_lastDeathX, m_lastDeathY, player->m_yAccel, player->m_gravity);
+            log::warn("[AutoPlay Debug] Playback index: {}/{} | Next act: x={:.2f}, y={:.2f}, push={}",
+                m_playbackIndex, m_activeMacro.actions.size(), expX, expY, expPush);
+            log::warn("[AutoPlay Debug] Delta to planned action: dx={:.2f}, dy={:.2f}",
+                m_lastDeathX - expX, m_lastDeathY - expY);
+        }
+
+        Notification::create(fmt::format("AutoPlay: Died at x={:.0f}, y={:.0f}", m_lastDeathX, m_lastDeathY), NotificationIcon::Error)->show();
+
+        if (m_activeDrawNode) {
+            auto drawNode = static_cast<CCDrawNode*>(m_activeDrawNode);
+            drawNode->drawDot({m_lastDeathX, m_lastDeathY}, 6.0f, ccc4f(1.0f, 0.15f, 0.15f, 1.0f));
+        }
+    }
+#endif
 }
 
 void SolverEngine::onLevelComplete() {
