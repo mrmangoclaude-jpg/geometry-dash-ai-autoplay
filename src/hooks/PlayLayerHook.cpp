@@ -10,9 +10,16 @@
 using namespace geode::prelude;
 
 class $modify(AutoPlayPlayLayer, PlayLayer) {
-    struct Fields {
-        CCDrawNode* m_trajectoryNode = nullptr;
-    };
+    CCDrawNode* getOrCreateTrajectoryNode() {
+        if (!m_objectLayer) return nullptr;
+        auto node = static_cast<CCDrawNode*>(m_objectLayer->getChildByID("autoplay-trajectory-node"_spr));
+        if (!node) {
+            node = CCDrawNode::create();
+            node->setID("autoplay-trajectory-node"_spr);
+            m_objectLayer->addChild(node, 9999);
+        }
+        return node;
+    }
 
     void setupHasCompleted() {
         PlayLayer::setupHasCompleted();
@@ -23,27 +30,21 @@ class $modify(AutoPlayPlayLayer, PlayLayer) {
             bool collectCoins = Mod::get()->getSettingValue<bool>("collect_coins");
             bool showTraj = Mod::get()->getSettingValue<bool>("show_trajectory");
 
-            if (showTraj && m_objectLayer) {
-                if (!m_fields->m_trajectoryNode) {
-                    m_fields->m_trajectoryNode = CCDrawNode::create();
-                    m_fields->m_trajectoryNode->setID("autoplay-trajectory-node"_spr);
-                    m_objectLayer->addChild(m_fields->m_trajectoryNode, 9999);
-                }
-            }
+            CCDrawNode* trajNode = showTraj ? getOrCreateTrajectoryNode() : nullptr;
 
             if (MacroManager::get().hasSavedMacro(levelId, collectCoins, levelName)) {
                 auto saved = MacroManager::get().loadMacro(levelId, collectCoins, levelName);
                 if (saved.has_value()) {
                     SolverEngine::get().startPlaying(*saved);
-                    if (m_fields->m_trajectoryNode) {
-                        SolverEngine::get().renderTrajectory(m_fields->m_trajectoryNode);
+                    if (trajNode) {
+                        SolverEngine::get().renderTrajectory(trajNode);
                     }
                 }
             } else {
                 // Pre-solve the entire level (including Move Triggers) BEFORE gameplay starts!
                 SolverEngine::get().startSolving(levelId, levelName, this);
-                if (m_fields->m_trajectoryNode) {
-                    SolverEngine::get().renderTrajectory(m_fields->m_trajectoryNode);
+                if (trajNode) {
+                    SolverEngine::get().renderTrajectory(trajNode);
                 }
             }
         }
@@ -52,8 +53,12 @@ class $modify(AutoPlayPlayLayer, PlayLayer) {
     void resetLevel() {
         PlayLayer::resetLevel();
         SolverEngine::get().onLevelReset();
-        if (m_fields->m_trajectoryNode) {
-            SolverEngine::get().renderTrajectory(m_fields->m_trajectoryNode);
+        bool showTraj = Mod::get()->getSettingValue<bool>("show_trajectory");
+        if (showTraj) {
+            CCDrawNode* trajNode = getOrCreateTrajectoryNode();
+            if (trajNode) {
+                SolverEngine::get().renderTrajectory(trajNode);
+            }
         }
     }
 
@@ -66,7 +71,7 @@ class $modify(AutoPlayPlayLayer, PlayLayer) {
     }
 
     void onQuit() {
-        m_fields->m_trajectoryNode = nullptr;
+        SolverEngine::get().clearTrajectoryNode();
         SolverEngine::get().stopSolving();
         SolverEngine::get().stopPlaying();
         PlayLayer::onQuit();

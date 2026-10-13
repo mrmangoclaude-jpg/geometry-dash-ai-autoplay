@@ -663,14 +663,14 @@ namespace {
                 }
             } else if (it->isHazard) {
                 if (it->isSaw) {
-                    float radius = w * 0.5f;
-                    float dx = std::max(0.0f, std::abs(s.px - ox) - playerHalfW * 0.7f);
-                    float dy = std::max(0.0f, std::abs(s.py - oy) - playerHalfH * 0.7f);
+                    float radius = w * 0.5f + 3.0f; // Safety margin so the cube jumps before touching teeth
+                    float dx = std::max(0.0f, std::abs(s.px - ox) - playerHalfW * 0.85f);
+                    float dy = std::max(0.0f, std::abs(s.py - oy) - playerHalfH * 0.85f);
                     if (dx * dx + dy * dy < radius * radius) {
                         s.dead = true; s.holding = wantHold; return;
                     }
                 } else {
-                    if (std::abs(s.px - ox) < (w * 0.5f + playerHalfW) && std::abs(s.py - oy) < (h * 0.5f + playerHalfH)) {
+                    if (std::abs(s.px - ox) < (w * 0.5f + playerHalfW + 2.0f) && std::abs(s.py - oy) < (h * 0.5f + playerHalfH + 2.0f)) {
                         s.dead = true; s.holding = wantHold; return;
                     }
                 }
@@ -1102,6 +1102,8 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
 void SolverEngine::stopSolving() {
     m_state = SolverState::Idle;
     m_isHolding = false;
+    m_activeDrawNode = nullptr;
+    m_solvedTrajectoryPath.clear();
 }
 
 void SolverEngine::startPlaying(const MacroData& macro) {
@@ -1128,6 +1130,10 @@ void SolverEngine::startPlaying(const MacroData& macro) {
 void SolverEngine::stopPlaying() {
     m_state = SolverState::Idle;
     m_isHolding = false;
+    m_activeDrawNode = nullptr;
+    m_solvedTrajectoryPath.clear();
+    m_activeMacro = {};
+    m_playbackIndex = 0;
 }
 
 void SolverEngine::onLevelReset() {
@@ -1136,9 +1142,6 @@ void SolverEngine::onLevelReset() {
     m_replayIndex = 0;
     m_isHolding = false;
     m_needsReset = false;
-    if (m_activeDrawNode) {
-        renderTrajectory(m_activeDrawNode);
-    }
 }
 
 void SolverEngine::onProcessButtons(void* gameLayerPtr) {
@@ -1219,6 +1222,7 @@ void SolverEngine::renderTrajectory(void* drawNodePtr) {
 #if __has_include(<Geode/Geode.hpp>)
     if (!drawNodePtr) return;
     auto drawNode = static_cast<CCDrawNode*>(drawNodePtr);
+    if (!drawNode->getParent()) return;
     drawNode->clear();
 
     if (m_solvedTrajectoryPath.size() < 2) return;
@@ -1227,9 +1231,14 @@ void SolverEngine::renderTrajectory(void* drawNodePtr) {
         ? ccc4f(0.0f, 1.0f, 0.35f, 0.75f)
         : ccc4f(1.0f, 0.75f, 0.0f, 0.75f);
 
-    for (size_t i = 0; i + 1 < m_solvedTrajectoryPath.size(); ++i) {
+    size_t step = (m_solvedTrajectoryPath.size() > 300) ? (m_solvedTrajectoryPath.size() / 300 + 1) : 1;
+    size_t count = 0;
+    for (size_t i = 0; i + step < m_solvedTrajectoryPath.size() && count < 300; i += step, ++count) {
         CCPoint pA = {m_solvedTrajectoryPath[i].first, m_solvedTrajectoryPath[i].second};
-        CCPoint pB = {m_solvedTrajectoryPath[i+1].first, m_solvedTrajectoryPath[i+1].second};
+        CCPoint pB = {m_solvedTrajectoryPath[i+step].first, m_solvedTrajectoryPath[i+step].second};
+        if (std::isnan(pA.x) || std::isnan(pA.y) || std::isnan(pB.x) || std::isnan(pB.y)) continue;
+        if (std::isinf(pA.x) || std::isinf(pA.y) || std::isinf(pB.x) || std::isinf(pB.y)) continue;
+        if (std::abs(pB.x - pA.x) < 0.5f && std::abs(pB.y - pA.y) < 0.5f) continue;
         drawNode->drawSegment(pA, pB, 1.5f, pathColor);
     }
 
@@ -1270,7 +1279,9 @@ void SolverEngine::onPlayerDeath(void* playerPtr) {
 
         if (m_activeDrawNode) {
             auto drawNode = static_cast<CCDrawNode*>(m_activeDrawNode);
-            drawNode->drawDot({m_lastDeathX, m_lastDeathY}, 6.0f, ccc4f(1.0f, 0.15f, 0.15f, 1.0f));
+            if (drawNode->getParent()) {
+                drawNode->drawDot({m_lastDeathX, m_lastDeathY}, 6.0f, ccc4f(1.0f, 0.15f, 0.15f, 1.0f));
+            }
         }
     }
 #endif

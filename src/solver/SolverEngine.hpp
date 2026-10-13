@@ -72,6 +72,7 @@ public:
     void onLevelReset();
 
     void renderTrajectory(void* drawNodePtr);
+    void clearTrajectoryNode() { m_activeDrawNode = nullptr; }
 
     SolverState getState() const { return m_state; }
     int getTotalAttempts() const { return m_totalAttempts; }

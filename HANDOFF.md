@@ -40,6 +40,22 @@ It pre-solves entire levels before the first attempt starts, saves macros to dis
 - **Death Marker & Notifications**:
   - When the player dies during playback, a red dot is placed at `(deathX, deathY)`, an on-screen toast is shown (`AutoPlay: Died at x=... y=...`), and detailed telemetry (velocity, gravity, distance from expected macro action) is printed to the Geode console.
 
+### D. Dangling Pointer Crash on Exit/Re-Enter & Hazard Margin Fix
+- **Root Cause of Crash on Level Re-Entry**:
+  - `SolverEngine::m_activeDrawNode` previously held a raw `void*` pointer to the `CCDrawNode` instance created in `PlayLayer`.
+  - When the player exited a level and re-entered, the previous `PlayLayer` and its children were deallocated, but `m_activeDrawNode` remained non-null in the singleton `SolverEngine`.
+  - Upon re-entering, `PlayLayer::init()` called `resetLevel()`, which invoked `SolverEngine::onLevelReset()` -> `renderTrajectory(m_activeDrawNode)` on the destroyed node.
+  - Cocos2d-x attempted to write vertices to the deallocated `m_pTriangles` buffer (pointing to `0x0`), triggering `EXCEPTION_ACCESS_VIOLATION (0xC0000005)` in `CCDrawNode::drawSegmentEx`.
+  - **Fix**:
+    1. `SolverEngine::clearTrajectoryNode()` is called on `onQuit()` and in `PlayLayerHook`'s lifecycle.
+    2. `stopPlaying()` and `stopSolving()` reset `m_activeDrawNode = nullptr` and clear path memory.
+    3. `onLevelReset()` no longer calls `renderTrajectory` directly; rendering is safely mediated by `PlayLayerHook` via `getOrCreateTrajectoryNode()`.
+    4. `renderTrajectory()` guards against detached nodes (`!drawNode->getParent()`), checks NaNs/Infs, skips zero-length segments, and caps segments to 300 points to prevent buffer overflows.
+- **Root Cause of Death at x=254.46 in DeCode**:
+  - The offline macro `local_DeCode_antigravity.json` had its opening jump at `x = 264.84` due to aggressive grounded-state preference in beam sorting and lack of hazard safety buffers.
+  - The cube physically collided with the floor sawblade (ID 675, center at $x=301$, radius 32) at $x = 254.46$ before reaching the scheduled jump point.
+  - **Fix**: Added a 3.0-stud collision safety buffer to circular sawblades (`radius = w * 0.5f + 3.0f`) and 2.0 studs to hazards, forcing the solver to initiate jumps at $x \approx 244..249$ with ample clearance. Purged the outdated pre-generated macro from disk.
+
 ---
 
 ## 3. Environment & Build Pipeline
