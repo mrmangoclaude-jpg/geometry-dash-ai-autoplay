@@ -18,6 +18,7 @@ scripts/
 
 
 research/
+levels_extracted/
 scripts/check_*.py
 scripts/inspect_*.py
 scripts/test_*.py

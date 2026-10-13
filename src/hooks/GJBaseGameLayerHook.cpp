@@ -8,8 +8,8 @@ using namespace geode::prelude;
 
 class $modify(AutoPlayBaseGameLayer, GJBaseGameLayer) {
     void processQueuedButtons(float dt, bool clearInputQueue) {
-        GJBaseGameLayer::processQueuedButtons(dt, clearInputQueue);
         SolverEngine::get().onProcessButtons(this);
+        GJBaseGameLayer::processQueuedButtons(dt, clearInputQueue);
     }
 
     void processCommands(float dt, bool isHalfTick, bool isLastTick) {

@@ -663,14 +663,16 @@ namespace {
                 }
             } else if (it->isHazard) {
                 if (it->isSaw) {
-                    float radius = w * 0.5f + 3.0f; // Safety margin so the cube jumps before touching teeth
-                    float dx = std::max(0.0f, std::abs(s.px - ox) - playerHalfW * 0.85f);
-                    float dy = std::max(0.0f, std::abs(s.py - oy) - playerHalfH * 0.85f);
+                    float radius = w * 0.5f;
+                    float dx = std::max(0.0f, std::abs(s.px - ox) - playerHalfW * 0.7f);
+                    float dy = std::max(0.0f, std::abs(s.py - oy) - playerHalfH * 0.7f);
                     if (dx * dx + dy * dy < radius * radius) {
                         s.dead = true; s.holding = wantHold; return;
                     }
                 } else {
-                    if (std::abs(s.px - ox) < (w * 0.5f + playerHalfW + 2.0f) && std::abs(s.py - oy) < (h * 0.5f + playerHalfH + 2.0f)) {
+                    float hazHalfW = playerHalfW * ((s.mode == SimMode::Ship || s.mode == SimMode::Wave) ? 1.0f : 0.75f);
+                    float hazHalfH = playerHalfH * ((s.mode == SimMode::Ship || s.mode == SimMode::Wave) ? 1.0f : 0.75f);
+                    if (std::abs(s.px - ox) < (w * 0.5f + hazHalfW) && std::abs(s.py - oy) < (h * 0.5f + hazHalfH)) {
                         s.dead = true; s.holding = wantHold; return;
                     }
                 }
@@ -795,15 +797,14 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
                 continue;
             }
 
-            // Always ignore decorative / passable blocks (e.g. fake blocks in The Lightning Road)
-            if (type == GameObjectType::Decoration || type == GameObjectType::EnterEffectObject) {
-                if (oid != 200 && oid != 201 && oid != 202 && oid != 203 && oid != 1334 && oid != 1829) {
-                    continue;
-                }
-            }
-
             bool known = classifyKnownObject(oid, rot, lo.w, lo.h, lo.isSolid, lo.isSlope, lo.isHazard, lo.isSaw);
             if (!known) {
+                // Ignore decorative / passable blocks if they are not known interactive/hazard objects
+                if (type == GameObjectType::Decoration || type == GameObjectType::EnterEffectObject) {
+                    if (oid != 200 && oid != 201 && oid != 202 && oid != 203 && oid != 1334 && oid != 1829) {
+                        continue;
+                    }
+                }
                 auto rect = obj->getObjectRect();
                 if (rect.size.width > 0.1f && rect.size.height > 0.1f) {
                     lo.w = rect.size.width;
@@ -868,8 +869,8 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
             lo.isPortalWave = (type == GameObjectType::WavePortal || oid == 660);
             lo.isPortalRobot = (type == GameObjectType::RobotPortal || oid == 745);
             lo.isPortalSpider = (type == GameObjectType::SpiderPortal || oid == 1331);
-            lo.isPortalGravInv = (type == GameObjectType::NormalGravityPortal || oid == 10);
-            lo.isPortalGravNorm = (type == GameObjectType::InverseGravityPortal || oid == 11);
+            lo.isPortalGravNorm = (type == GameObjectType::NormalGravityPortal || oid == 10);
+            lo.isPortalGravInv = (type == GameObjectType::InverseGravityPortal || oid == 11);
             lo.isPortalGravToggle = (type == GameObjectType::GravityTogglePortal || oid == 2926);
             lo.isPortalMini = (type == GameObjectType::MiniSizePortal || oid == 101);
             lo.isPortalNormalSize = (type == GameObjectType::RegularSizePortal || oid == 99);
@@ -1085,16 +1086,16 @@ void SolverEngine::solveMathematically(void* gameLayerPtr) {
     if (bestOverall.px >= maxLevelX - 150.0f && !actions.empty()) {
         winMacro.completionPercentage = 100.0f;
         MacroManager::get().saveMacro(winMacro, collectCoins);
+        startPlaying(winMacro);
+        Notification::create("AI AutoPlay: Level Solved! Playing run...", NotificationIcon::Success)->show();
+        if (layer->m_gameState.m_levelTime > 0.05) {
+            layer->resetLevel();
+        }
     } else {
+        m_state = SolverState::Idle;
         log::warn("SOLVER DIAGNOSTIC: '{}' (ID {}) stopped early at {:.1f}% (x={:.1f}/{:.1f})",
             m_currentLevelName, m_currentLevelId, winMacro.completionPercentage, bestOverall.px, maxLevelX);
-    }
-
-    startPlaying(winMacro);
-
-    Notification::create("AI AutoPlay: Level Solved! Playing run...", NotificationIcon::Success)->show();
-    if (layer->m_gameState.m_levelTime > 0.05) {
-        layer->resetLevel();
+        Notification::create(fmt::format("AI AutoPlay: Solver reached {:.1f}%", winMacro.completionPercentage), NotificationIcon::Warning)->show();
     }
 #endif
 }
@@ -1177,13 +1178,6 @@ void SolverEngine::onProcessButtons(void* gameLayerPtr) {
             if (actedP2) break;
         } else {
             if (actedP1) break;
-        }
-
-        auto targetPlayer = (action.isPlayer2 && layer->m_player2) ? layer->m_player2 : p1;
-        if (action.isPush) {
-            targetPlayer->pushButton(PlayerButton::Jump);
-        } else {
-            targetPlayer->releaseButton(PlayerButton::Jump);
         }
 
         layer->handleButton(action.isPush, action.button, !action.isPlayer2);
