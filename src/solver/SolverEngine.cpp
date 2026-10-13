@@ -1259,7 +1259,7 @@ void SolverEngine::onPlayerDeath(void* playerPtr) {
                 expPush = act.isPush;
             }
             log::warn("[AutoPlay Debug] Player DIED at x={:.2f}, y={:.2f}, vy={:.2f}, grav={:.1f}",
-                m_lastDeathX, m_lastDeathY, player->m_yAccel, player->m_gravity);
+                m_lastDeathX, m_lastDeathY, player->m_yVelocity, player->m_gravity);
             log::warn("[AutoPlay Debug] Playback index: {}/{} | Next act: x={:.2f}, y={:.2f}, push={}",
                 m_playbackIndex, m_activeMacro.actions.size(), expX, expY, expPush);
             log::warn("[AutoPlay Debug] Delta to planned action: dx={:.2f}, dy={:.2f}",
